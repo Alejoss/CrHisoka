@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+  <!-- Preloader
+  ================================================== -->
+  <div id="preloader">
+    <div id="status">&nbsp;</div>
+  </div>
+
+<!-- Off Canvas Navigation
+================================================== -->
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
+  <br>
+  <br>
+  <ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'historia_conciencia_poder' %}">Historia de la CONCIENCIA y el PODER</a></li>
+    <li class="active"><a href="{% url 'cripto_blog' %}">BLOG</a></li>
+    <li><a href="{% url 'cripto_videos' %}">VIDEOS</a></li>
+  </ul><!--- End Menu -->
+
+  <ul class="social-media"> <!--- User Social Media -->
+    <li><a href="#">Twitter</a></li>
+    <li><a href="#">Facebook</a></li>
+    <li><a href="#">Google +</a></li>
+    <li><a href="#">Youtube</a></li>
+  </ul> <!--- End User Social Media -->
+</div> <!--- End Off Canvas Side Menu -->
+
+<!-- Fullscreen Page 
+================================================== -->
+<div id="fullscreen" class="blog"> <!--- Full Screen Blog Page -->
+    
+    <!-- Top Navigation Bar -->
+      <nav id="top-nav" class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="pull-left text-left">
+            <span id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></span>
+          </div>          
+        </div>
+      </nav> <!-- End Top Navigation Bar -->
+
+    <div id ="blog"> <!-- Start Blog Content -->   
+      <div class="container"> <!-- Start Container -->         
+        <div id="content"><!--- Start Content Wrapper-->
+          <div class="text"> <!--  Text -->
+
+            <!-- Start Blog Posts --> 
+            <div id="posts" class="portfolio">
+
+              <div class="row">
+
+                <div class="col-lg-4 col-md-4 item">
+                  <div class="details">
+                    <a href="{% url 'criptoanarquismo_unica_salida' %}">
+                      <h4>El criptoanarquismo como única salida</h4>
+                    </a>
+                    <span class="meta-author"><a href="#">Julio 2015</a></span>
+                    <br>
+                    <br>
+                  </div>
+                  <a href="{% url 'criptoanarquismo_unica_salida' %}"><img src="{% static 'img/criptolibertad/hacker2.jpg' %}" alt='' class="img-responsive"/></a>
+                </div>
+
+                <div class="col-lg-4 col-md-4 item">
+                  <div class="details">
+                    <a href="{% url 'jardin_bonsais' %}">
+                      <h4>El Jardín de Bonsais</h4>
+                    </a>
+                    <span class="meta-author"><a href="#">Diciembre 2015</a></span>
+                    <br>
+                    <br>
+                  </div>
+                  <a href="{% url 'jardin_bonsais' %}"><img src="{% static 'img/criptolibertad/forestblack.jpg' %}" alt='' class="img-responsive"/></a>
+                </div>
+              </div> 
+          <div class="space"></div>
+          <div class="clearfix"></div>
+          </div> <!-- End Blog Posts --> 
+        
+        </div><!--  End Text Wrapper -->
+      </div> <!--- End Content Wrapper-->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+{% endblock content %}

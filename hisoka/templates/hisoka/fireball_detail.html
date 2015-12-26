@@ -1,0 +1,92 @@
+{% extends 'hisoka_base.html' %}
+{% load staticfiles %}
+
+
+{% block content %}
+
+<!-- Preloader
+================================================== -->
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
+
+<!-- Off Canvas Navigation
+================================================== -->
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
+  <br>
+  <br>
+  <ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
+    <li><a href="{% url 'crear_feral_spirit' fireball.slug %} ">Crear FeralSpirit</a></li>
+  </ul><!--- End Menu -->
+</div> <!--- End Off Canvas Side Menu -->
+
+<!-- Fullscreen Page 
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/fireball.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+        
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+            
+            <h1>FIREBALL'S DETAIL</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+              <table class = "table">
+                <thead>
+                  <tr>
+                    <th>
+                      Fireball
+                    </th>
+                    <th>
+                      Nombre
+                    </th>
+                    <th>
+                      Cuenta : <br> Última Publicación
+                    </th>
+                    <th>
+                      URL
+                    </th>
+                  </tr>
+                  </thead>
+
+                  {% for feral in feral_spirits %}
+                    {% if feral.tipo == "video" %}
+                    <tr class="info"> 
+                    {% elif feral.tipo == "imagen" %}
+                    <tr class="success">
+                    {% else %}
+                    <tr class="warning">
+                    {% endif %}
+                      <td>
+                        {{feral.fireball}}
+                      </td>
+                      <td>
+                        {{feral.nombre}}
+                      </td>
+                      <td>
+                        <strong>{{feral.contador|default:"*0*"}}</strong> : {{feral.ultima_publicacion|date:"m-d"}}
+                      </td>
+                      <td>
+                        <a href="{{feral.url}}">{{feral.url|truncatechars:35}}</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+              </table>						
+          </div> <!--- End Right Content -->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+
+{% endblock content %}

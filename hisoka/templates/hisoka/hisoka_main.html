@@ -1,0 +1,76 @@
+{% extends 'hisoka_base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- Preloader
+================================================== -->
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
+
+<!-- Off Canvas Navigation
+================================================== -->
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
+  <br>
+  <br>
+  <ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
+    <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>    
+  </ul><!--- End Menu -->
+</div> <!--- End Off Canvas Side Menu -->
+
+<!-- Fullscreen Page 
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/hisokasguard.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+        
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+            
+            <h1>HISOKA'S <br> MAIN</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+            <div id="content"><!--- Start Content Wrapper-->
+
+                      <!-- Start Blog Posts --> 
+                <div id="posts" class="portfolio">
+
+                  {% for fireball in fireballs %}                  
+                    <div class="col-lg-4 col-md-4 item">
+                      <div class="details">
+                        <a href = "{% url 'fireball' fireball.slug 'ultima_publicacion' %}">
+                          <h4> {{fireball.nombre}} </h4>                          
+                        </a>
+                        <span class="meta-author"> {{fireball.twitter}} </span>
+                        <br>
+                        <br>
+                      </div>
+                      <a href="{% url 'fireball' fireball.slug 'ultima_publicacion' %}"><img src="{{fireball.imagen}}" alt="{{fireball.nombre}}" class="img-responsive"/></a>
+                    </div>                  
+                  {% endfor %}
+              
+                <div class="space"></div>
+                <div class="clearfix"></div>
+              </div> <!-- End Blog Posts -->                 
+            
+            </div><!--- End Content Wrapper--> 
+          
+          </div> <!--- End Right Content -->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+
+{% endblock content %}
+
