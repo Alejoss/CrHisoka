@@ -1,86 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'base_videos.html' %}
 {% load staticfiles %}
 
-{% block content %}
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/cubo2.jpg' %}" alt="..."></div>
+{% endblock imagen %}
 
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
-    <li class="active"><a href="{% url 'historia_conciencia_poder' %}">Historia de la CONCIENCIA y el PODER</a></li>
-    <li><a href="{% url 'cripto_blog' %}">BLOG</a></li>
-    <li><a href="{% url 'cripto_videos' %}">VIDEOS</a></li>
-  </ul><!--- End Menu -->
+{% block titulo_tags %}
+   <h1>Historia de la CONCIENCIA y <br>el PODER</h1>
+    <ul class="tags">
+      <li>Psicología</li>
+      <li>Política</li>
+      <li>Historia</li>
+    </ul>
 
-  <ul class="social-media"> <!--- User Social Media -->
-    <li><a href="#">Twitter</a></li>
-    <li><a href="#">Facebook</a></li>
-    <li><a href="#">Google +</a></li>
-    <li><a href="#">Youtube</a></li>
-  </ul> <!--- End User Social Media -->
-</div> <!--- End Off Canvas Side Menu -->
+{% endblock titulo_tags %}
 
-<!-- Fullscreen Page 
-================================================== -->
-<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
-  <div id="sidebar" class="blog">
-    <div class="featured-img"><img src="{% static 'img/criptolibertad/cubo2.jpg' %}" alt="..."></div> <!-- featured image-->
-  </div>
+{% block descripcion %}
+    <p>Esto es un LIBRO, es una CANCIÓN, es un VIDEO. Si quieres leerlo, asegúrate que tienes el tiempo y sube el volumen de tus audífonos.</p>
+{% endblock descripcion %}
 
-  <div class="container"> <!-- Start Container -->
-    <div class="row"> <!-- Start Row -->
-      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
-        
-          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
-          <div id="page-detail">
-            
-            <h1>Historia de la CONCIENCIA y <br>el PODER</h1>
-                        
-            <ul class="tags">
-              <li>Psicología</li>
-              <li>Política</li>
-              <li>Historia</li>
-            </ul>
 
-          </div>
-      </div> <!--- End Left Content -->
+{% block iframe %}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/w6kam1K_cwo" frameborder="0" allowfullscreen>
+</iframe>
+{% endblock iframe %}
 
-                <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
-                <div id="content"><!--- Start Content Wrapper-->
-                <div class="text"> <!--- Start Text Wrapper -->
-                
-                <p>Esto es un LIBRO, es una CANCIÓN, es un VIDEO. Si quieres leerlo, asegúrate que tienes el tiempo y sube el volumen de tus audífonos.</p>
-                <br>
-                <br>
-                
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/w6kam1K_cwo" frameborder="0" allowfullscreen>
-                 
-                </iframe>
-                
-                <blockquote>
-                  Un uróboro es una palabra griega que representa a un animal que engulle su propia cola, formando un círculo. Si dicho animal, por ejemplo, una serpiente, comienza a comerse su cola y termina tragándose todo su cuerpo... ¿Dónde estaría la serpiente?.
-                </blockquote>
+{% block quote %}
+<blockquote>
+  Un uróboro es una palabra griega que representa a un animal que engulle su propia cola, formando un círculo. Si dicho animal, por ejemplo, una serpiente, comienza a comerse su cola y termina tragándose todo su cuerpo... ¿Dónde estaría la serpiente?.
+</blockquote>
+{% endblock quote %}
 
-                <hr>
-
-              <div class="space"></div>
-              <div class="clearfix"></div>
-              </div> <!--- End Text Wrapper -->
-            
-            </div><!--- End Content Wrapper--> 
-          
-          </div> <!--- End Right Content -->
-
-    </div> <!-- End Row -->
-  </div> <!-- End Container -->
-
-</div> <!--- End Full Screen Blog Post Page -->
-
-{% endblock content %}

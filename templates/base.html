@@ -7,10 +7,11 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bloggler - Home Page</title>
-    <meta name="description" content="Bloggler - Photo Blog is a clean and minimalist photography blog perfectly designed for photographers and bloggers. Bloggler is beautiful, clean and very classic design.">
-    <meta name="keywords" content="photoblog, psd, portfolio, photography, photographer, unique, creative, blog, minimal, beautiful theme">
-    <meta name="author" content="JLP Media">
+    <title>Criptolibertad</title>
+    <meta name="description" content="El criptoanarquismo parte de un análisis sociológico y psicológico del poder,
+    más un entendimiento adecuado de la economía.">
+    <meta name="keywords" content="libertarianismo, criptoanarquismo, capitalismo, libertad, bitcoin, filosofía, mutualismo, anarquismo">
+    <meta name="author" content="Alejandro Veintimilla">
     
     <!-- Favicons
     ================================================== -->
@@ -30,6 +31,7 @@
     ================================================== -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/extra_css.css' %}">
 
     <!-- Google Fonts 
     ================================================== -->
@@ -37,6 +39,8 @@
 
     <!-- Modernizr  JS
     ================================================== -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/modernizr.custom.js' %}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,13 +53,52 @@
 
   <body>
 
-<!-- Off Canvas Navigation
-================================================== -->
-  {% block content %}
-  {% endblock content %}
+    <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->
+      <br>
+      <br>
+
+      <ul class="nav navmenu-nav"> <!--- Menu -->
+        <li id="historia_conciencia_poder"><a href="{% url 'historia_conciencia_poder' %}">Historia de la CONCIENCIA y el PODER</a></li>
+        <li id="cripto_blog"><a href="{% url 'cripto_blog' %}">BLOG</a></li>
+        <li id="cripto_videos"><a href="{% url 'cripto_videos' %}">VIDEOS</a></li>
+        <li id="contenido_extra"><a href="{% url 'contenido_extra' %}">CONTENIDO EXTRA</a></li>
+
+        {% if seccion == "cripto_blog" %}
+            <hr>
+                <li id="cripto_unica_salida" class=""><a href="{% url 'cripto_unica_salida' %}"><small>El criptoanarquismo como única salida</small></a></li>
+                <li id="jardin_bonsais" class=""><a href="{% url 'jardin_bonsais' %}"><small>El jardín de bonsais</small></a></li>
+                <li id="que_es_cripto" class=""><a href="{% url 'que_es_cripto' %}"><small>Qué es el criptoanarquismo</small></a></li>
+            <hr>
+        {% endif %}
+
+        {% if seccion == "cripto_videos" %}
+            <hr>
+                <li id="v_prologo" class=""><a href="{% url 'v_prologo' %}"><small>Prólogo</small></a></li>
+                <li id="v_conciencia" class=""><a href="{% url 'v_conciencia' %}"><small>Conciencia</small> </a></li>
+                <li id="v_poder" class=""><a href="{% url 'v_poder' %}"><small>Poder</small> </a></li>
+                <li id="v_castillo" class=""><a href="{% url 'v_castillo' %}"><small>Castillo</small></a></li>
+                <li id="v_caverna" class=""><a href="{% url 'v_caverna' %}"><small>Caverna</small></a></li>
+                <li id="v_mitologia" class=""><a href="{% url 'v_mitologia' %}"><small>Mitología</small></a></li>
+                <li id="v_democracia" class=""><a href="{% url 'v_democracia' %}"><small>Democracia</small></a></li>
+                <li id="v_templo" class=""><a href="{% url 'v_templo' %}"><small>Resumen: Templo</small></a></li>
+            <hr>
+        {% endif %}
+      </ul>
+
+      <ul class="social-media"> <!--- User Social Media -->
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">Facebook</a></li>
+        <li><a href="#">Google +</a></li>
+        <li><a href="#">Youtube</a></li>
+      </ul> <!--- End User Social Media -->
+    </div> <!--- End Off Canvas Side Menu -->
+
+    {% block content %}
+    {% endblock content %}
 
   <!-- Bootstrap Js Compiled Plugins -->
   <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -69,6 +112,21 @@
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places"></script>
   <script type="text/javascript" src="{% static 'js/jasny-bootstrap.min.js' %}"></script>
   <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+
+    <!-- Menu -->
+    <script>
+        $(document).ready(function(){
+            var link_seccion = "#"+ "{{ seccion }}";
+            console.log(link_seccion);
+            $(link_seccion).addClass("active");
+
+            var link_active = "#"+ "{{ active }}";
+            console.log(link_active);
+            $(link_active).addClass("active");
+        })
+    </script>
+
 
   {% block extra_javascript %}
   {% endblock extra_javascript %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+     <!-- featured image <div class="featured-img"><img src="{% static 'img/criptolibertad/cubo2.jpg' %}" alt="..."></div>-->
+    {% block imagen %}
+    {% endblock imagen %}
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+              {% block titulo_tags %}
+                <!-- <h1>Historia de la CONCIENCIA y <br>el PODER</h1>
+                <ul class="tags">
+                  <li>Psicología</li>
+                  <li>Política</li>
+                  <li>Historia</li>
+                </ul>
+                -->
+              {% endblock titulo_tags %}
+
+          </div>
+      </div> <!--- End Left Content -->
+
+                <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+                <div id="content"><!--- Start Content Wrapper-->
+                <div class="text"> <!--- Start Text Wrapper -->
+
+                {% block descripcion %}
+                {% endblock descripcion %}
+                <br>
+                <br>
+
+                {% block iframe %}
+                {% endblock iframe %}
+
+                {% block quote %}
+                {% endblock quote %}
+
+                <hr>
+
+              <div class="space"></div>
+                {% include 'comments_disqus.html' %}
+              <div class="clearfix"></div>
+              </div> <!--- End Text Wrapper -->
+
+            </div><!--- End Content Wrapper-->
+
+          </div> <!--- End Right Content -->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+
+{% endblock content %}

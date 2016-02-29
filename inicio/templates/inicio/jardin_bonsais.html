@@ -2,35 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
-    <li><a href="{% url 'historia_conciencia_poder' %}">Historia de la CONCIENCIA y el PODER</a></li>
-    <li class="active"><a href="{% url 'cripto_blog' %}">BLOG</a></li>
-    <li><a href="{% url 'cripto_videos' %}">VIDEOS</a></li>
-    <hr>
-    <li class=""><a href="{% url 'criptoanarquismo_unica_salida' %}"><small>El criptoanarquismo como única salida</a></small></li>
-    <li class="active"><a href="{% url 'jardin_bonsais' %}"><small>El jardín de bonsais</a></small></li>
-    <hr>
-  </ul><!--- End Menu -->
-
-  <ul class="social-media"> <!--- User Social Media -->
-    <li><a href="#">Twitter</a></li>
-    <li><a href="#">Facebook</a></li>
-    <li><a href="#">Google +</a></li>
-    <li><a href="#">Youtube</a></li>
-  </ul> <!--- End User Social Media -->
-</div> <!--- End Off Canvas Side Menu -->
-
 <!-- Fullscreen Page 
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
@@ -45,7 +16,7 @@
           <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
           <div id="page-detail">
             
-            <h1>El Jardin de <br>Bonsais</h1>
+            <h1>El Jardin de <br>Bonsáis</h1>
                         
             <ul class="tags">
               <li>Cuento</li>
@@ -59,13 +30,11 @@
         <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
           <div id="content"><!--- Start Content Wrapper-->
             <div class="text"> <!--- Start Text Wrapper -->
-                <span class="meta-date pull-right">Reedición de un cuento que publiqué en un antiguo blog.
-                </span>
                 <br>
 
                 <p>
 
-                Hubo un tiempo en el que todo este terreno estuvo cubierto por el Bosque Milenario. Los arbustos se regaban en la alfombra del páramo, siempre estirando sus hojas en dirección al Lago que antes cubría con su color tinto el fondo del Valle, allí, donde ahora queda el Jardín de Bonsais. 
+                Hubo un tiempo en el que todo este terreno estuvo cubierto por el Bosque Milenario. Los arbustos se regaban en la alfombra del páramo, siempre estirando sus hojas en dirección al Lago que antes cubría con su color tinto el fondo del Valle, allí, donde ahora queda el Jardín de Bonsáis. 
 
                 <br><br>
 
@@ -74,36 +43,38 @@
                 <br><br>
                 <br><br>
 
-                El bosque se iba tupiendo a medida que descendía por las laderas. Los troncos y las enredaderas se estrujaban al borde de los riachuelos y más abajo, en las cuencas de los ríos. El más grande nacía de la piscina de una cascada y luego fluía por el Oeste regando el olor de sus aguas rojas. Dicen que Árboles Frutales, Manzanos, Aguacates y luego, Olivos, lo acompañaban hasta el plateau. A partir de allí, los Pinos se habían tomado el río que serpenteaba dejando un manjar de aromas en cada curva (A pesar de sus esfuerzos, los Pinos nunca pudieron acercarse al Lago). Los Robles disputaban la  desembocadura con los tejidos de Bambús y uno que otro Baobab. 
+                El bosque se iba tupiendo a medida que descendía por las laderas. Los troncos y las enredaderas se estrujaban al borde de los riachuelos y más abajo, en las cuencas de los ríos. El más grande nacía de la piscina de una cascada y luego fluía por el Oeste regando el olor de sus aguas rojas. Dicen que Árboles Frutales, Manzanos, Aguacates y luego, Olivos, lo acompañaban hasta el <i>plateau</i>. A partir de allí, los Pinos se habían tomado el río que serpenteaba dejando un manjar de aromas en cada curva (a pesar de sus esfuerzos, los Pinos nunca pudieron acercarse al Lago). Los Robles disputaban la  desembocadura con los tejidos de Bambús y uno que otro Baobab.
 
                 <br><br>
-                La historia del bosque comenzó y terminó con su adicción al olor de la sangre. Los arbustos en la lejanía esperaban a que una brisa extraviada les trajera la escencia del Lago. Cuando un árbol moría sus vecinos se satisfacían aspirando el aroma de sus fluidos (y todavía, cuando un bonsai muere, sucede lo mismo).
+                La historia del bosque comenzó y terminó con su adicción al olor de la sangre. Los arbustos en la lejanía esperaban a que una brisa extraviada les trajera la esencia del Lago. Cuando un árbol moría sus vecinos se satisfacían aspirando el aroma de sus fluidos (y todavía, cuando un bonsái muere, sucede lo mismo).
                 <br><br>
 
                 </p>
                 <img src="{% static 'img/criptolibertad/saucebn.jpg' %}" alt="..." class="img-responsive">
 
                 <blockquote>
-                Podría decirse que la sangre era el incienso y el Lago, su altar. Y también que el olor era su razón de vivir y su droga, y su lucha.
+                Podría decirse que la sangre era el incienso, y el Lago su altar. Y también que el olor era su razón de vivir, su droga, y su lucha.
                 </blockquote>
 
                 <p>
                 <br><br>
-                El Sauce que terminó con la guerra del bosque vivía en uno de los mejores puestos a la orilla del Lago. Sus ramas dejaban caer velos de trescientos metros que envolvían con recelo el oleaje. Se había deleitado en el silencio de su esquina por milenios y entendía la envidia de los que crecían a sus espaldas. Miraba a los otros habitantes de la primera fila, los Sequoias, el gran Roble, el enorme Matapalo, todos soberanos indiscutibles de su puesto en la Orilla. Él, sin embargo, sospecho que se sentía débil. Ocultaba con sus hojas la desgastada corteza de su tronco. Sentía como la muerte lo descascaraba, sin piedad en los inviernos, y estaba seguro de que no duraría mucho más. 
-                <br><br>
+                El Sauce que terminó con la guerra del bosque vivía en uno de los mejores puestos a la orilla del Lago. Sus ramas dejaban caer velos de trescientos metros que envolvían con recelo el oleaje. Se había deleitado en el silencio de su esquina por milenios y entendía la envidia de los que crecían a sus espaldas. Miraba a los otros habitantes de la primera fila, los Sequoias, el gran Roble, el enorme Matapalo, todos soberanos indiscutibles de su puesto en la Orilla. Él, sin embargo, sospecho que se sentía débil. Ocultaba con sus hojas la desgastada corteza de su tronco. Sentía como la muerte lo descascaraba, sin piedad en los inviernos. Estaba seguro de que no duraría mucho más.
                 Pronto, su sangre se uniría a la del Lago y sería respirada; y sus adversarios ocuparían su lugar.
                 <br><br>
-                Escuché que una noche de otoño de 1789, el Sauce se dirigió a los árboles de la lejanía. El viento llevó su mensaje.
+                Una noche revolucionaria, el Sauce se dirigió a los árboles de la lejanía. El viento llevó su mensaje.
 
+                <br><br>
                 <br><br>
 
                 ***
+
+                <br><br>
                 <br><br>
 
 
                 Al día siguiente los que vivían en la orilla recibieron el ultimátum. Eran fuertes, pero pocos, y el trono en el que se regocijaban se veía simple. Juntas, las enredaderas y las bromelias se sentían capaces de torcer cualquier tronco. 
                 <br><br>
-                El Sauce se apresuró a dar una solución, "construiremos un jardinero que reparta la sangre del Lago", dijo, calmando las voces de los árboles y plantas de las periferias, "lo construiremos con nuestra propia madera, y nos regará a todos por igual", añadió. 
+                El Sauce se apresuró a dar una solución, "construiremos un jardinero que reparta la sangre del Lago", dijo, calmando las voces de los árboles y plantas de la periferia, "lo construiremos con nuestra propia madera, y nos regará a todos por igual", añadió.
                 <br><br>
                 Los Sequoyas que se resistieron fueron empujados y cayeron. El estruendo sirvió para sedimentar el fin de su dominio en la memoria del Valle. 
                 <br><br>
@@ -111,14 +82,14 @@
                 <img src="{% static 'img/criptolibertad/eviltreelord.jpg' %}" alt="..." class="img-responsive">
 
                 <blockquote>
-                Así me trajeron al mundo. Su madera es mi carne y sus lianas, mis venas. Me contaron su historia y me encargaron repartir la sangre del Lago. No obstante, como el sueño que repite la misma angustia del día, yo comparto la misma sed. El aroma de las aguas rojas me seduce. 
+                Así me trajeron al mundo. Su madera es mi carne y sus lianas, mis venas. Me contaron su historia y me encargaron repartir la sangre del Lago. No obstante, como el sueño que repite la misma angustia del día, yo comparto la misma sed. El aroma de la sangre me seduce.
                 </blockquote>
                 
                 <p>
                 <br><br>
                 En las mañanas, tomo mi cántaro y riego el Valle, los arbustos lejanos reciben felices su dosis, los robles que rodean el templo (que han hecho mi morada) se alegran por igual, esperan con ansias el momento en que dejo caer el agua tinta sobre sus hojas. 
                 <br><br>
-                Cada vez los veo más pequeños e incapaces. Mi sed, insaciable, me pide más, y más. Sería oportuno si dejaran de crecer... Podría ser que un año me dedique a cortar sus raíces y convertirlos en Bonsais. 
+                Cada vez los veo más pequeños e incapaces. Mi sed, insaciable, me pide más, y más. Sería oportuno si dejaran de crecer... Puede que un año me dedique a cortar sus raíces y convertirlos en Bonsáis.
 
                 <br> 
                   
@@ -134,9 +105,9 @@
 
               <div class="clearfix"></div>
               </div> <!--- End Text Wrapper -->
-            
-            </div><!--- End Content Wrapper--> 
-          
+                {% include 'comments_disqus.html' %}
+            </div><!--- End Content Wrapper-->
+
           </div> <!--- End Right Content -->
 
     </div> <!-- End Row -->

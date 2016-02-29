@@ -1,0 +1,30 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/mitologia_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Mitología</h1>
+    <ul class="tags">
+      <li>Psicología</li>
+      <li>Antropología</li>
+      <li>Sociología</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre un importante aspecto del funcionamiento de la mente.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6u1Bqb1ClK0" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+

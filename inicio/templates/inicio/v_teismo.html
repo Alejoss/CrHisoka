@@ -1,0 +1,29 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/teismo_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Teísmo</h1>
+    <ul class="tags">
+      <li>Filosofía</li>
+      <li>Historia</li>
+      <li>Psicología</li>
+    </ul>
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre los mitos, la llegada del monoteísmo y la conciencia.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/-4eGcPY0kVc" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+

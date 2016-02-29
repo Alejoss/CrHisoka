@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/extra_content.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+            <h1>Contenido Externo</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+          <div id="content"><!--- Start Content Wrapper-->
+
+              <ul class="list-group">
+                  {% for feral in feral_spirits %}
+                    {% if feral.tipo == "video" %}
+                    <li class="list-group-item list-group-item-info">{{ feral.nombre }} : <a href="">{{ feral.url }}</a> </li>
+                    {% elif feral.tipo == "texto" %}
+                    <li class="list-group-item list-group-item-success">{{ feral.nombre }} : <a href="">{{ feral.url }}</a> </li>
+                    {% else %}
+                    <li class="list-group-item list-group-item-success">{{ feral.nombre }} : <a href="">{{ feral.url }}</a> </li>
+                    {% endif %}
+                  {% endfor %}
+              </ul>
+
+          </div><!--- End Content Wrapper-->
+
+        </div> <!--- End Right Content -->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+{% endblock content %}

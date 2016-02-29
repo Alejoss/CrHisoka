@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load staticfiles %}
-{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <!--[if IE]><meta http-equiv="x-ua-compatible" content="IE=9" /><![endif]-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bloggler - Home Page</title>
+    <title>Hisoka</title>
     <meta name="description" content="Bloggler - Photo Blog is a clean and minimalist photography blog perfectly designed for photographers and bloggers. Bloggler is beautiful, clean and very classic design.">
     <meta name="keywords" content="photoblog, psd, portfolio, photography, photographer, unique, creative, blog, minimal, beautiful theme">
     <meta name="author" content="JLP Media">
@@ -43,10 +43,9 @@
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
+    {% block extra_css %}
+    {% endblock extra_css %}
   </head>  
 
   <body>
@@ -56,9 +55,9 @@
   {% block content %}
   {% endblock content %}
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins)-->
 
+  <script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
   <!-- Bootstrap Js Compiled Plugins -->
   <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 

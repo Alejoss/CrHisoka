@@ -2,31 +2,6 @@
 {% load staticfiles %}
 
 {% block content %}
-  <!-- Preloader
-  ================================================== -->
-  <div id="preloader">
-    <div id="status">&nbsp;</div>
-  </div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
-    <li><a href="{% url 'historia_conciencia_poder' %}">Historia de la CONCIENCIA y el PODER</a></li>
-    <li class="active"><a href="{% url 'cripto_blog' %}">BLOG</a></li>
-    <li><a href="{% url 'cripto_videos' %}">VIDEOS</a></li>
-  </ul><!--- End Menu -->
-
-  <ul class="social-media"> <!--- User Social Media -->
-    <li><a href="#">Twitter</a></li>
-    <li><a href="#">Facebook</a></li>
-    <li><a href="#">Google +</a></li>
-    <li><a href="#">Youtube</a></li>
-  </ul> <!--- End User Social Media -->
-</div> <!--- End Off Canvas Side Menu -->
-
 <!-- Fullscreen Page 
 ================================================== -->
 <div id="fullscreen" class="blog"> <!--- Full Screen Blog Page -->
@@ -52,14 +27,14 @@
 
                 <div class="col-lg-4 col-md-4 item">
                   <div class="details">
-                    <a href="{% url 'criptoanarquismo_unica_salida' %}">
+                    <a href="{% url 'cripto_unica_salida' %}">
                       <h4>El criptoanarquismo como única salida</h4>
                     </a>
-                    <span class="meta-author"><a href="#">Julio 2015</a></span>
+                    <span class="meta-author">Julio 2015</span>
                     <br>
                     <br>
                   </div>
-                  <a href="{% url 'criptoanarquismo_unica_salida' %}"><img src="{% static 'img/criptolibertad/hacker2.jpg' %}" alt='' class="img-responsive"/></a>
+                  <a href="{% url 'cripto_unica_salida' %}"><img src="{% static 'img/criptolibertad/hacker2.jpg' %}" alt='' class="img-responsive"/></a>
                 </div>
 
                 <div class="col-lg-4 col-md-4 item">
@@ -67,12 +42,25 @@
                     <a href="{% url 'jardin_bonsais' %}">
                       <h4>El Jardín de Bonsais</h4>
                     </a>
-                    <span class="meta-author"><a href="#">Diciembre 2015</a></span>
+                    <span class="meta-author">Diciembre 2015</span>
                     <br>
                     <br>
                   </div>
                   <a href="{% url 'jardin_bonsais' %}"><img src="{% static 'img/criptolibertad/forestblack.jpg' %}" alt='' class="img-responsive"/></a>
                 </div>
+
+                <div class="col-lg-4 col-md-4 item">
+                  <div class="details">
+                    <a href="{% url 'que_es_cripto' %}">
+                      <h4>Qué es el Criptoanarquismo</h4>
+                    </a>
+                    <span class="meta-author">Enero 2016</span>
+                    <br>
+                    <br>
+                  </div>
+                  <a href="{% url 'que_es_cripto' %}"><img src="{% static 'img/criptolibertad/criptomediano.jpg' %}" alt='' class="img-responsive"/></a>
+                </div>
+
               </div> 
           <div class="space"></div>
           <div class="clearfix"></div>

@@ -1,0 +1,30 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/templo_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Templo</h1>
+    <ul class="tags">
+      <li>Psicología</li>
+      <li>Historia</li>
+      <li>Filosofía</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre la evolución de la conciencia del ser humano y los cambios en las instituciones que han crecido alrededor del mito del poder. </p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://youtu.be/48X0iA5-uB4" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+

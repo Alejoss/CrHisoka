@@ -1,0 +1,30 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/prologo_portada.png' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Prólogo</h1>
+    <ul class="tags">
+      <li>Internet</li>
+      <li>Academia</li>
+      <li>Información</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Antes de comenzar. Algo sobre la academia, el Internet y la conversación.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/XfcNw6L2cSA" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+

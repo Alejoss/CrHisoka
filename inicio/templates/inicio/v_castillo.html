@@ -1,0 +1,30 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/castillo_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Castillo</h1>
+    <ul class="tags">
+      <li>Historia</li>
+      <li>Psicología</li>
+      <li>Sociología</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre la corona del Rey.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="420" height="315" src="https://www.youtube.com/embed/5qZAjf-t3Y0" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+

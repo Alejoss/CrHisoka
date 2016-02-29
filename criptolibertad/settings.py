@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for criptolibertad project.
 
@@ -39,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'storages',
+    'tagging',
     'inicio',
     'hisoka'
 )
@@ -115,3 +117,6 @@ USE_TZ = True
 
 # Extra
 LOGIN_REDIRECT_URL = reverse_lazy('hisokas_main')
+
+# Celery
+BROKER_URL = "amqp://alejoss:farseer99@localhost://"
