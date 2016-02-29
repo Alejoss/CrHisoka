@@ -107,6 +107,16 @@ class VPoder(TemplateView):
         return context
 
 
+class VTeismo(TemplateView):
+    template_name = "inicio/v_teismo.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VTeismo, self).get_context_data(**kwargs)
+        context['active'] = 'v_teismo'
+        context['seccion'] = 'cripto_videos'
+        return context
+
+
 class VCastillo(TemplateView):
     template_name = "inicio/v_castillo.html"
 
