@@ -43,8 +43,18 @@
       <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71968853">
-              <caret line="96" column="77" selection-start-line="96" selection-start-column="77" selection-end-line="96" selection-end-column="77" />
+            <state vertical-scroll-proportion="0.67296994">
+              <caret line="82" column="87" selection-start-line="82" selection-start-column="87" selection-end-line="82" selection-end-column="87" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base_videos.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/inicio/templates/base_videos.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.2">
+              <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -114,7 +124,7 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="71" />
+    <option name="x" value="-1849" />
     <option name="y" value="-4" />
     <option name="width" value="1849" />
     <option name="height" value="1084" />
@@ -255,7 +265,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../bin/activate" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="base&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/base.html&#10;bas&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/base.html&#10;jardi&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;v_con&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_conciencia.html&#10;templo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_templo.html&#10;views&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/views.py&#10;urls&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/urls.py&#10;cripto&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/criptovideos.html&#10;Procfile&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/Procfile&#10;set&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/settings.py&#10;poder&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_poder.html&#10;conc&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_conciencia.html&#10;v_te&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_templo.html&#10;demo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_democracia.html&#10;v_mit&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_mitologia.html&#10;v_cast&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_castillo.html&#10;v_tei&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_teismo.html&#10;v_pro&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_prologo.html&#10;v_m&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_mitologia.html&#10;v_demo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_democracia.html&#10;v_cave&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_caverna.html&#10;castillo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_castillo.html&#10;v_poder&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_poder.html&#10;histor&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;bonsais&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;historia&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;menu&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/menu.html&#10;hi&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;main.css&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/main.css&#10;ext&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/criptolibertad/extra_css.css&#10;inicio&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/inicio.html&#10;videos&#9;null&#9;null&#10;models&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/models.py&#10;jard&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;cone&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/contenido_extra.html&#10;conten&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/contenido_extra.html&#10;que&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/que_es_cripto.html&#10;jardin&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;el_cr&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/el_cr_unica_salida.html&#10;bon&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;inic&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/inicio.html&#10;criptobl&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/criptoblog.html&#10;hiso&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/templates/hisoka_base.html&#10;forms&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/forms.py&#10;sett&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/settings.py&#10;crear&#9;null&#9;null&#10;jquery&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/criptolibertad/jquery-ui.css&#10;url&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/urls.py&#10;fire&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/templates/hisoka/fireball_detail.html&#10;hisoka&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/templates/hisoka_base.html" />
+    <property name="SearchEverywhereHistoryKey" value="b&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/base.html&#10;base&#9;FILE&#9;file:///usr/local/lib/python2.7/dist-packages/rest_framework/templates/rest_framework/base.html&#10;bas&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/base.html&#10;jardi&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;v_con&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_conciencia.html&#10;templo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_templo.html&#10;views&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/views.py&#10;urls&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/urls.py&#10;cripto&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/criptovideos.html&#10;Procfile&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/Procfile&#10;set&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/settings.py&#10;poder&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_poder.html&#10;conc&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_conciencia.html&#10;v_te&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_templo.html&#10;demo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_democracia.html&#10;v_mit&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_mitologia.html&#10;v_cast&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_castillo.html&#10;v_tei&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_teismo.html&#10;v_pro&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_prologo.html&#10;v_m&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_mitologia.html&#10;v_demo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_democracia.html&#10;v_cave&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_caverna.html&#10;castillo&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_castillo.html&#10;v_poder&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/v_poder.html&#10;histor&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;bonsais&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;historia&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;menu&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/templates/menu.html&#10;hi&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/historia_poder_conciencia.html&#10;main.css&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/main.css&#10;ext&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/criptolibertad/extra_css.css&#10;inicio&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/inicio.html&#10;videos&#9;null&#9;null&#10;models&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/models.py&#10;jard&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;cone&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/contenido_extra.html&#10;conten&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/contenido_extra.html&#10;que&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/que_es_cripto.html&#10;jardin&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;el_cr&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/el_cr_unica_salida.html&#10;bon&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/jardin_bonsais.html&#10;inic&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/inicio.html&#10;criptobl&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/inicio/templates/inicio/criptoblog.html&#10;hiso&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/templates/hisoka_base.html&#10;forms&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/forms.py&#10;sett&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/settings.py&#10;crear&#9;null&#9;null&#10;jquery&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/static/css/criptolibertad/jquery-ui.css&#10;url&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/criptolibertad/urls.py&#10;fire&#9;FILE&#9;file:///home/alejandro/Proyectos/criptohisoka/criptolibertad/hisoka/templates/hisoka/fireball_detail.html" />
     <property name="settings.editor.selected.configurable" value="Errors" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
@@ -558,7 +568,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="71" y="-4" width="1849" height="1084" extended-state="6" />
+    <frame x="-1849" y="-4" width="1849" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12978369" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -669,13 +679,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.11302476">
           <caret line="5" column="45" selection-start-line="5" selection-start-column="45" selection-end-line="5" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/lib/python2.7/dist-packages/rest_framework/templates/rest_framework/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.023359288">
-          <caret line="6" column="18" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -837,14 +840,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/inicio/templates/base_videos.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49054506">
-          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/hisoka/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.27125943">
@@ -985,10 +980,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/rest_framework/templates/rest_framework/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35595107">
+          <caret line="132" column="17" selection-start-line="132" selection-start-column="17" selection-end-line="132" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inicio/templates/base_videos.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.2">
+          <caret line="42" column="34" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71968853">
-          <caret line="96" column="77" selection-start-line="96" selection-start-column="77" selection-end-line="96" selection-end-column="77" />
+        <state vertical-scroll-proportion="0.67296994">
+          <caret line="82" column="87" selection-start-line="82" selection-start-column="87" selection-end-line="82" selection-end-column="87" />
           <folding />
         </state>
       </provider>
