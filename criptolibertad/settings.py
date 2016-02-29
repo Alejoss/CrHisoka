@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.core.urlresolvers import reverse_lazy
+import dj_database_url
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +28,7 @@ SECRET_KEY = os.environ['CRIPTOLIBERTAD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-HEROKU = False
+HEROKU = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -91,9 +93,9 @@ if HEROKU:
     STATIC_URL = S3_URL
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
+
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,6 +103,8 @@ DATABASES = {
     }
 }
 
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
