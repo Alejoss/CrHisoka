@@ -25,6 +25,8 @@ class FireballDetail(ListView):
 
     def get_queryset(self, *args, **kwargs):
         # el queryset puede ser 'contador' o 'ultima_publicacion'
+        prueba = prueba_celery.delay("uno ", "dos")
+        print "prueba: %s" % prueba
         if self.kwargs['queryset'] == "contador":
             queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball']).order_by('-contador')
         else:
@@ -106,7 +108,6 @@ def feral_data(request):
 
         feral_id = request.GET.get('feral_id', '')
         if feral_id:
-            prueba_celery.delay("uno ", "dos")
             feral_spirit = get_object_or_404(FeralSpirit, id=feral_id)
             feral_tags = [tag.name for tag in feral_spirit.tags]
             feral_dict = {'nombre': feral_spirit.nombre, 'url': feral_spirit.url, 'tags': feral_tags,

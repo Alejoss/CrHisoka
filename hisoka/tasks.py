@@ -5,4 +5,4 @@ from celery.decorators import task
 @task
 def prueba_celery(x, y):
     print x + y
-    return None
+    return x + y

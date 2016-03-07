@@ -123,4 +123,4 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = reverse_lazy('hisokas_main')
 
 # Celery
-BROKER_URL = "amqp://alejoss:farseer99@localhost://"
+BROKER_URL = "amqp://guest@localhost//"
