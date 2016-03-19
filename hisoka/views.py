@@ -10,7 +10,7 @@ from tagging.models import Tag
 
 from hisoka.models import Fireball, FeralSpirit
 from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball
-from tasks import prueba_celery
+from tasks import create_fireball
 
 
 class HisokasMain(ListView):
@@ -25,7 +25,7 @@ class FireballDetail(ListView):
 
     def get_queryset(self, *args, **kwargs):
         # el queryset puede ser 'contador' o 'ultima_publicacion'
-        prueba = prueba_celery.delay("uno ", "dos")
+        prueba = create_fireball.delay()
         print "prueba: %s" % prueba
         if self.kwargs['queryset'] == "contador":
             queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball']).order_by('-contador')
