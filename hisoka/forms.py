@@ -60,4 +60,6 @@ class FormNuevaCarta(forms.ModelForm):
         imagen_recortada = rakatica(url_imagen)
         self.imagen = imagen_recortada
 
+        # !!! TODO NO SE HA PROBADO GUARDAR LA IMAGEN ONLINE A AMAZON S3
+
         return super(FormNuevaCarta, self).save(commit=True)
