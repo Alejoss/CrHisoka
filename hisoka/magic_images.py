@@ -9,6 +9,7 @@ from PIL import Image
 
 from django.core.exceptions import ValidationError
 
+
 def obtener_codigo_carta(url):
     """
     :param url: el url pegado que tiene la imagen.

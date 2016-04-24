@@ -131,3 +131,5 @@ class NuevaCarta(CreateView):
     template_name = "hisoka/nueva_carta.html"
 
     form_class = FormNuevaCarta
+
+    success_url = "hisokas_main"
