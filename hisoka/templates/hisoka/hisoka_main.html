@@ -45,6 +45,18 @@
                       <!-- Start Blog Posts --> 
                 <div id="posts" class="portfolio">
 
+                    <div class="col-lg-4 col-md-4 item">
+                      <div class="details">
+                        <a href = "{% url 'magic_py' %}">
+                          <h4> Magic.py </h4>
+                        </a>
+                        <br>
+                        <br>
+                      </div>
+                      <a href="{% url 'magic_py' %}"><img src="{% static 'img/criptolibertad/magic_colors.png' %} "
+                                                          alt="MagicPy" class="img-responsive"/></a>
+                    </div>
+
                   {% for fireball in fireballs %}                  
                     <div class="col-lg-4 col-md-4 item">
                       <div class="details">

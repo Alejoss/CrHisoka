@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['CRIPTOLIBERTAD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 HEROKU = True
 
 ALLOWED_HOSTS = ["*"]
@@ -84,6 +84,10 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 STATIC_URL = '/static/'
 STATIC_ROOT = '/'
 
+# Media Files
+MEDIA_ROOT = BASE_DIR + "/media/"
+MEDIA_URL = "/magicpy_imgs/"
+
 if HEROKU:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     AWS_ACCESS_KEY_ID = os.environ['AWSAccessKeyId']
@@ -92,6 +96,7 @@ if HEROKU:
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    MEDIA_URL = STATIC_URL + "/magicpy_imgs"
 
 
 # Database

@@ -1,16 +1,15 @@
 import json
 
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 
 from tagging.models import Tag
 
 from hisoka.models import Fireball, FeralSpirit
-from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball
-from tasks import create_fireball
+from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta
 
 
 class HisokasMain(ListView):
@@ -25,10 +24,9 @@ class FireballDetail(ListView):
 
     def get_queryset(self, *args, **kwargs):
         # el queryset puede ser 'contador' o 'ultima_publicacion'
-        prueba = create_fireball.delay()
-        print "prueba: %s" % prueba
         if self.kwargs['queryset'] == "contador":
             queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball']).order_by('-contador')
+
         else:
             queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball'])
 
@@ -121,3 +119,15 @@ def feral_data(request):
 
     else:
         return HttpResponse(status=400)
+
+
+# Magic
+class MagicPy(TemplateView):
+
+    template_name = "hisoka/magic_py.html"
+
+
+class NuevaCarta(CreateView):
+    template_name = "hisoka/nueva_carta.html"
+
+    form_class = FormNuevaCarta

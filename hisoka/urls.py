@@ -13,6 +13,8 @@ urlpatterns = [
     url(r'^fireball/(?P<slug_fireball>[-\w]+)/(?P<queryset>\w+)/$',
         views.FireballDetail.as_view(), name="fireball"),
 
+    url(r'^magic_py/$', views.MagicPy.as_view(), name="magic_py"),
+
     # Forms>
     url(r'^crear_fireball/$', views.CrearFireball.as_view(),
         name="crear_fireball"),
@@ -23,6 +25,9 @@ urlpatterns = [
 
     url(r'^editar_feral/$', views.editar_feral,
         name="editar_feral_spirit"),
+
+    url(r'^nueva_carta/$', views.NuevaCarta.as_view(),
+        name="nueva_carta"),
 
     # API
     url(r'^feral_data/$', views.feral_data,
