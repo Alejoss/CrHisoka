@@ -132,4 +132,4 @@ class NuevaCarta(CreateView):
 
     form_class = FormNuevaCarta
 
-    success_url = reverse('hisokas_main')
+    success_url = reverse_lazy('hisokas_main')
