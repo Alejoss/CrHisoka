@@ -1,6 +1,6 @@
 import json
 
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
@@ -132,4 +132,4 @@ class NuevaCarta(CreateView):
 
     form_class = FormNuevaCarta
 
-    success_url = "hisokas_main"
+    success_url = reverse('hisokas_main')

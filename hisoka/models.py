@@ -117,6 +117,10 @@ class CartaMagicPy(models.Model):
             return "%s dias" % dias
 
 
+    def __unicode__(self):
+        return self.nombre
+
+
 class CaminoMagicPy(models.Model):
 
     primera_carta = models.ForeignKey(CartaMagicPy, related_name="primera_carta")
