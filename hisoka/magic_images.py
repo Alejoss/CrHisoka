@@ -79,7 +79,7 @@ def obtener_imagen(url_imagen):
     :return: La imagen recortada
     """
     # hacer otro request y guardar la imagen
-    respuesta = requests.get(url_imagen, stream=True)
+    respuesta = requests.get(url_imagen)
     imagen = Image.open(StringIO(respuesta.content))
 
     imagen_cortada = imagen.crop((22, 44, 221, 165))

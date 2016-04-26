@@ -1,5 +1,8 @@
 # coding=utf-8
+from StringIO import StringIO
+
 from django import forms
+from django.core.files.base import ContentFile
 
 from hisoka.models import Fireball, FeralSpirit, CartaMagicPy
 from hisoka.magic_images import rakatica
@@ -57,8 +60,14 @@ class FormNuevaCarta(forms.ModelForm):
     def save(self, **kwargs):
 
         url_imagen = self.cleaned_data['imagen']
-        imagen_recortada = rakatica(url_imagen)
-        self.imagen = imagen_recortada
+        imagen_pil = rakatica(url_imagen)
+        stringio_obj = StringIO()
+        try:
+            imagen_pil.save(stringio_obj, format="JPG")
+            imagen = stringio_obj.getvalue()
+            self.imagen = ContentFile(imagen)
+        finally:
+            stringio_obj.close()
 
         # !!! TODO NO SE HA PROBADO GUARDAR LA IMAGEN ONLINE A AMAZON S3
 

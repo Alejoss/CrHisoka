@@ -81,7 +81,7 @@ class GrupoMagicPy(models.Model):
             return "%s dias" % dias
 
 
-def ubicar_imagen_magicpy(instance):
+def ubicar_imagen_magicpy(instance, filename):
     path = "/".join([instance.grupo, instance.nombre])
     return path
 
@@ -90,12 +90,10 @@ class CartaMagicPy(models.Model):
     """
     Una carta con idea guardada
     """
-    imagen = models.ImageField(upload_to=ubicar_imagen_magicpy,
-                               storage=S3BotoStorage(bucket='magic_py'))
+    imagen = models.ImageField(upload_to=ubicar_imagen_magicpy)  # storage=S3BotoStorage(bucket='magic_py')
     grupo = models.CharField(max_length=150, blank=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length= 600, blank=True)
-
     ultima_revision = models.DateTimeField(null=True)
 
     @property
