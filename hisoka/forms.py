@@ -1,8 +1,11 @@
 # coding=utf-8
+import logging
+
 from StringIO import StringIO
 
 from django import forms
 from django.core.files.base import ContentFile
+from django.http import HttpResponse
 
 from hisoka.models import Fireball, FeralSpirit, CartaMagicPy
 from hisoka.magic_images import rakatica
@@ -62,10 +65,12 @@ class FormNuevaCarta(forms.ModelForm):
         url_imagen = self.cleaned_data['imagen']
         imagen_pil = rakatica(url_imagen)
         stringio_obj = StringIO()
+
         try:
-            imagen_pil.save(stringio_obj, format="JPG")
+            imagen_pil.save(stringio_obj, format="JPEG")
             imagen = stringio_obj.getvalue()
             self.imagen = ContentFile(imagen)
+
         finally:
             stringio_obj.close()
 

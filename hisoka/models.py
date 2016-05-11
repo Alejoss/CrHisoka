@@ -3,6 +3,8 @@ from datetime import datetime
 
 from django.db import models
 from django.template.defaultfilters import slugify
+from django.core.files.uploadedfile import InMemoryUploadedFile
+
 from tagging.registry import register as register_tag
 from storages.backends.s3boto import S3BotoStorage
 
@@ -56,7 +58,6 @@ register_tag(FeralSpirit)
 # Magic  !!! Falta definir donde se guardan las imagenes
 
 class GrupoMagicPy(models.Model):
-
     nombre = models.CharField(max_length=150, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
     imagen = models.ImageField(upload_to="")
@@ -73,7 +74,7 @@ class GrupoMagicPy(models.Model):
         if dias == 0:
             return "Hoy"
 
-        meses = float(dias)/30.00
+        meses = float(dias) / 30.00
         if meses > 0:
             return "%s meses - %s dias" % (meses, dias % 30)
 
@@ -93,7 +94,7 @@ class CartaMagicPy(models.Model):
     imagen = models.ImageField(upload_to=ubicar_imagen_magicpy)  # storage=S3BotoStorage(bucket='magic_py')
     grupo = models.CharField(max_length=150, blank=True)
     nombre = models.CharField(max_length=50, blank=True)
-    descripcion = models.CharField(max_length= 600, blank=True)
+    descripcion = models.CharField(max_length=600, blank=True)
     ultima_revision = models.DateTimeField(null=True)
 
     @property
@@ -107,20 +108,25 @@ class CartaMagicPy(models.Model):
         if dias == 0:
             return "Hoy"
 
-        meses = float(dias)/30.00
+        meses = float(dias) / 30.00
         if meses > 0:
             return "%s meses - %s dias" % (meses, dias % 30)
 
         else:
             return "%s dias" % dias
 
+    def save(self, *args, **kwargs):
+        if self.imagen:
+            imagen_en_memoria = InMemoryUploadedFile(self.imagen, "%s" % (self.imagen.name), "image/jpeg", self.imagen.len, None)
+            self.imagen = imagen_en_memoria
+
+        return super(CartaMagicPy, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.nombre
 
 
 class CaminoMagicPy(models.Model):
-
     primera_carta = models.ForeignKey(CartaMagicPy, related_name="primera_carta")
     segunda_carta = models.ForeignKey(CartaMagicPy, related_name="segunda_carta")
     prioridad = models.PositiveSmallIntegerField(default=2)  # Prioridad del 1 al 3
