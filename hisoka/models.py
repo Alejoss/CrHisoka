@@ -1,12 +1,11 @@
 # coding=utf-8
-
-
 from datetime import datetime
 
 from django.db import models
 from django.template.defaultfilters import slugify
 
 from tagging.registry import register as register_tag
+from storages.backends.s3boto import S3BotoStorage
 
 
 class Fireball(models.Model):
@@ -40,7 +39,7 @@ class FeralSpirit(models.Model):
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral)
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)

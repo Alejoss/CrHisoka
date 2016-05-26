@@ -97,7 +97,7 @@ if HEROKU:
     S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
     STATIC_URL = S3_URL
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    MEDIA_URL = STATIC_URL + "/magicpy_imgs/"
+    MEDIA_URL = S3_URL
 
 else:
     MEDIA_URL = MEDIA_ROOT
