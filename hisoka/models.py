@@ -14,7 +14,7 @@ class Fireball(models.Model):
     nombre = models.CharField(max_length=150)
     url_amazon = models.CharField(max_length=150, blank=True)
     twitter = models.CharField(max_length=150, blank=True)
-    imagen = models.URLField(blank=True)
+    imagen = models.URLField(blank=True, null=True)
 
     def get_absolute_url():
         pass
