@@ -1,15 +1,18 @@
+# coding=utf-8
 import json
+import os
 
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from tagging.models import Tag
 
-from hisoka.models import Fireball, FeralSpirit
-from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta
+from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy
+from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo
 
 
 class HisokasMain(ListView):
@@ -121,10 +124,46 @@ def feral_data(request):
         return HttpResponse(status=400)
 
 
+def probar_tweeter(request):
+    """
+    Prueba el API, a ver si se envian correctamente las imágenes en un tweet
+    """
+
+    import tweepy
+    fireball_orilla = Fireball.objects.get(nombre="OrillaLibertaria")
+    # Envia tweets de Orilla Libertaria a twitter
+    access_token_twitter = "1884663464-cKUFhmqTVbEvxbkdOD0rBo1UyXwX20ZrbtseIQc"
+    access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET']
+    consumer_key = "XwIbq6Zwl5rUYzIMheFwx9MXO"
+    consumer_secret = os.environ['CONSUMER_SECRET_TWITTER']
+    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+    auth.set_access_token(access_token_twitter, access_token_twitter_secret)
+    api = tweepy.API(auth)
+
+    feral_elegido = FeralSpirit.objects.filter(activo=True, eliminado=False,
+                                               fireball=fireball_orilla, tipo="imagen").first()
+
+    filename = feral_elegido.imagen.file.name
+    media_ids = api.media_upload(filename=filename)
+
+    params = {'status': 'Las fronteras:', 'media_ids': [media_ids.media_id_string]}
+    response = api.update_status(**params)
+
+    print response
+    return HttpResponse("Ni te siente!")
+
+
 # Magic
 class MagicPy(TemplateView):
 
     template_name = "hisoka/magic_py.html"
+
+    def get_context_data(self, **kwargs):
+
+        context = super(MagicPy, self).get_context_data()
+        grupos_magicpy = GrupoMagicPy.objects.all()
+        context['grupos_magicpy'] = grupos_magicpy
+        return context
 
 
 class NuevaCarta(CreateView):
@@ -132,4 +171,12 @@ class NuevaCarta(CreateView):
 
     form_class = FormNuevaCarta
 
-    success_url = reverse_lazy('hisokas_main')
+    success_url = reverse_lazy('hisokas_main')  # Cambiar
+
+
+class NuevoGrupo(CreateView):
+    template_name = "hisoka/nuevo_grupo.html"
+
+    form_class = FormNuevoGrupo
+
+    success_url = reverse_lazy('hisokas_main')  # Cambiar

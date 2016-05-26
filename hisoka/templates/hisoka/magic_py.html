@@ -16,6 +16,7 @@
       <ul class="nav navmenu-nav"> <!--- Menu -->
           <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
           <li><a href="{% url 'nueva_carta' %} ">Nueva Carta</a></li>
+          <li><a href="{% url 'nuevo_grupo' %} ">Nueva Grupo</a></li>
 
       </ul><!--- End Menu -->
     </div> <!--- End Off Canvas Side Menu -->
@@ -37,7 +38,11 @@
           </div> <!--- End Left Content -->
 
             <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
-
+                {% for grupo in grupos_magicpy %}
+                    <p>
+                        {{ grupo.nombre }}
+                    </p>
+                {% endfor %}
             </div>
 
         </div>
@@ -47,3 +52,4 @@
 
 {% block extra_javascript %}
 {% endblock extra_javascript %}
+

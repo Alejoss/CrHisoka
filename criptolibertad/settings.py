@@ -19,6 +19,8 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+ADMINS = [('alejo': 'alejoveintimilla@gmail.com')]
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -28,7 +30,7 @@ SECRET_KEY = os.environ['CRIPTOLIBERTAD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-HEROKU = True
+HEROKU = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -86,7 +88,6 @@ STATIC_ROOT = '/'
 
 # Media Files
 MEDIA_ROOT = BASE_DIR + "/media/"
-MEDIA_URL = "/magicpy_imgs/"
 
 if HEROKU:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
@@ -98,6 +99,8 @@ if HEROKU:
     STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
     MEDIA_URL = STATIC_URL + "/magicpy_imgs/"
 
+else:
+    MEDIA_URL = MEDIA_ROOT
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases

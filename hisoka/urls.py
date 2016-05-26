@@ -29,7 +29,14 @@ urlpatterns = [
     url(r'^nueva_carta/$', views.NuevaCarta.as_view(),
         name="nueva_carta"),
 
+    url(r'^nuevo_grupo/$', views.NuevoGrupo.as_view(),
+        name="nuevo_grupo"),
+
     # API
     url(r'^feral_data/$', views.feral_data,
         name="feral_data"),
+
+    # Local
+    url(r'^probar_tweeter/$', views.probar_tweeter,
+        name="probar_tweeter"),
 ]

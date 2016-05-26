@@ -1,18 +1,12 @@
 # coding=utf-8
 import logging
 
-from StringIO import StringIO
-
 from django import forms
-from django.core.files.base import ContentFile
-from django.http import HttpResponse
 
-from hisoka.models import Fireball, FeralSpirit, CartaMagicPy
-from hisoka.magic_images import rakatica
+from hisoka.models import Fireball, FeralSpirit, CartaMagicPy, GrupoMagicPy
 
 
 class FormCrearFireball(forms.ModelForm):
-
     class Meta:
         model = Fireball
         fields = ['nombre', 'url_amazon', 'twitter', 'imagen']
@@ -28,7 +22,7 @@ class FormCrearFeralSpirit(forms.ModelForm):
 
     class Meta:
         model = FeralSpirit
-        fields = ['tipo', 'nombre', 'url']
+        fields = ['tipo', 'texto', 'url', 'imagen']
 
         _tipos_feral = (
             ('video', 'Video'),
@@ -37,43 +31,37 @@ class FormCrearFeralSpirit(forms.ModelForm):
         )
 
         widgets = {
-            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'texto': forms.TextInput(attrs={'class': 'form-control'}),
             'tipo': forms.Select(choices=_tipos_feral, attrs={'class': 'form-control'}),
-            'url': forms.TextInput(attrs={'class': 'form-control'})
+            'url': forms.TextInput(attrs={'class': 'form-control'}),
+            'imagen': forms.FileInput(attrs={'class': 'form-control'})
         }
 
 
 class FormNuevaCarta(forms.ModelForm):
 
-    imagen = forms.URLField(help_text="URL pegada de http://www.smfcorp.net",
-                            widget=forms.URLInput(attrs={'class': 'form-control'}))
-    grupo = forms.CharField(help_text="Librería / Subtema",
-                            widget=forms.TextInput(attrs={'class': 'form-control'}))
+    queryset_grupos_magicpy = GrupoMagicPy.objects.all()
+    grupo = forms.ModelChoiceField(queryset_grupos_magicpy)
 
     class Meta:
         model = CartaMagicPy
-        fields = ['grupo', 'nombre', 'descripcion']
-
+        fields = ['imagen', 'grupo', 'nombre', 'descripcion']
         widgets = {
+            'imagen': forms.URLInput(attrs={'class': 'form-control'}),
             'grupo': forms.TextInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'})
         }
 
-    def save(self, **kwargs):
 
-        url_imagen = self.cleaned_data['imagen']
-        imagen_pil = rakatica(url_imagen)
-        stringio_obj = StringIO()
+class FormNuevoGrupo(forms.ModelForm):
 
-        try:
-            imagen_pil.save(stringio_obj, format="JPEG")
-            imagen = stringio_obj.getvalue()
-            self.imagen = ContentFile(imagen)
+    class Meta:
+        model = GrupoMagicPy
+        fields = ['nombre', 'descripcion', 'imagen']
 
-        finally:
-            stringio_obj.close()
-
-        # !!! TODO NO SE HA PROBADO GUARDAR LA IMAGEN ONLINE A AMAZON S3
-
-        return super(FormNuevaCarta, self).save(commit=True)
+        widgets = {
+            'imagen': forms.URLInput(attrs={'class': 'form-control'}),
+            'nombre': forms.TextInput(attrs={'class': 'form-control'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control'})
+        }

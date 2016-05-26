@@ -1,12 +1,12 @@
 # coding=utf-8
+
+
 from datetime import datetime
 
 from django.db import models
 from django.template.defaultfilters import slugify
-from django.core.files.uploadedfile import InMemoryUploadedFile
 
 from tagging.registry import register as register_tag
-from storages.backends.s3boto import S3BotoStorage
 
 
 class Fireball(models.Model):
@@ -14,7 +14,7 @@ class Fireball(models.Model):
     nombre = models.CharField(max_length=150)
     url_amazon = models.CharField(max_length=150, blank=True)
     twitter = models.CharField(max_length=150, blank=True)
-    imagen = models.URLField(blank=True)
+    imagen = models.ImageField(blank=True, null=True)
 
     def get_absolute_url():
         pass
@@ -29,11 +29,18 @@ class Fireball(models.Model):
         return super(Fireball, self).save(*args, **kwargs)
 
 
+def ubicar_imagen_feral(instance, filename):
+    # Para ubicar las imágenes de feralspirits str(instance.ultimo_id() + 1
+    path = "/".join([instance.fireball.nombre, filename])
+    return path
+
+
 class FeralSpirit(models.Model):
     fireball = models.ForeignKey(Fireball)
     tipo = models.CharField(max_length=60)
-    nombre = models.CharField(max_length=150)
-    url = models.URLField()
+    texto = models.CharField(max_length=150)
+    url = models.URLField(blank=True)
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral)
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
@@ -45,8 +52,14 @@ class FeralSpirit(models.Model):
         self.save()
         return self.contador
 
+    @classmethod
+    def ultimo_id(cls):
+        # para obtener el id del ultimo feral creado, para nombrar los archivos en el storage
+        ultimo_feral = cls.objects.filter(eliminado=False).latest('id')
+        return ultimo_feral.id
+
     def __unicode__(self):
-        return "%s : %s " % (self.nombre, self.tipo)
+        return "%s : %s " % (self.fireball.nombre, self.tipo)
 
     class Meta:
         ordering = ['-ultima_publicacion']
@@ -55,8 +68,12 @@ class FeralSpirit(models.Model):
 register_tag(FeralSpirit)
 
 
-# Magic  !!! Falta definir donde se guardan las imagenes
+def ubicar_imagen_magicpy(instance, filename):
+    path = "/".join(["grupos_magicpy", instance.nombre])
+    return path
 
+
+# Magic
 class GrupoMagicPy(models.Model):
     nombre = models.CharField(max_length=150, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
@@ -82,17 +99,12 @@ class GrupoMagicPy(models.Model):
             return "%s dias" % dias
 
 
-def ubicar_imagen_magicpy(instance, filename):
-    path = "/".join([instance.grupo, instance.nombre])
-    return path
-
-
 class CartaMagicPy(models.Model):
     """
     Una carta con idea guardada
     """
-    imagen = models.ImageField(upload_to=ubicar_imagen_magicpy)  # storage=S3BotoStorage(bucket='magic_py')
-    grupo = models.CharField(max_length=150, blank=True)
+    imagen = models.URLField(blank=True)
+    grupo = models.ForeignKey(GrupoMagicPy, null=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
     ultima_revision = models.DateTimeField(null=True)
@@ -114,13 +126,6 @@ class CartaMagicPy(models.Model):
 
         else:
             return "%s dias" % dias
-
-    def save(self, *args, **kwargs):
-        if self.imagen:
-            imagen_en_memoria = InMemoryUploadedFile(self.imagen, "%s" % (self.imagen.name), "image/jpeg", self.imagen.len, None)
-            self.imagen = imagen_en_memoria
-
-        return super(CartaMagicPy, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return self.nombre

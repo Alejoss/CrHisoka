@@ -1,11 +1,12 @@
 # coding=utf-8
 import requests
-import tweepy
 from datetime import datetime
 import random
 import os
 from StringIO import StringIO
 from PIL import Image
+import twitter
+import tweepy
 
 from celery.task.schedules import crontab
 from celery.decorators import periodic_task, task
@@ -15,14 +16,8 @@ from hisoka.models import FeralSpirit, Fireball
 logger = get_task_logger(__name__)
 
 
-def randomizar_intervalo(intervalo_raw):
-    random_int = random.choice([0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.5])
-    intervalo = int(intervalo_raw) * 60 * random_int  # convertir a minutos
-    return intervalo
-
-
 @periodic_task(
-    run_every=(crontab(minute='*/15')),
+    run_every=(crontab(minute='*/10')),
     name="tweet_orilla",
     ignore_result=True
 )
@@ -37,42 +32,36 @@ def tweet_orilla():
     auth.set_access_token(access_token_twitter, access_token_twitter_secret)
     api = tweepy.API(auth)
 
+    # api = twitter.Api(access_token_key=access_token_twitter,
+    #                   access_token_secret=access_token_twitter_secret,
+    #                   consumer_key=consumer_key,
+    #                   consumer_secret=consumer_secret)
+
     # Obtener FeralSpirits
     # Toma los 3 feralspirits con fecha de publicación más lejana, luego elige uno random
     feral_spirits = FeralSpirit.objects.filter(activo=True, eliminado=False, fireball=fireball_orilla)[:3]
-    feral_elegido = feral_spirits.pop(random.randint(0, 2))
+    lista_ferals = [f for f in feral_spirits]
+    feral_elegido = random.choice(lista_ferals)
 
-    # Redactar Tweet
-    if feral_elegido.tipo == "video":
-        texto = "%s (%s). video del tema %s #LET" % (feral_elegido.nombre, feral_elegido.url, feral_elegido.tema)
-    elif feral_elegido.tipo == "post":
-        texto = "%s (%s). post del tema %s #LET" % (feral_elegido.nombre, feral_elegido.url, feral_elegido.tema)
-    elif feral_elegido.tipo == "frase":
-        texto = "%s (%s)" % (feral_elegido.nombre, feral_elegido.url)
-    elif feral_elegido.tipo == "imagen":
-        texto = "Imagen (%s) en la Galería de Orilla Libertaria (%s) #LET" % (feral_elegido.url, feral_elegido.tema)
-    else:
-        texto = "feral sin tipo: %s" % feral_elegido.id
-
-    # Loggear info sobre tweet a intentar
-    logger.info(("feral id: %s" % feral_elegido.id) + " - " + texto)
+    texto_tweet = "%s %s" % (feral_elegido.texto, feral_elegido.url)
 
     # Enviar Tweet
-    try:
-        if feral_elegido.tipo == "imagen":
-            respuesta_imagen = requests.get(feral_elegido.url, stream=True)
-            imagen = Image.open(StringIO(respuesta_imagen.content))
-            api.update_with_media(imagen, texto)
-        else:
-            api.update_status(texto)
+    if feral_elegido.tipo == "imagen":
+        # Envia tweets de Orilla Libertaria a twitter
 
-        # Aumentar contador
-        logger(logger.info("tweet enviado id: %s" % feral_elegido.id))
-        feral_elegido.aumentar_contador()
+        filename = feral_elegido.imagen.file.name
+        media_ids = api.media_upload(filename=filename)
 
-        # Actualizar fecha ultimo tweet
-        feral_elegido.ultima_publicacion = datetime.today()
-        feral_elegido.save()
+        params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
+        api.update_status(**params)
 
-    except tweepy.TweepError as error:
-        logger.info("error: " + error)
+    else:
+        api.update_status(texto_tweet)
+
+    # Aumentar contador
+    # logger(logger.info("tweet enviado id: %s" % feral_elegido.id))
+    feral_elegido.aumentar_contador()
+
+    # Actualizar fecha ultimo tweet
+    feral_elegido.ultima_publicacion = datetime.today()
+    feral_elegido.save()
