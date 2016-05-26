@@ -54,7 +54,7 @@ class Migration(migrations.Migration):
                 ('nombre', models.CharField(max_length=150)),
                 ('url_amazon', models.CharField(max_length=150, blank=True)),
                 ('twitter', models.CharField(max_length=150, blank=True)),
-                ('imagen', models.ImageField(null=True, upload_to=b'', blank=True)),
+                ('imagen', models.URLField(null=True, blank=True)),
             ],
         ),
         migrations.CreateModel(
