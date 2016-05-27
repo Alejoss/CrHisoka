@@ -1,5 +1,6 @@
 *.pyc
 *.gitignore
 /static/
+/media/
 *.sqlite3
 .idea/

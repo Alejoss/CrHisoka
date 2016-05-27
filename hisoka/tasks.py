@@ -1,11 +1,8 @@
 # coding=utf-8
-import requests
 from datetime import datetime
 import random
 import os
-from StringIO import StringIO
-from PIL import Image
-import twitter
+
 import tweepy
 
 from celery.task.schedules import crontab
