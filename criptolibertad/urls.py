@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^v_mitologia/$', views.VMitologia.as_view(), name="v_mitologia"),
     url(r'^v_democracia/$', views.VDemocracia.as_view(), name="v_democracia"),
     url(r'^v_templo/$', views.VTemplo.as_view(), name="v_templo"),
+    url(r'^v_monopolios/$', views.VMonopolios.as_view(), name="v_monopolios"),
+    url(r'^v_bomberos/$', views.VBomberos.as_view(), name="v_bomberos"),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

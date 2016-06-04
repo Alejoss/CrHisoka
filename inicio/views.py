@@ -165,3 +165,23 @@ class VTemplo(TemplateView):
         context['active'] = 'v_templo'
         context['seccion'] = 'cripto_videos'
         return context
+
+
+class VMonopolios(TemplateView):
+    template_name = "inicio/v_monopolios.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VMonopolios, self).get_context_data(**kwargs)
+        context['active'] = 'v_monopolios'
+        context['seccion'] = 'cripto_videos'
+        return context
+
+
+class VBomberos(TemplateView):
+    template_name = "inicio/v_bomberos.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VBomberos, self).get_context_data(**kwargs)
+        context['active'] = 'v_bomberos'
+        context['seccion'] = 'cripto_videos'
+        return context

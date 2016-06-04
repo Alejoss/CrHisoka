@@ -1,0 +1,43 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/monopolios_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Mafia & Monopolios</h1>
+    <ul class="tags">
+      <li>Economía</li>
+      <li>Filosofía Política</li>
+      <li>Sociología</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre los efectos del monopolio en la sociedad.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/fPmK-9qd-IA" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+
+{% block fuentes %}
+    <div class="list-group">
+        <a target="_blank" href ="http://www.liberalismo.org/articulo/270/12/mito/monopolio/natural/" class="list-group-item list-group-item-warning">
+           El mito del monopolio natural - Thomas di Lorenzo
+        </a>
+        <a target="_blank" href="http://www.hacer.org/pdf/seve.pdf" class="list-group-item list-group-item-warning">
+            Lo que se ve y lo que no se ve - Frédéric Bastiat
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=L8FiOUZhso4" class="list-group-item list-group-item-info">
+           Petición de los fabricantes de velas - Frédéric Bastiat
+        </a>
+    </div>
+{% endblock fuentes %}

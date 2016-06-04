@@ -1,0 +1,45 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/bomberos_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Bomberos & Aeropuertos</h1>
+    <ul class="tags">
+      <li>Economía</li>
+      <li>Filosofía Política</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre algunos monopolios, el servicio de bomberos y la industria de la aviación</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aG_9OgHGqKU" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+
+{% block fuentes %}
+    <div class="list-group">
+        <a target="_blank" href ="https://c4ss.org/content/22123" class="list-group-item list-group-item-warning">
+           The Distorting Effects of Transportation Subsidies - Kevin Carson
+        </a>
+        <a target="_blank" href="https://en.wikipedia.org/wiki/History_of_firefighting" class="list-group-item list-group-item-warning">
+            History of firefighting
+        </a>
+        <a target="_blank" href="http://www.hacer.org/pdf/Hazlitt01.pdf" class="list-group-item list-group-item-warning">
+            La economía en una lección - Henry Hazlitt
+        </a>
+        <a target="_blank" href="https://youtu.be/MCYU_HviAh0?t=1h21m59s" class="list-group-item list-group-item-info">
+          COMMANDING HEIGHTS - THE BATTLE OF IDEAS
+        </a>
+    </div>
+{% endblock fuentes %}
