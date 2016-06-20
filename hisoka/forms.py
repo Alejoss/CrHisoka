@@ -32,9 +32,9 @@ class FormCrearFeralSpirit(forms.ModelForm):
 
         widgets = {
             'texto': forms.TextInput(attrs={'class': 'form-control'}),
-            'tipo': forms.Select(choices=_tipos_feral, attrs={'class': 'form-control'}),
+            'tipo': forms.Select(choices=_tipos_feral, attrs={'class': 'form-control', 'id': 'tipo_feral'}),
             'url': forms.TextInput(attrs={'class': 'form-control'}),
-            'imagen': forms.FileInput(attrs={'class': 'form-control'})
+            'imagen': forms.FileInput(attrs={'class': 'form-control', 'id': 'imagen_input'})
         }
 
 

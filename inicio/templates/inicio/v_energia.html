@@ -1,0 +1,48 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/energia_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Energía</h1>
+    <ul class="tags">
+      <li>Economía</li>
+      <li>Filosofía Política</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre la actual forma de producción de la Energía y la mafia a su alrededor.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_JqWXSzb4XA?list=PLhgc-wWuMgISSGysVvNUjXfgzx0M4iDfq" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+
+{% block fuentes %}
+    <div class="list-group">
+        <a target="_blank" href="https://www.youtube.com/watch?v=ySnk-f2ThpE" class="list-group-item list-group-item-warning">
+            How Big Oil Conquered the World
+        </a>
+        <a target="_blank" href="https://www.masterresource.org/oil/energy-speed-thought-part-4-free-market-alternatives/" class="list-group-item list-group-item-warning">
+            The Master Resource
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=S-cFa3ipcSw" class="list-group-item list-group-item-warning">
+            Milton Friedman - 4 formas de gastar el dinero.
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=_TLbg1oqSOQ" class="list-group-item list-group-item-info">
+            The Current Technological Revolution, That The Government Is Suppressing
+        </a>
+        <a target="_blank" href="https://www.teslamotors.com/powerwall" class="list-group-item list-group-item-warning">
+            Tesla Powerwall
+        </a>
+    </div>
+{% endblock fuentes %}

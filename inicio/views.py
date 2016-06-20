@@ -185,3 +185,23 @@ class VBomberos(TemplateView):
         context['active'] = 'v_bomberos'
         context['seccion'] = 'cripto_videos'
         return context
+
+
+class VEnergia(TemplateView):
+    template_name = "inicio/v_energia.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VEnergia, self).get_context_data(**kwargs)
+        context['active'] = 'v_energia'
+        context['seccion'] = 'cripto_videos'
+        return context
+
+
+class VCarreteras(TemplateView):
+    template_name = "inicio/v_carreteras.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VCarreteras, self).get_context_data(**kwargs)
+        context['active'] = 'v_carreteras'
+        context['seccion'] = 'cripto_videos'
+        return context
