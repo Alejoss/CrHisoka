@@ -1,18 +1,37 @@
 {% extends 'hisoka_base.html' %}
 
-
 {% block content %}
 
 <div class = "col-md-4 col-md-offset-1">
 	<hr class ="invisible">
-	<form class="form-horizontal" action="{% url 'login' %}" method="post">
-	{% csrf_token %}		
-		<fieldset>
-			{{form}}
-		</fieldset>
-		<br>
-		<input class = "btn btn-success pull-right" type="submit" value="Submit">
-	</form>
+    <form class="form-horizontal" action="{% url 'login' %}" method="post">
+        <fieldset>
+
+            {% csrf_token %}
+
+        <!-- Form Name -->
+        <legend>Entrar</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="username">Nombre de Usuario</label>
+          <div class="col-md-4">
+          <input id="username" name="username" class="form-control input-md" type="text">
+          </div>
+        </div>
+
+        <!-- Password input-->
+        <div class="form-group">
+          <label class="col-md-4 control-label" for="password">Contraseña</label>
+          <div class="col-md-4">
+            <input id="password" name="password" class="form-control input-md" type="password">
+          </div>
+        </div>
+
+        </fieldset>
+        <input class = "btn btn-success pull-right" type="submit" value="Entrar">
+    </form>
+
 	<hr class ="invisible">
 </div>
 

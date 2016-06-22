@@ -29,7 +29,7 @@ ADMINS = [('alejo', 'alejoveintimilla@gmail.com')]
 SECRET_KEY = os.environ['CRIPTOLIBERTAD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 HEROKU = True
 
 ALLOWED_HOSTS = ["*"]
@@ -128,6 +128,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Extra
+LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('hisokas_main')
 
 # Celery
