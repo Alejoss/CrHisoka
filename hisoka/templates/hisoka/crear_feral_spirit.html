@@ -16,7 +16,7 @@
   <br>
   <ul class="nav navmenu-nav"> <!--- Menu -->
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
-    <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>    
+    <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>    <!-- TODO CREAR LINKS A FIREBALLS -->
   </ul><!--- End Menu -->
 </div> <!--- End Off Canvas Side Menu -->
 
@@ -43,9 +43,9 @@
             <div id="content"><!--- Start Content Wrapper-->
                 <div class="text"> <!--- Start Text Wrapper -->        			
 					<hr class ="invisible">
-					<form class="form-horizontal" action="{% url 'crear_feral_spirit' fireball.slug %}" method="post"
+					<form class="form-horizontal" action="{% url 'crear_feral_spirit' fireball.slug 'enviar' %}" method="post"
                           enctype='multipart/form-data'>
-					{% csrf_token %}
+					    {% csrf_token %}
 						<fieldset>
 							{{form}}
 						</fieldset>
@@ -68,8 +68,7 @@
 {% block extra_javascript %}
     <script>
         $(document).ready(function(){
-
-           });
-        })
+           $("#tipo_feral").val('{{tipo_feral}}');
+        });
     </script>
 {% endblock extra_javascript %}

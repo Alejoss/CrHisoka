@@ -20,7 +20,7 @@
   <br>
   <ul class="nav navmenu-nav"> <!--- Menu -->
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
-    <li><a href="{% url 'crear_feral_spirit' fireball.slug %} ">Crear FeralSpirit</a></li>
+    <li><a href="{% url 'crear_feral_spirit' fireball.slug 'sin_tipo' %} ">Crear FeralSpirit</a></li>
   </ul><!--- End Menu -->
 </div> <!--- End Off Canvas Side Menu -->
 
@@ -39,14 +39,31 @@
           <div id="page-detail">
             
             <h1>{{ fireball.nombre|title }} <br> <br> <small>FIREBALL</small></h1><br>
-              <a href="{% url 'probar_tweeter' %} ">PROBAR TWEETER</a>
 
           </div>
       </div> <!--- End Left Content -->
 
         <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
-        <h3> Feral Spirits </h3>
-            <a href="{% url 'fireball' fireball.slug 'contador' %} " class="">Ordenar por # Tweets</a>
+        <h2> Feral Spirits </h2>
+
+            <div class = "row">
+                <div class = "col-md-offset-1">
+                    <h3>Crear Nuevo: </h3>
+                    <button class = "btn btn-info" onclick="window.location.href='{% url 'crear_feral_spirit' fireball.slug 'video' %}'">Video</button>
+                    <button class = "btn btn-success" onclick="window.location.href='{% url 'crear_feral_spirit' fireball.slug 'imagen' %}'">Imagen</button>
+                    <button class = "btn btn-warning" onclick="window.location.href='{% url 'crear_feral_spirit' fireball.slug 'texto' %}'">Texto</button>
+                </div>
+            </div>
+
+            <br>
+            <div class = "row">
+                {% if filtro == "contador" %}
+                    <a href="{% url 'fireball' fireball.slug 'fecha' %} " class="pull-right">Ordenar por última publicación</a>
+                {% else %}
+                    <a href="{% url 'fireball' fireball.slug 'contador' %} " class="pull-right">Ordenar por # Tweets</a>
+                {% endif %}
+            </div>
+
               <table class = "table">
                 <thead>
                   <tr>
@@ -66,7 +83,10 @@
                       Tags
                     </th>
                     <th>
-                        Editar
+                      Editar
+                    </th>
+                    <th>
+                      Eliminar
                     </th>
                   </tr>
                   </thead>
@@ -99,12 +119,29 @@
                       <td>
                         <button data-feral-id="{{ feral.id }}" class = "btn btn-class-success editar_feral"><i class="fa fa-edit"></i></button>
                       </td>
+                      <td>
+                        <button data-feral-contador="{{ feral.contador }}" data-feral-id="{{ feral.id }}"
+                                class="btn btn-class-danger eliminar_feral"><i class="fa fa-close"></i></button>
+                      </td>
                     </tr>
                   {% endfor %}
               </table>						
-          </div> <!--- End Right Content -->
+            </div> <!--- End Right Content -->
+
+            <div class="modalfullscreen modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="viewer container"> <!-- Start Container -->
+                    <div class="row"> <!-- Start Row -->
+                        <h3>Estas seguro que quieres eliminar este tweet?</h3>
+                            <p id="eliminar_modal_contador">Ha sido tweeteado <strong class="contador"></strong> veces hasta ahora.</p>
+                        <br>
+                        <button id="eliminar_tweet" data-feral-id="" class = "btn btn-danger">Eliminar Tweet</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="modalfullscreen modal fade" id="modal-feral" tabindex="-1" role="dialog" aria-hidden="true"> <!--- Full Screen Blog Post Page -->
+
         <div class="viewer container"> <!-- Start Container -->
           <div class="row"> <!-- Start Row -->
             <h2>Editar Feral</h2>
@@ -124,9 +161,9 @@
                         </div>
 
                         <div class="form-group">
-                          <label class="col-md-4 control-label" for="form_nombre_feral">Nombre</label>
+                          <label class="col-md-4 control-label" for="form_texto_feral">Texto</label>
                           <div class="col-md-8">
-                            <input id="form_nombre_feral" name="nombre" class="form-control input-md" type="text">
+                            <input id="form_texto_feral" name="nombre" class="form-control input-md" type="text">
                           </div>
                         </div>
 
@@ -141,7 +178,7 @@
                         </div>
                         <br>
                         <br>
-                        <button id="nuevo_tag" class="btn btn-primary">+</button>
+                        <button id="nuevo_tag" class="btn btn-primary">Sumar Tag +</button>
 
                     </fieldset>
                     <br>
@@ -176,6 +213,34 @@
     <script>
         $(document).ready(function(){
 
+            // Eliminar feral spirit
+            // Mostrar modal de aceptacion
+            $(".eliminar_feral").on("click", function(){
+                var feral_id = $(this).data("feral-id");
+                console.log(feral_id);
+                var contador_tweets = $(this).data("feral-contador");
+                console.log(contador_tweets);
+                $("#modal_eliminar").modal("show");
+                $("#eliminar_modal_contador").find(".contador").text(contador_tweets);
+                $("#eliminar_tweet").data("feral-id", feral_id);
+            });
+
+            // Enviar request de eliminar
+            $("#eliminar_tweet").on("click", function(){
+                var feral_id = $(this).data("feral-id");
+                $.ajax({
+                    url: '{% url "eliminar_feral_spirit" %}',
+                    method: "POST",
+                    data: {'feral_id': feral_id, 'csrfmiddlewaretoken': "{{ csrf_token }}"},
+                    success: function(){
+                        location.reload();
+                    },
+                    error: function(){
+                        alert("Hubo un error")
+                    }
+                });
+            });
+
             // Llena los campos del modal para editar feral
             $(".editar_feral").on("click", function(){
                 var feral_id = $(this).data("feral-id");
@@ -186,14 +251,18 @@
                     method: "GET",
                     data: {'feral_id': feral_id},
                     success: function(response){
-                        respuesta = JSON.parse(response);
-                        $("#form_nombre_feral").val(respuesta.nombre);
+                        var respuesta = JSON.parse(response);
+                        $("#form_texto_feral").val(respuesta.texto);
                         $("#form_url_feral").val(respuesta.url);
                         $("#form_id_feral").val(respuesta.id);
-                        console.log(respuesta.id);
+
+                        if(respuesta.tipo=="imagen"){
+                            $("#imagen_input").removeClass("hidden");
+                        }
 
                         $.each(respuesta.tags, function(index, value){
                             var div_contentedor = $("<div/>");
+
                             var input_tag = div_contentedor.loadTemplate("#input_tag",{
                                 tag: value
                             });
@@ -227,9 +296,10 @@
 
             // Enviar Form
             $("#guardar_feral").on("click", function(e){
+                if("#")
                 e.preventDefault();
                 var id_feral = $("#form_id_feral").val();
-                var nombre_feral = $("#form_nombre_feral").val();
+                var nombre_feral = $("#form_texto_feral").val();
                 var url_feral = $("#form_url_feral").val();
                 var tags_list = [];
                 ($("#modal_form_tags").find(".tags")).each(function(index, element){

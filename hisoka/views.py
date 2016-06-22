@@ -28,10 +28,10 @@ class FireballDetail(ListView):
     def get_queryset(self, *args, **kwargs):
         # el queryset puede ser 'contador' o 'ultima_publicacion'
         if self.kwargs['queryset'] == "contador":
-            queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball']).order_by('-contador')
+            queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball'], eliminado=False).order_by('-contador')
 
         else:
-            queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball'])
+            queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball'], eliminado=False)
 
         return queryset
 
@@ -39,9 +39,11 @@ class FireballDetail(ListView):
 
         context = super(FireballDetail, self).get_context_data(**kwargs)
         fireball = Fireball.objects.get(slug=self.kwargs['slug_fireball'])
+        filtro = self.kwargs['queryset']
         tags = Tag.objects.all()
         tags_list = [tag.name for tag in tags]
         context['fireball'] = fireball
+        context['filtro'] = filtro
         context['tags_list'] = json.dumps(tags_list)
         return context
 
@@ -65,8 +67,10 @@ class CrearFeralSpirit(CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super(CrearFeralSpirit, self).get_context_data(*args, **kwargs)
         fireball = Fireball.objects.get(slug=self.kwargs['slug_fireball'])
+        tipo_feral = self.kwargs['tipo_feral']
 
         context['fireball'] = fireball
+        context['tipo_feral'] = tipo_feral
         return context
 
     def get_success_url(self, *args, **kwargs):
@@ -111,8 +115,8 @@ def feral_data(request):
         if feral_id:
             feral_spirit = get_object_or_404(FeralSpirit, id=feral_id)
             feral_tags = [tag.name for tag in feral_spirit.tags]
-            feral_dict = {'nombre': feral_spirit.nombre, 'url': feral_spirit.url, 'tags': feral_tags,
-                          'id': feral_spirit.id}
+            feral_dict = {'texto': feral_spirit.texto, 'url': feral_spirit.url, 'tags': feral_tags,
+                          'id': feral_spirit.id, 'tipo': feral_spirit.tipo}
             feral_response = json.dumps(feral_dict)
 
             return HttpResponse(feral_response, status=200)
@@ -124,33 +128,21 @@ def feral_data(request):
         return HttpResponse(status=400)
 
 
-def probar_tweeter(request):
+def eliminar_feral(request):
     """
-    Prueba el API, a ver si se envian correctamente las imágenes en un tweet
+    recibe un feral_id y elimina el objeto FeralSpirit correspondiente
     """
-
-    import tweepy
-    fireball_orilla = Fireball.objects.get(nombre="OrillaLibertaria")
-    # Envia tweets de Orilla Libertaria a twitter
-    access_token_twitter = "1884663464-cKUFhmqTVbEvxbkdOD0rBo1UyXwX20ZrbtseIQc"
-    access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET']
-    consumer_key = "XwIbq6Zwl5rUYzIMheFwx9MXO"
-    consumer_secret = os.environ['CONSUMER_SECRET_TWITTER']
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_token_twitter, access_token_twitter_secret)
-    api = tweepy.API(auth)
-
-    feral_elegido = FeralSpirit.objects.filter(activo=True, eliminado=False,
-                                               fireball=fireball_orilla, tipo="imagen").first()
-
-    filename = feral_elegido.imagen.file.name
-    media_ids = api.media_upload(filename=filename)
-
-    params = {'status': 'Las fronteras:', 'media_ids': [media_ids.media_id_string]}
-    response = api.update_status(**params)
-
-    print response
-    return HttpResponse("Ni te siente!")
+    if request.is_ajax():
+        feral_id = request.POST.get('feral_id', '')
+        if feral_id:
+            feral_spirit = get_object_or_404(FeralSpirit, id=feral_id)
+            feral_spirit.eliminado = True
+            feral_spirit.save()
+            return HttpResponse("Feral correctamente eliminado")
+        else:
+            return HttpResponse("No hay feral_id",status=400)
+    else:
+        return HttpResponse("No es Ajax", status=400)
 
 
 # Magic

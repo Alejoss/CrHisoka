@@ -38,7 +38,7 @@ class FeralSpirit(models.Model):
     # , storage=S3BotoStorage(bucket='criptolibertad')
     fireball = models.ForeignKey(Fireball)
     tipo = models.CharField(max_length=60)
-    texto = models.CharField(max_length=150)
+    texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
     imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
     tema = models.CharField(max_length=150, blank=True)

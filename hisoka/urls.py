@@ -19,12 +19,15 @@ urlpatterns = [
     url(r'^crear_fireball/$', views.CrearFireball.as_view(),
         name="crear_fireball"),
 
-    url(r'^crear_feral/(?P<slug_fireball>[-\w]+)/$',
+    url(r'^crear_feral/(?P<slug_fireball>[-\w]+)/(?P<tipo_feral>\w+)/$',
         views.CrearFeralSpirit.as_view(),
         name="crear_feral_spirit"),
 
     url(r'^editar_feral/$', views.editar_feral,
         name="editar_feral_spirit"),
+
+    url(r'^eliminar_feral/$', views.eliminar_feral,
+        name="eliminar_feral_spirit"),
 
     url(r'^nueva_carta/$', views.NuevaCarta.as_view(),
         name="nueva_carta"),
@@ -35,8 +38,4 @@ urlpatterns = [
     # API
     url(r'^feral_data/$', views.feral_data,
         name="feral_data"),
-
-    # Local
-    url(r'^probar_tweeter/$', views.probar_tweeter,
-        name="probar_tweeter"),
 ]
