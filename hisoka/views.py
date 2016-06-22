@@ -33,6 +33,12 @@ class FireballDetail(ListView):
         else:
             queryset = FeralSpirit.objects.filter(fireball__slug=self.kwargs['slug_fireball'], eliminado=False)
 
+        for x in queryset:
+            if x.tipo == "imagen":
+                print "es imagen:"
+                print x.imagen.path
+                print x.imagen.url
+
         return queryset
 
     def get_context_data(self, *args, **kwargs):

@@ -68,16 +68,16 @@
                 <thead>
                   <tr>
                     <th>
-                      Fireball
+                      Contenido
                     </th>
                     <th>
-                      Nombre
+                      Num. Tweets
                     </th>
                     <th>
-                      Cuenta : <br> Última Publicación
+                      Última Publicación
                     </th>
                     <th>
-                      URL
+                      Link
                     </th>
                     <th>
                       Tags
@@ -93,20 +93,24 @@
 
                   {% for feral in feral_spirits %}
                     {% if feral.tipo == "video" %}
-                    <tr class="info"> 
+                        <tr class="info">
                     {% elif feral.tipo == "imagen" %}
-                    <tr class="success">
+                        <tr class="success">
                     {% else %}
-                    <tr class="warning">
+                        <tr class="warning">
                     {% endif %}
                       <td>
-                        {{feral.fireball}}
+                      {% if feral.tipo == "imagen" %}
+                          <img src="{{feral.imagen.url}}" alt="" class = "img-responsive thumbnail">
+                      {% else %}
+                          {{ feral.texto }}
+                      {% endif %}
                       </td>
                       <td>
-                        {{feral.nombre}}
+                        {{feral.contador|default:"*0*"}}
                       </td>
                       <td>
-                        <strong>{{feral.contador|default:"*0*"}}</strong> : {{feral.ultima_publicacion|date:"m-d"}}
+                        {{feral.ultima_publicacion|date:"m-d"}}
                       </td>
                       <td>
                         <a href="{{feral.url}}">{{feral.url|truncatechars:35}}</a>

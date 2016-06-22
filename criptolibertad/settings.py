@@ -100,7 +100,7 @@ if HEROKU:
     MEDIA_URL = S3_URL
 
 else:
-    MEDIA_URL = MEDIA_ROOT
+    MEDIA_URL = '/media/'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
