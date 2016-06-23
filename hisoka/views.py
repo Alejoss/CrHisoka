@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.views.decorators.csrf import csrf_exempt
 
@@ -91,7 +91,7 @@ def multiple_images(request, slug_fireball):
         files = request.FILES.getlist('images')
         for x in files:
             FeralSpirit.objects.create(tipo="imagen", imagen=x, fireball=fireball)
-        return HttpResponse('Proceso las files')
+        return redirect('fireball', slug_fireball=fireball.slug, queryset='ultima_publicacion')
 
     context = {'fireball': fireball}
     return render(request, template, context)
