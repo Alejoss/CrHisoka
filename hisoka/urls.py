@@ -23,6 +23,9 @@ urlpatterns = [
         views.CrearFeralSpirit.as_view(),
         name="crear_feral_spirit"),
 
+    url(r'^multiple_images/(?P<slug_fireball>[-\w]+)/$', views.multiple_images,
+        name="multiple_images"),
+
     url(r'^editar_feral/$', views.editar_feral,
         name="editar_feral_spirit"),
 

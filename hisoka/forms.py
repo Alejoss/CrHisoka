@@ -19,7 +19,6 @@ class FormCrearFireball(forms.ModelForm):
 
 
 class FormCrearFeralSpirit(forms.ModelForm):
-
     class Meta:
         model = FeralSpirit
         fields = ['tipo', 'texto', 'url', 'imagen']
@@ -38,8 +37,11 @@ class FormCrearFeralSpirit(forms.ModelForm):
         }
 
 
-class FormNuevaCarta(forms.ModelForm):
+class MultipleImagesFeral(forms.Form):
+    images = forms.ClearableFileInput(attrs={'multiple': True, 'class': 'form-control'})
 
+
+class FormNuevaCarta(forms.ModelForm):
     queryset_grupos_magicpy = GrupoMagicPy.objects.all()
     grupo = forms.ModelChoiceField(queryset_grupos_magicpy)
 
@@ -55,7 +57,6 @@ class FormNuevaCarta(forms.ModelForm):
 
 
 class FormNuevoGrupo(forms.ModelForm):
-
     class Meta:
         model = GrupoMagicPy
         fields = ['nombre', 'descripcion', 'imagen']

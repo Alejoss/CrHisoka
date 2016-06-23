@@ -6,13 +6,14 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.views.decorators.csrf import csrf_exempt
 
 from tagging.models import Tag
 
 from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy
-from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo
+from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo, MultipleImagesFeral
 
 
 class HisokasMain(ListView):
@@ -79,6 +80,21 @@ class CrearFeralSpirit(CreateView):
                                    kwargs={'slug_fireball': fireball.slug, 'queryset': 'ultima_publicacion'})
 
         return success_url
+
+
+def multiple_images(request, slug_fireball):
+    # Maneja un formulario con la opcion de subir varias imágenes a la ves
+    template = "hisoka/multiple_images.html"
+    fireball = Fireball.objects.get(slug=slug_fireball)
+
+    if request.method == "POST":
+        files = request.FILES.getlist('images')
+        for x in files:
+            FeralSpirit.objects.create(tipo="imagen", imagen=x, fireball=fireball)
+        return HttpResponse('Proceso las files')
+
+    context = {'fireball': fireball}
+    return render(request, template, context)
 
 
 def editar_feral(request):
