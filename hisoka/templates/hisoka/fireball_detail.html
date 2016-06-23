@@ -5,26 +5,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/jquery-ui-negro.css' %}">
 {% endblock extra_css %}
 
-
-{% block content %}
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
+{% block hisoka_menu %}
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'crear_feral_spirit' fireball.slug 'sin_tipo' %} ">Crear FeralSpirit</a></li>
-    <li><a href="{% url 'logout' %} ">Logout <i class="fa fa-power-off"></i></a></li>
-  </ul><!--- End Menu -->
-</div> <!--- End Off Canvas Side Menu -->
+{% endblock hisoka_menu %}
 
+{% block content %}
 <!-- Fullscreen Page 
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
@@ -102,7 +88,7 @@
                     {% endif %}
                       <td>
                       {% if feral.tipo == "imagen" %}
-                          <img src="{{feral.imagen.url}}" alt="" class = "img-responsive thumbnail">
+                          <a class="imagen_pequena_tweet" href=""><img src="{{feral.imagen.url}}" alt="" class = "img-responsive thumbnail"></a>
                       {% else %}
                           {{ feral.texto }}
                       {% endif %}
@@ -132,21 +118,29 @@
                   {% endfor %}
               </table>						
             </div> <!--- End Right Content -->
+        </div>
 
-            <div class="modalfullscreen modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="viewer container"> <!-- Start Container -->
-                    <div class="row"> <!-- Start Row -->
-                        <h3>Estas seguro que quieres eliminar este tweet?</h3>
-                            <p id="eliminar_modal_contador">Ha sido tweeteado <strong class="contador"></strong> veces hasta ahora.</p>
-                        <br>
-                        <button id="eliminar_tweet" data-feral-id="" class = "btn btn-danger">Eliminar Tweet</button>
-                    </div>
+        <div class="modalfullscreen modal fade" id="modal_eliminar" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="viewer container"> <!-- Start Container -->
+                <div class="row"> <!-- Start Row -->
+                    <h3>Estas seguro que quieres eliminar este tweet?</h3>
+                        <p id="eliminar_modal_contador">Ha sido tweeteado <strong class="contador"></strong> veces hasta ahora.</p>
+                    <br>
+                    <button id="eliminar_tweet" data-feral-id="" class = "btn btn-danger">Eliminar Tweet</button>
                 </div>
             </div>
         </div>
 
-        <div class="modalfullscreen modal fade" id="modal-feral" tabindex="-1" role="dialog" aria-hidden="true"> <!--- Full Screen Blog Post Page -->
+        <div class="modalfullscreen modal fade" id="modal_imagen" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="viewer container"> <!-- Start Container -->
+                <button type="button" class="close" data-dismiss="modal"><i class = "fa fa-close"></i></button>
+                <div class="row"> <!-- Start Row -->
+                    <img src="" id="modal_imagen_src">
+                </div>
+            </div>
+        </div>
 
+      <div class="modalfullscreen modal fade" id="modal-feral" tabindex="-1" role="dialog" aria-hidden="true"> <!--- Full Screen Blog Post Page -->
         <div class="viewer container"> <!-- Start Container -->
           <div class="row"> <!-- Start Row -->
             <h2>Editar Feral</h2>
@@ -191,10 +185,10 @@
                     </form>
                 </div>
             </div>
-
           </div> <!-- End Row -->
         </div> <!-- End Container -->
       </div> <!-- End Modal Popup Album #1 -->
+
     </div> <!-- End Row -->
   </div> <!-- End Container -->
 
@@ -217,6 +211,15 @@
 
     <script>
         $(document).ready(function(){
+
+            // Abre un modal con la imagen cuando se da click al thumbnail pequeño
+            $(".imagen_pequena_tweet").on("click", function(e){
+                e.preventDefault();
+                var img_src= $(this).find("img").attr("src");
+                console.log(img_src);
+                $("#modal_imagen_src").attr("src", img_src);
+                $("#modal_imagen").modal("show");
+            });
 
             // Eliminar feral spirit
             // Mostrar modal de aceptacion

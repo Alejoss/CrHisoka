@@ -1,25 +1,13 @@
 {% extends 'hisoka_base.html' %}
 {% load staticfiles %}
 
+{% block hisoka_menu %}
+    {% if user.is_superuser %}
+        <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>
+    {% endif %}
+{% endblock hisoka_menu %}
+
 {% block content %}
-
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
-    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
-    <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>    
-  </ul><!--- End Menu -->
-</div> <!--- End Off Canvas Side Menu -->
-
 <!-- Fullscreen Page 
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
@@ -45,6 +33,7 @@
                       <!-- Start Blog Posts --> 
                 <div id="posts" class="portfolio">
 
+                  {% if user.is_staff %}
                     <div class="col-lg-4 col-md-4 item">
                       <div class="details">
                         <a href = "{% url 'magic_py' %}">
@@ -56,6 +45,7 @@
                       <a href="{% url 'magic_py' %}"><img src="{% static 'img/criptolibertad/magic_colors.png' %} "
                                                           alt="MagicPy" class="img-responsive"/></a>
                     </div>
+                  {% endif %}
 
                   {% for fireball in fireballs %}                  
                     <div class="col-lg-4 col-md-4 item">

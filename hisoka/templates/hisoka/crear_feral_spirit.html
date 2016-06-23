@@ -1,25 +1,13 @@
 {% extends 'hisoka_base.html' %}
 {% load staticfiles %}
 
-{% block content %}
 
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->      
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
+{% block hisoka_menu %}
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
-    <li><a href="{% url 'crear_fireball' %} "> Crear Fireball </a></li>    <!-- TODO CREAR LINKS A FIREBALLS -->
-  </ul><!--- End Menu -->
-</div> <!--- End Off Canvas Side Menu -->
+    <li><a href="{% url 'fireball' fireball.slug 'ultima_publicacion' %}"> {{ fireball.nombre }} </a></li>
+{% endblock hisoka_menu %}
 
+{% block content %}
 <!-- Fullscreen Page 
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
@@ -34,7 +22,7 @@
           <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
           <div id="page-detail">
             
-            <h1>CREAR <br> FERAL SPIRIT</h1>
+            <h1>CREAR <br> FERAL SPIRIT <br> <small> para {{ fireball.nombre }} </small></h1>
 
           </div>
       </div> <!--- End Left Content -->

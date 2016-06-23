@@ -51,6 +51,29 @@
   <body>
 
 
+  <!-- Preloader
+  ================================================== -->
+  <div id="preloader">
+      <div id="status">&nbsp;</div>
+    </div>
+
+    <!-- Off Canvas Navigation
+    ================================================== -->
+    <div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->
+      <br>
+      <br>
+      <ul class="nav navmenu-nav"> <!--- Menu -->
+          {% block hisoka_menu %}
+          {% endblock hisoka_menu %}
+
+            {% if user.is_authenticated %}
+                <hr>
+                <li><a href="{% url 'logout' %} ">Logout <i class="fa fa-power-off"></i></a></li>
+            {% endif %}
+
+      </ul><!--- End Menu -->
+    </div> <!--- End Off Canvas Side Menu -->
+
   {% block content %}
   {% endblock content %}
 
