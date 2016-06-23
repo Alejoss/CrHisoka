@@ -3,6 +3,9 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/jquery-ui-negro.css' %}">
+    <style>
+        .cuadro_tweets {overflow: scroll; max-height: 600px;}
+    </style>
 {% endblock extra_css %}
 
 {% block hisoka_menu %}
@@ -52,6 +55,7 @@
                 {% endif %}
             </div>
 
+            <div class="cuadro_tweets">
               <table class = "table">
                 <thead>
                   <tr>
@@ -117,7 +121,8 @@
                       </td>
                     </tr>
                   {% endfor %}
-              </table>						
+              </table>
+            </div>
             </div> <!--- End Right Content -->
         </div>
 

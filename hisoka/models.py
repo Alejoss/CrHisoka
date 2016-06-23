@@ -135,4 +135,3 @@ class CaminoMagicPy(models.Model):
     primera_carta = models.ForeignKey(CartaMagicPy, related_name="primera_carta")
     segunda_carta = models.ForeignKey(CartaMagicPy, related_name="segunda_carta")
     prioridad = models.PositiveSmallIntegerField(default=2)  # Prioridad del 1 al 3
-
