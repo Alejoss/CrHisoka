@@ -156,7 +156,7 @@ def eliminar_feral(request):
             feral_spirit.save()
             return HttpResponse("Feral correctamente eliminado")
         else:
-            return HttpResponse("No hay feral_id",status=400)
+            return HttpResponse("No hay feral_id", status=400)
     else:
         return HttpResponse("No es Ajax", status=400)
 
