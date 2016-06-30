@@ -51,7 +51,9 @@ class Command(BaseCommand):
             # Envia tweets de Orilla Libertaria a twitter
 
             filename = feral_elegido.imagen.file.name
+            print filename
             media_ids = api.media_upload(filename=filename)
+            print media_ids
 
             params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
             api.update_status(**params)
