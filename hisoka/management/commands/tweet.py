@@ -52,7 +52,10 @@ class Command(BaseCommand):
 
             filename = feral_elegido.imagen.file.name
             print filename
-            media_ids = api.media_upload(filename=filename)
+            base_bucket = "https://s3-us-west-2.amazonaws.com/criptolibertad/"
+            url_completa = base_bucket + filename
+            print url_completa
+            media_ids = api.media_upload(filename=url_completa)
             print media_ids
 
             params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
