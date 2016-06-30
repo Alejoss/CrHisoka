@@ -50,7 +50,7 @@ class Command(BaseCommand):
         if feral_elegido.tipo == "imagen":
             # Envia tweets de Orilla Libertaria a twitter
 
-            filename = feral_elegido.imagen.file.name
+            filename = feral_elegido.imagen.file.url
             print filename
             media_ids = api.media_upload(filename=filename)
             print media_ids
