@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/jasny-bootstrap.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/sweetalert.css' %}">
+
+<div class = "col-md-offset-2">
+    <div id = "imagen"></div>
+</div>
+
+<div class="actions">
+  <button class="basic-result">Result</button>
+  <input type="number" class="basic-width" placeholder="width" /> x <input type="number" class="basic-height" placeholder="height" />
+</div>
+
+<div class = "row">
+    <button id="guardar_imagen">Guardar</button>
+    <img id="imagen_resultado" src="" alt="">
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src = "{% static 'js/croppie.js' %}"></script>
+<script>
+$(document).ready(function(){
+
+
+});
+</script>

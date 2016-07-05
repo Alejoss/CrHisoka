@@ -2,6 +2,7 @@
 import os
 import random
 import tweepy
+import tempfile
 
 from datetime import datetime
 
@@ -50,14 +51,12 @@ class Command(BaseCommand):
         if feral_elegido.tipo == "imagen":
             # Envia tweets de Orilla Libertaria a twitter
 
-            filename = feral_elegido.imagen.url
-            print filename
-            media_ids = api.media_upload(filename=filename)
-            print media_ids
-
-            params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
-            api.update_status(**params)
-
+            with tempfile.NamedTemporaryFile(delete=True) as f:
+                filename = feral_elegido.imagen.name
+                f.write(feral_elegido.image.read())
+                media_ids = api.media_upload(filename=filename, f=f)
+                params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
+                api.update_status(**params)
         else:
             api.update_status(texto_tweet)
 

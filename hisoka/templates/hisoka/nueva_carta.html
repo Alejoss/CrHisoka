@@ -1,30 +1,27 @@
 {% extends 'hisoka_base.html' %}
 {% load staticfiles %}
 
-{% block content %}
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/sweetalert.css' %}">
+    <style>
+        .div_form {overflow: scroll; max-height: 800px; max-width: 100%}
+    </style>
+{% endblock extra_css %}
 
-<!-- Preloader
-================================================== -->
-<div id="preloader">
-  <div id="status">&nbsp;</div>
-</div>
-
-<!-- Off Canvas Navigation
-================================================== -->
-<div class="navmenu navmenu-default navmenu-fixed-left offcanvas"> <!--- Off Canvas Side Menu -->
-  <br>
-  <br>
-  <ul class="nav navmenu-nav"> <!--- Menu -->
+{% block hisoka_menu %}
+<ul class="nav navmenu-nav"> <!--- Menu -->
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'magic_py' %} ">  </a></li>
-  </ul><!--- End Menu -->
-</div> <!--- End Off Canvas Side Menu -->
+</ul><!--- End Menu -->
+{% endblock hisoka_menu %}
 
+{% block content %}
 <!-- Fullscreen Page
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
   <div id="sidebar" class="blog">
-    <div class="featured-img"><img src="{% static 'img/criptolibertad/black_lotus.png' %}" alt="..."></div> <!-- featured image-->
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/black_lotus.jpg' %}" alt="..."></div> <!-- featured image-->
   </div>
 
   <div class="container"> <!-- Start Container -->
@@ -40,9 +37,10 @@
       </div> <!--- End Left Content -->
 
         <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+            <div class = "div_form">
             <div id="content"><!--- Start Content Wrapper-->
                 <div class="text"> <!--- Start Text Wrapper -->
-						<hr class ="invisible">
+					<hr class ="invisible">
 						<form class="form-horizontal" action="{% url 'nueva_carta' %}" method="post">
 						{% csrf_token %}
 							<fieldset>
@@ -53,7 +51,7 @@
                                     {{ form.grupo.errors }}
                                   <div class="col-md-10">
                                     {{ form.grupo }}
-                                  <span class="help-block">Librería / Subtema</span>
+                                  <span class="help-block">A qué le pertenece?</span>
                                   </div>
                                 </div>
 
@@ -62,17 +60,28 @@
                                     {{ form.nombre.errors }}
                                   <div class="col-md-10">
                                     {{ form.nombre }}
-                                    <span class="help-block">El nombre de la función / clase / atributo / etc</span>
+                                    <span class="help-block">Como te vas a acordar de esto?</span>
                                   </div>
                                 </div>
 
                                 <div class="form-group">
                                   <label class="col-md-2 control-label" for="grupo">Imagen</label>
+
                                     {{ form.imagen.errors }}
-                                  <div class="col-md-10">
-                                    {{ form.imagen }}
-                                    <span class="help-block">URL de la carta pegada de http://www.smfcorp.net</span>
-                                  </div>
+                                      <div class="col-md-10">
+                                        {{ form.imagen }}
+                                        <span class="help-block">Pega una URL a una Imagen</span>
+                                          <br>
+                                      </div>
+
+                                    <div class = "row alternate"> <!-- Procesar Imagen -->
+                                        <div class = "col-md-offset-2">
+                                            <div id = "imagen"></div>
+                                            <button id="guardar_imagen">Recortar</button>
+                                            <img id="imagen_resultado" src="" alt="">
+                                        </div>
+                                    </div>
+
                                 </div>
 
                                 <div class="form-group">
@@ -80,7 +89,7 @@
                                     {{ form.descripcion.errors }}
                                   <div class="col-md-10">
                                     {{ form.descripcion }}
-                                    <span class="help-block">Nombre de la Carta + Características y funcionalidades</span>
+                                    <span class="help-block">Nombre de la carta real + descripción extra</span>
                                   </div>
                                 </div>
 
@@ -93,13 +102,58 @@
     	          <div class="clearfix"></div>
               </div> <!--- End Text Wrapper -->
 
+            <div id="imagen"></div>
+
             </div><!--- End Content Wrapper-->
-
           </div> <!--- End Right Content -->
-
+        </div> <!--div-form-->
     </div> <!-- End Row -->
   </div> <!-- End Container -->
 
 </div> <!--- End Full Screen Blog Post Page -->
 
 {% endblock content %}
+
+{% block extra_javascript %}
+<script type="text/javascript" src="{% static 'js/sweetalert.min.js' %}"></script>
+<script src = "{% static 'js/croppie.js' %}"></script>
+<script>
+$(document).ready(function(){
+
+    // Inicializa Croppie para recortar la imagen
+    var croppie_div = $("#imagen").croppie({
+        viewport: {
+            width: 200,
+            height: 150,
+            boundary: { width: 300, height: 300 }
+        }
+    });
+
+    // Set imagen cuando se pega el url
+    $("#url_imagen").on("change", function(){
+        var url_imagen = $(this).val();
+        console.log(url_imagen);
+        croppie_div.croppie('bind', {
+            url: url_imagen,
+            points:  [300,469,280,739]
+        });
+    });
+
+    $("#guardar_imagen").on("click", function(){
+        var w = 800,
+            h = 600,
+            size = 'viewport';
+        if (w || h) {
+            size = { width: w, height: h };
+        }
+        croppie_div.croppie('result', {
+            type: 'canvas',
+            size: size
+        }).then(function(resp){
+           $("#imagen_resultado").attr('src', resp)
+        });
+    });
+});
+</script>
+{% endblock extra_javascript %}
+

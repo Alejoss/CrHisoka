@@ -8,6 +8,8 @@ from hisoka import views
 
 urlpatterns = [
 
+    url(r'^prueba/$', views.Prueba.as_view(), name="prueba"),
+
     url(r'^hisokas_main/$', login_required(views.HisokasMain.as_view()), name="hisokas_main"),
 
     url(r'^fireball/(?P<slug_fireball>[-\w]+)/(?P<queryset>\w+)/$',

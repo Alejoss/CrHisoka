@@ -16,6 +16,11 @@ from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy
 from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo, MultipleImagesFeral
 
 
+class Prueba(TemplateView):
+    # renderea un html sin tanta waa para aislar y probar librerias de frontend
+    template_name = "hisoka/prueba.html"
+
+
 class HisokasMain(ListView):
     template_name = "hisoka/hisoka_main.html"
     queryset = Fireball.objects.all()

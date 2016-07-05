@@ -12,7 +12,7 @@
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
   <div id="sidebar" class="blog">
-    <div class="featured-img"><img src="{% static 'img/criptolibertad/hisokasguard.jpg' %}" alt="..."></div> <!-- featured image-->
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/hisokasguard1.jpg' %}" alt="..."></div> <!-- featured image-->
   </div>
 
   <div class="container"> <!-- Start Container -->
@@ -42,8 +42,9 @@
                         <br>
                         <br>
                       </div>
-                      <a href="{% url 'magic_py' %}"><img src="{% static 'img/criptolibertad/magic_colors.png' %} "
-                                                          alt="MagicPy" class="img-responsive"/></a>
+                      <a href="{% url 'magic_py' %}">
+                          <img src="https://s3-us-west-2.amazonaws.com/criptolibertad/magicpy_imgs/magic_colors.png" alt="" class="img-responsive"/>
+                      </a>
                     </div>
                   {% endif %}
 
@@ -57,7 +58,9 @@
                         <br>
                         <br>
                       </div>
-                      <a href="{% url 'fireball' fireball.slug 'ultima_publicacion' %}"><img src="{{fireball.imagen}}" alt="{{fireball.nombre}}" class="img-responsive"/></a>
+                      <a href="{% url 'fireball' fireball.slug 'ultima_publicacion' %}">
+                          <img src="{{fireball.imagen}}" alt="{{fireball.nombre}}" class="img-responsive"/>
+                      </a>
                     </div>                  
                   {% endfor %}
               

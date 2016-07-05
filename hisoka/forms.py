@@ -49,7 +49,7 @@ class FormNuevaCarta(forms.ModelForm):
         model = CartaMagicPy
         fields = ['imagen', 'grupo', 'nombre', 'descripcion']
         widgets = {
-            'imagen': forms.URLInput(attrs={'class': 'form-control'}),
+            'imagen': forms.URLInput(attrs={'class': 'form-control', 'id': 'url_imagen'}),
             'grupo': forms.TextInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'})
