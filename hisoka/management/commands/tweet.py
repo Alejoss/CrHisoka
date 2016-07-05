@@ -52,7 +52,7 @@ class Command(BaseCommand):
             # Envia tweets de Orilla Libertaria a twitter
 
             with tempfile.NamedTemporaryFile(delete=True) as f:
-                filename = feral_elegido.imagen.url
+                filename = feral_elegido.imagen.file.name
                 print filename
                 f.write(feral_elegido.imagen.read())
                 media_ids = api.media_upload(filename=filename, f=f)
