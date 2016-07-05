@@ -53,7 +53,7 @@ class Command(BaseCommand):
 
             with tempfile.NamedTemporaryFile(delete=True) as f:
                 filename = feral_elegido.imagen.name
-                f.write(feral_elegido.image.read())
+                f.write(feral_elegido.imagen.read())
                 media_ids = api.media_upload(filename=filename, f=f)
                 params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
                 api.update_status(**params)
