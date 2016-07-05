@@ -55,7 +55,6 @@ class Command(BaseCommand):
                 filename = feral_elegido.imagen.url
                 print filename
                 f.write(feral_elegido.imagen.read())
-                print f.tempdir
                 media_ids = api.media_upload(filename=filename, f=f)
                 params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
                 api.update_status(**params)
