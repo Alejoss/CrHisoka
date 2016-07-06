@@ -1,6 +1,7 @@
 # coding=utf-8
 from datetime import datetime
 
+from django.conf import settings
 from django.db import models
 from django.template.defaultfilters import slugify
 
@@ -40,7 +41,7 @@ class FeralSpirit(models.Model):
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
