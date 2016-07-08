@@ -1,0 +1,77 @@
+{% extends 'hisoka_base.html' %}
+{% load staticfiles %}
+
+<style>
+    .texto_carta h3 p {text-align: center;}
+</style>
+
+{% block hisoka_menu %}
+<ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
+    <li><a href="{% url 'magic_py' %} "> MagicPy </a></li>
+    <li><a href="{% url 'nuevo_grupo' %} ">Nueva Grupo</a></li>
+    <li><a href="{% url 'nueva_carta' %} ">Nueva Carta</a></li>
+</ul><!--- End Menu -->
+{% endblock hisoka_menu %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/black_lotus.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+            <h1>{{ grupo_magicpy.nombre }}</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6"> <!--- Right Content -->
+            <div class = "row">
+                <div class = "col-md-offset-1 col-md-5">
+                    <img id="imagen" src="{{ grupo_magicpy.imagen }}" class="thumbnail" height="100" width="auto" alt="">
+                </div>
+                <div class = "col-md-6">
+                    <h2><small> {{ grupo_magicpy.nombre }} </small> </h2>
+                    <br><br>
+                </div>
+            </div>
+            <div class = "row">
+                    <hr>
+
+                <!-- Start Blog Posts -->
+                <div id="posts" class="portfolio">
+
+                    {% for carta in cartas_magicpy %}
+                    <div class="col-lg-2 col-md-2 item">
+                      <div class="details">
+                        <a href="{% url 'carta_magicpy' carta.id %}">
+                          <p><small>{{ carta.nombre }} </small></p>
+                        </a>
+                        <span class="meta-author"> <a href="#">  </a></span>
+                        <br>
+                        <br>
+                      </div>
+                      <a href="{% url 'carta_magicpy' carta.id %}"><img height="80" src='{{ carta.imagen.url }}' alt='' class="thumbnail"/></a>
+                    </div>
+                    {% endfor %}
+
+                    <div class="space"></div>
+                    <div class="clearfix"></div>
+                </div> <!-- End Blog Posts -->
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+{% endblock content %}

@@ -1,0 +1,61 @@
+{% extends 'hisoka_base.html' %}
+{% load staticfiles %}
+
+<style>
+    .texto_carta h3 p {text-align: center;}
+</style>
+
+{% block hisoka_menu %}
+<ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
+    <li><a href="{% url 'magic_py' %} "> MagicPy </a></li>
+    <li><a href="{% url 'nueva_carta' %} ">Nueva Carta</a></li>
+</ul><!--- End Menu -->
+{% endblock hisoka_menu %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/black_lotus.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+            <h1>{{ carta_magicpy.nombre }}</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6"> <!--- Right Content -->
+            <div class = "row">
+                <div class = "col-md-offset-1">
+                    <div id="img-div">
+                        <img id="imagen" src="{{ carta_magicpy.imagen.url }}" class="thumbnail" height="400" width="auto" alt="">
+                        <h3><small> {{ carta_magicpy.nombre_carta_magic }} </small> </h3>
+                        <a class="pull-right" href="{% url 'relacionar_carta' %}">Relacionar carta</a>
+                    </div>
+                </div>
+            </div>
+            <div class = "row">
+                    <hr>
+                <div class = "col-md-offset-2">
+                    <h2>{{ carta_magicpy.nombre }} <br> <small> {{ carta_magicpy.grupo }} </small> </h2>
+                    <p class="well">{{ carta_magicpy.descripcion }} </p>
+                    <br><br>
+                    <p><small>Última revisión: {{ carta_magicpy.ultima_revision|default:"Todavía no" }}</small></p>
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+{% endblock content %}

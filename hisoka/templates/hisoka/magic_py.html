@@ -28,18 +28,40 @@
           </div> <!--- End Left Content -->
 
             <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
-                {% for grupo in grupos_magicpy %}
-                    <p>
-                        {{ grupo.nombre }}
-                    </p>
-                {% endfor %}
-            </div>
 
+                <!-- Start Blog Posts -->
+                <div id="posts" class="portfolio">
+
+                  <div class="row">
+                    {% for grupo in grupos_magicpy %}
+                    <div class="col-lg-4 col-md-4 item">
+                      <div class="details">
+                        <a href="{% url 'grupo_magicpy' grupo.id %}">
+                          <h4>{{ grupo.nombre }} <br>
+                              <small>
+                                  {{ grupo.num_cartas }} cartas <br>
+                                  {{ grupo.ultima_revision|date:"SHORT_DATE_FORMAT" }}
+                              </small></h4>
+                        </a>
+                        <span class="meta-author"> <a href="#">  </a></span>
+                        <br>
+                        <br>
+                      </div>
+                      <a href="{% url 'grupo_magicpy' grupo.id %}"><img src='{{ grupo.imagen }}' alt='' class="img-responsive"/></a>
+                    </div>
+                    {% endfor %}
+                  </div>
+
+                    <div class="space"></div>
+                    <div class="clearfix"></div>
+                </div> <!-- End Blog Posts -->
+
+            </div> <!-- right content -->
         </div>
+      </div>
     </div>
 
 {% endblock content %}
 
 {% block extra_javascript %}
 {% endblock extra_javascript %}
-

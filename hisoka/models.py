@@ -40,7 +40,7 @@ class FeralSpirit(models.Model):
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral)
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
@@ -77,36 +77,8 @@ def ubicar_imagen_magicpy(instance, filename):
 class GrupoMagicPy(models.Model):
     nombre = models.CharField(max_length=150, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
-    imagen = models.ImageField(upload_to="")
-    ultima_revision = models.DateTimeField(null=True)
-
-    @property
-    def hace_cuanto_revise(self):
-        # Devuelve un texto con la diferencia de hoy a la ultima revision
-
-        diferencia_tiempo = datetime.today() - self.ultima_revision
-
-        dias = diferencia_tiempo.days
-
-        if dias == 0:
-            return "Hoy"
-
-        meses = float(dias) / 30.00
-        if meses > 0:
-            return "%s meses - %s dias" % (meses, dias % 30)
-
-        else:
-            return "%s dias" % dias
-
-
-class CartaMagicPy(models.Model):
-    """
-    Una carta con idea guardada
-    """
     imagen = models.URLField(blank=True)
-    grupo = models.ForeignKey(GrupoMagicPy, null=True)
-    nombre = models.CharField(max_length=50, blank=True)
-    descripcion = models.CharField(max_length=600, blank=True)
+    eliminado = models.BooleanField(default=False)
     ultima_revision = models.DateTimeField(null=True)
 
     @property
@@ -131,7 +103,61 @@ class CartaMagicPy(models.Model):
         return self.nombre
 
 
-class CaminoMagicPy(models.Model):
-    primera_carta = models.ForeignKey(CartaMagicPy, related_name="primera_carta")
-    segunda_carta = models.ForeignKey(CartaMagicPy, related_name="segunda_carta")
-    prioridad = models.PositiveSmallIntegerField(default=2)  # Prioridad del 1 al 3
+def ubicar_magicpy(instance, filename):
+    # Para ubicar las imágenes de magicpy
+    nombre_archivo = instance.nombre + ".jpeg"
+    path = "/".join([instance.grupo.nombre, nombre_archivo])
+    return path
+
+
+class CartaMagicPy(models.Model):
+    """
+    Una carta con idea guardada
+    """
+    # , storage=S3BotoStorage(bucket='criptolibertad')
+    imagen_url = models.URLField(blank=True)
+    nombre_carta_magic = models.CharField(max_length=255, blank=True)
+    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy)
+    grupo = models.ForeignKey(GrupoMagicPy, null=True)
+    nombre = models.CharField(max_length=50, blank=True)
+    descripcion = models.CharField(max_length=600, blank=True)
+    ultima_revision = models.DateTimeField(null=True)
+    eliminada = models.BooleanField(default=False)
+
+    @property
+    def hace_cuanto_revise(self):
+        # Devuelve un texto con la diferencia de hoy a la ultima revision
+
+        diferencia_tiempo = datetime.today() - self.ultima_revision
+
+        dias = diferencia_tiempo.days
+
+        if dias == 0:
+            return "Hoy"
+
+        meses = float(dias) / 30.00
+        if meses > 0:
+            return "%s meses - %s dias" % (meses, dias % 30)
+
+        else:
+            return "%s dias" % dias
+
+    class Meta:
+        ordering = ["-ultima_revision"]
+
+    def __unicode__(self):
+        return self.nombre
+
+
+class ConjuntoCartas(models.Model):
+    nombre = models.CharField(blank=True)
+    descripcion = models.CharField(max_length=600, blank=True)
+    eliminado = models.BooleanField(default=False)
+    fecha_creacion = models.DateTimeField(null=True)
+    ultima_revision = models.DateTimeField(null=True)
+
+
+class CartaConjunto(models.Model):
+    carta = models.ForeignKey(CartaMagicPy)
+    conjunto = models.ForeignKey(ConjuntoCartas)
+    eliminado = models.BooleanField(default=False)

@@ -1,19 +1,23 @@
 # coding=utf-8
 import json
-import os
+import base64
+import requests
+from StringIO import StringIO
+from PIL import Image
+from datetime import datetime
 
-from django.core.urlresolvers import reverse_lazy
+from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.views.decorators.csrf import csrf_exempt
+from django.core.files.base import ContentFile
+from django.db.models import Count
 
 from tagging.models import Tag
 
-from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy
-from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo, MultipleImagesFeral
+from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy, CartaMagicPy
+from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo
 
 
 class Prueba(TemplateView):
@@ -172,24 +176,128 @@ class MagicPy(TemplateView):
     template_name = "hisoka/magic_py.html"
 
     def get_context_data(self, **kwargs):
-
         context = super(MagicPy, self).get_context_data()
-        grupos_magicpy = GrupoMagicPy.objects.all()
+        grupos_magicpy = GrupoMagicPy.objects.filter(eliminado=False).annotate(num_cartas=Count('cartamagicpy'))
+        for grupo in grupos_magicpy:
+            print grupo.nombre
+            print grupo.num_cartas
+
         context['grupos_magicpy'] = grupos_magicpy
         return context
 
 
-class NuevaCarta(CreateView):
-    template_name = "hisoka/nueva_carta.html"
+class CartaMPy(TemplateView):
 
-    form_class = FormNuevaCarta
+    template_name = "hisoka/carta_mpy.html"
 
-    success_url = reverse_lazy('hisokas_main')  # Cambiar
+    def get_context_data(self, **kwargs):
+        context = super(CartaMPy, self).get_context_data()
+        carta_id = self.kwargs['id_carta']
+        carta_magicpy = CartaMagicPy.objects.get(id=carta_id)
+        context['carta_magicpy'] = carta_magicpy
+        return context
+
+
+class GrupoMPy(TemplateView):
+
+    template_name = "hisoka/grupo_mpy.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(GrupoMPy, self).get_context_data()
+        grupo_id = self.kwargs['id_grupo']
+        grupo_magicpy = GrupoMagicPy.objects.get(id=grupo_id)
+        context['grupo_magicpy'] = grupo_magicpy
+
+        cartas_magicpy = CartaMagicPy.objects.filter(grupo=grupo_magicpy, eliminada=False)
+        context['cartas_magicpy'] = cartas_magicpy
+        return context
+
+
+def nueva_carta(request):
+    template = "hisoka/nueva_carta.html"
+
+    if request.method == "POST":
+
+        form = FormNuevaCarta(request.POST)
+
+        if form.is_valid():
+
+            carta = form.save(commit=False)
+
+            imagen_url = form.cleaned_data['imagen_url']
+            respuesta = requests.get(imagen_url)
+            imagen = Image.open(StringIO(respuesta.content))
+            stringio_obj = StringIO()
+            imagen.save(stringio_obj, format="JPEG")
+            final_image = stringio_obj.getvalue()
+
+            carta.imagen = ContentFile(final_image, carta.nombre)
+            carta.ultima_revision = datetime.today()
+            carta.save()
+
+            return redirect('recortar_carta', id_carta=carta.id)
+
+    else:
+        form = FormNuevaCarta()
+
+    context = {'form': form}
+    return render(request, template, context)
+
+
+def relacionar_carta(request):
+    template = "hisoka/relacionar_carta.html"
+
+    if request.method == "POST":
+
+        form = (request.POST)
+        if form.is_valid():
+            pass
+
+    else:
+        form = ()
+
+    context = {"form": form}
+
+    return render(request, template, context)
 
 
 class NuevoGrupo(CreateView):
     template_name = "hisoka/nuevo_grupo.html"
 
     form_class = FormNuevoGrupo
-
     success_url = reverse_lazy('hisokas_main')  # Cambiar
+
+    def form_valid(self, form):
+        form.instance.ultima_revision = datetime.today()
+        return super(NuevoGrupo, self).form_valid(form)
+
+
+class RecortarCarta(TemplateView):
+    template_name = "hisoka/recortar_carta.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(RecortarCarta, self).get_context_data()
+        carta_magicpy = CartaMagicPy.objects.get(id=self.kwargs['id_carta'])
+        context['carta_magicpy'] = carta_magicpy
+        return context
+
+
+def recortar_carta_ajax(request):
+
+    if request.is_ajax():
+
+        carta_id = request.POST.get("carta_id")
+        imagen_b64 = request.POST.get("imagen")
+
+        imagen_decodificada = base64.b64decode(imagen_b64.replace('data:image/jpeg;base64,', ''))
+        carta_magicpy = CartaMagicPy.objects.get(id=carta_id)
+        nombre_archivo = carta_magicpy.nombre + ".jpeg"
+        imagen_django = ContentFile(imagen_decodificada, nombre_archivo)
+        carta_magicpy.imagen.save(nombre_archivo, imagen_django, save=True)
+        url_redirect = reverse('carta_magicpy', kwargs={'id_carta': carta_magicpy.id})
+
+        print url_redirect
+        return HttpResponse(url_redirect)
+
+    else:
+        return HttpResponse(status=400)

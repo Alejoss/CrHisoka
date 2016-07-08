@@ -1,0 +1,110 @@
+{% extends 'hisoka_base.html' %}
+{% load staticfiles %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
+    <style>
+        .div_form {overflow: scroll; max-height: 800px; max-width: 100%}
+        #panel {text-align: center;}
+        #panel img {text-align: center;}
+    </style>
+{% endblock extra_css %}
+
+{% block hisoka_menu %}
+<ul class="nav navmenu-nav"> <!--- Menu -->
+    <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
+    <li><a href="{% url 'magic_py' %} "> MagicPy </a></li>
+</ul><!--- End Menu -->
+{% endblock hisoka_menu %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/black_lotus.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+            <h1>RECORTAR CARTA</h1>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+        <div id="right" class="col-sm-6"> <!--- Right Content -->
+            <div id="imagen">
+            </div>
+            <div id = "panel">
+                <button class = "btn btn-info" id="recortar_imagen">RECORTAR</button>
+                <div class = "col-md-offset-3">
+                    <br>
+                    <img id="resultado_crop" src="" alt="" class="img-responsive thumbnail">
+                </div>
+                <button class = "btn btn-success" id="guardar_imagen">GUARDAR</button>
+            </div>
+        </div>
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+{% endblock content %}
+
+{% block extra_javascript %}
+<script src = "{% static 'js/croppie.js' %}"></script>
+<script>
+$(document).ready(function(){
+
+    // Inicializa Croppie para recortar la imagen
+    var croppie_div = $("#imagen").croppie({
+        viewport: {
+            width: 250,
+            height: 200,
+            boundary: { width: 400, height: 550 }
+        }
+    });
+
+    // Set imagen cuando se pega el url
+    croppie_div.croppie('bind', {
+        url: "{{ carta_magicpy.imagen.url }}",
+        points:  [10,10,300,600]
+    });
+
+    // Guarda la imagen
+    $("#recortar_imagen").on("click", function(){
+        croppie_div.croppie('result', {
+            type: 'canvas',
+            size: 'original',
+            format: 'jpeg'
+        }).then(function(resp){
+            window.ImageBase64 = resp;
+            $("#resultado_crop").attr("src", resp);
+        });
+
+    $("#guardar_imagen").on("click", function(e){
+        e.preventDefault();
+        $("#guardar_imagen").html("<i class='fa fa-spin fa-cog'></i>");
+        $.ajax({
+                url: "{% url 'recortar_carta_ajax' %}",
+                method: "POST",
+                data: {'csrfmiddlewaretoken': "{{ csrf_token }}", 'imagen': window.ImageBase64, 'carta_id': "{{ carta_magicpy.id }}"},
+                success: function(r){
+                    console.log(r);
+                    $("#guardar_imagen").html("<i class='fa fa-check'></i>");
+                    window.location = r
+                },
+                error: function(r){
+                    alert("Hubo un error")
+                }
+            });
+    });
+  });
+});
+</script>
+{% endblock extra_javascript %}

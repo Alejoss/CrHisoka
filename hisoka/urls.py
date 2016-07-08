@@ -1,7 +1,8 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
-
+from django.conf.urls.static import static
+from django.conf import settings
 # from django.contrib import admin
 
 from hisoka import views
@@ -34,11 +35,26 @@ urlpatterns = [
     url(r'^eliminar_feral/$', views.eliminar_feral,
         name="eliminar_feral_spirit"),
 
-    url(r'^nueva_carta/$', views.NuevaCarta.as_view(),
+    url(r'^carta_magicpy/(?P<id_carta>\d+)/$', views.CartaMPy.as_view(),
+        name="carta_magicpy"),
+
+    url(r'^nueva_carta/$', views.nueva_carta,
         name="nueva_carta"),
+
+    url(r'^relacionar_carta/$', views.relacionar_carta,
+        name="relacionar_carta"),
+
+    url(r'^recortar_carta/(?P<id_carta>\d+)/$', views.RecortarCarta.as_view(),
+        name="recortar_carta"),
+
+    url(r'^recortar_carta_ajax/$', views.recortar_carta_ajax,
+        name="recortar_carta_ajax"),
 
     url(r'^nuevo_grupo/$', views.NuevoGrupo.as_view(),
         name="nuevo_grupo"),
+
+    url(r'^grupo_magicpy/(?P<id_grupo>\d+)/$', views.GrupoMPy.as_view(),
+        name="grupo_magicpy"),
 
     # API
     url(r'^feral_data/$', views.feral_data,

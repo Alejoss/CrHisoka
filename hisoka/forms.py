@@ -3,7 +3,7 @@ import logging
 
 from django import forms
 
-from hisoka.models import Fireball, FeralSpirit, CartaMagicPy, GrupoMagicPy
+from hisoka.models import Fireball, FeralSpirit, CartaMagicPy, GrupoMagicPy, CaminoMagicPy
 
 
 class FormCrearFireball(forms.ModelForm):
@@ -47,10 +47,11 @@ class FormNuevaCarta(forms.ModelForm):
 
     class Meta:
         model = CartaMagicPy
-        fields = ['imagen', 'grupo', 'nombre', 'descripcion']
+        fields = ['imagen_url', 'nombre_carta_magic', 'grupo', 'nombre', 'descripcion']
         widgets = {
-            'imagen': forms.URLInput(attrs={'class': 'form-control', 'id': 'url_imagen'}),
+            'imagen_url': forms.URLInput(attrs={'class': 'form-control', 'id': 'url_imagen'}),
             'grupo': forms.TextInput(attrs={'class': 'form-control'}),
+            'nombre_carta_magic': forms.TextInput(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'descripcion': forms.Textarea(attrs={'class': 'form-control'})
         }

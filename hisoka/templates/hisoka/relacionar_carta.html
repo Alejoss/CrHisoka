@@ -1,16 +1,22 @@
 {% extends 'hisoka_base.html' %}
 {% load staticfiles %}
 
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
+    <style>
+        .div_form {overflow: scroll; max-height: 800px; max-width: 100%}
+    </style>
+{% endblock extra_css %}
+
 {% block hisoka_menu %}
 <ul class="nav navmenu-nav"> <!--- Menu -->
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'magic_py' %} ">Magicpy Main</a></li>
-    <li><a href="{% url 'nueva_carta' %} ">Nuevo Carta</a></li>
+    <li><a href="{% url 'nuevo_grupo' %} ">Nuevo Grupo</a></li>
 </ul><!--- End Menu -->
 {% endblock hisoka_menu %}
 
 {% block content %}
-
 <!-- Fullscreen Page
 ================================================== -->
 <div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
@@ -25,35 +31,56 @@
           <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
           <div id="page-detail">
 
-            <h1>NUEVO GRUPO</h1>
+            <h1>RELACIONAR CARTA</h1>
 
           </div>
       </div> <!--- End Left Content -->
 
         <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+            <div class = "div_form">
             <div id="content"><!--- Start Content Wrapper-->
                 <div class="text"> <!--- Start Text Wrapper -->
-						<hr class ="invisible">
-						<form class="form-horizontal" action="{% url 'nuevo_grupo' %}" method="post">
+					<hr class ="invisible">
+						<form class="form-horizontal" action="{% url 'nueva_carta' %}" method="post">
 						{% csrf_token %}
 							<fieldset>
 								{{ form.non_field.errors }}
 
                                 <div class="form-group">
-                                  <label class="col-md-2 control-label" for="grupo">Nombre</label>
-                                    {{ form.nombre.errors }}
+                                  <label class="col-md-2 control-label" for="grupo">Grupo</label>
+                                    {{ form.grupo.errors }}
                                   <div class="col-md-10">
-                                    {{ form.nombre }}
+                                    {{ form.grupo }}
+                                  <span class="help-block">A qué le pertenece?</span>
                                   </div>
                                 </div>
 
                                 <div class="form-group">
-                                  <label class="col-md-2 control-label" for="grupo">Imagen</label>
-                                    {{ form.imagen.errors }}
+                                  <label class="col-md-2 control-label" for="nombre">Nombre</label>
+                                    {{ form.nombre.errors }}
                                   <div class="col-md-10">
-                                    {{ form.imagen }}
-                                    <span class="help-block">URL a una imagen que represente al grupo de cartas</span>
+                                    {{ form.nombre }}
+                                    <span class="help-block">Como te vas a acordar de esto?</span>
                                   </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-md-2 control-label" for="nombre_carta_magic">Nombre de la Carta</label>
+                                    {{ form.nombre_carta_magic.errors }}
+                                  <div class="col-md-10">
+                                    {{ form.nombre_carta_magic }}
+                                    <span class="help-block">Nombre de la carta de magic utilizada</span>
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-2 control-label" for="grupo">Imagen</label>
+                                    {{ form.imagen.errors }}
+                                    <div class="col-md-10">
+                                      {{ form.imagen_url }}
+                                      <span class="help-block">Pega la URL a una Imagen, luego podrás recortarla. Asegúrate que termine en "jpg" o "png".</span>
+                                      <br>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -61,7 +88,7 @@
                                     {{ form.descripcion.errors }}
                                   <div class="col-md-10">
                                     {{ form.descripcion }}
-                                    <span class="help-block">Que tipo de cartas le pertenecen a este grupo?</span>
+                                    <span class="help-block">Descripción de lo que te recuerda</span>
                                   </div>
                                 </div>
 
@@ -74,13 +101,18 @@
     	          <div class="clearfix"></div>
               </div> <!--- End Text Wrapper -->
 
+            <div id="imagen"></div>
+
             </div><!--- End Content Wrapper-->
-
           </div> <!--- End Right Content -->
-
+        </div> <!--div-form-->
     </div> <!-- End Row -->
   </div> <!-- End Container -->
 
 </div> <!--- End Full Screen Blog Post Page -->
 
 {% endblock content %}
+
+{% block extra_javascript %}
+{% endblock extra_javascript %}
+
