@@ -53,7 +53,7 @@ class FeralSpirit(models.Model):
     @classmethod
     def ultimo_id(cls):
         # para obtener el id del ultimo feral creado, para nombrar los archivos en el storage
-        ultimo_feral settings.AWS_STORAGE_BUCKET_NAMElter(eliminado=False).latest('id')
+        ultimo_feral = cls.objects.filter(eliminado=False).latest('id')
         return ultimo_feral.id
 
     def __unicode__(self):
