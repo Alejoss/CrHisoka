@@ -6,6 +6,7 @@ from django.template.defaultfilters import slugify
 
 from tagging.registry import register as register_tag
 from storages.backends.s3boto import S3BotoStorage
+from django.conf import settings
 
 
 class Fireball(models.Model):
@@ -14,9 +15,6 @@ class Fireball(models.Model):
     url_amazon = models.CharField(max_length=150, blank=True)
     twitter = models.CharField(max_length=150, blank=True)
     imagen = models.URLField(blank=True, null=True)
-
-    def get_absolute_url():
-        pass
 
     def __unicode__(self):
         return self.nombre
@@ -40,7 +38,7 @@ class FeralSpirit(models.Model):
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
@@ -55,7 +53,7 @@ class FeralSpirit(models.Model):
     @classmethod
     def ultimo_id(cls):
         # para obtener el id del ultimo feral creado, para nombrar los archivos en el storage
-        ultimo_feral = cls.objects.filter(eliminado=False).latest('id')
+        ultimo_feral settings.AWS_STORAGE_BUCKET_NAMElter(eliminado=False).latest('id')
         return ultimo_feral.id
 
     def __unicode__(self):
@@ -121,11 +119,11 @@ class CartaMagicPy(models.Model):
     """
     Una carta con idea guardada
     """
-    # , storage=S3BotoStorage(bucket='criptolibertad')
+    # , storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME)
     imagen_url = models.URLField(blank=True)
     nombre_carta_magic = models.CharField(max_length=255, blank=True, unique=True)
-    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy, storage=S3BotoStorage(bucket='criptolibertad'))
-    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base, storage=S3BotoStorage(bucket='criptolibertad'))
+    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
+    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
     grupo = models.ForeignKey(GrupoMagicPy, null=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
