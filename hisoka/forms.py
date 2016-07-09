@@ -3,7 +3,7 @@ import logging
 
 from django import forms
 
-from hisoka.models import Fireball, FeralSpirit, CartaMagicPy, GrupoMagicPy, CaminoMagicPy
+from hisoka.models import Fireball, FeralSpirit, CartaMagicPy, GrupoMagicPy
 
 
 class FormCrearFireball(forms.ModelForm):

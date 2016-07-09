@@ -13,6 +13,7 @@
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'magic_py' %} ">Magicpy Main</a></li>
     <li><a href="{% url 'nuevo_grupo' %} ">Nuevo Grupo</a></li>
+    <li><a href="{% url 'relacionar_carta' %}">Relacionar carta</a></li>
 </ul><!--- End Menu -->
 {% endblock hisoka_menu %}
 
@@ -74,7 +75,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-2 control-label" for="grupo">Imagen</label>
+                                    <label class="col-md-2 control-label" for="imagen">Imagen</label>
                                     {{ form.imagen.errors }}
                                     <div class="col-md-10">
                                       {{ form.imagen_url }}
@@ -84,7 +85,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                  <label class="col-md-2 control-label" for="grupo">Descripción</label>
+                                  <label class="col-md-2 control-label" for="descripcion">Descripción</label>
                                     {{ form.descripcion.errors }}
                                   <div class="col-md-10">
                                     {{ form.descripcion }}

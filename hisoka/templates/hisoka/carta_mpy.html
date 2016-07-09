@@ -10,6 +10,7 @@
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'magic_py' %} "> MagicPy </a></li>
     <li><a href="{% url 'nueva_carta' %} ">Nueva Carta</a></li>
+    <li><a href="{% url 'relacionar_carta' %}">Relacionar carta</a></li>
 </ul><!--- End Menu -->
 {% endblock hisoka_menu %}
 
@@ -39,17 +40,21 @@
                     <div id="img-div">
                         <img id="imagen" src="{{ carta_magicpy.imagen.url }}" class="thumbnail" height="400" width="auto" alt="">
                         <h3><small> {{ carta_magicpy.nombre_carta_magic }} </small> </h3>
-                        <a class="pull-right" href="{% url 'relacionar_carta' %}">Relacionar carta</a>
+                        {% if conjuntos %}
+                            {% for c in conjuntos %}
+                                <a href = "{% url 'conjunto_magicpy' c.id %}"><i class = "fa fa-link"></i> {{ c.nombre }}</a>
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
             <div class = "row">
                     <hr>
                 <div class = "col-md-offset-2">
-                    <h2>{{ carta_magicpy.nombre }} <br> <small> {{ carta_magicpy.grupo }} </small> </h2>
+                    <h2>{{ carta_magicpy.nombre }} <br> <small><a href="{% url 'grupo_magicpy' carta_magicpy.grupo.id %}">{{ carta_magicpy.grupo }}</a></small> </h2>
                     <p class="well">{{ carta_magicpy.descripcion }} </p>
                     <br><br>
-                    <p><small>Última revisión: {{ carta_magicpy.ultima_revision|default:"Todavía no" }}</small></p>
+                    <p><small>Última revisión: {{ carta_magicpy.ultima_revision|date:"SHORT_DATE_FORMAT"|default:"Todavía no" }}</small></p>
                 </div>
             </div>
         </div>

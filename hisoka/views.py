@@ -2,10 +2,12 @@
 import json
 import base64
 import requests
+import bleach
 from StringIO import StringIO
 from PIL import Image
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.edit import CreateView
@@ -16,7 +18,7 @@ from django.db.models import Count
 
 from tagging.models import Tag
 
-from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy, CartaMagicPy
+from hisoka.models import Fireball, FeralSpirit, GrupoMagicPy, CartaMagicPy, ConjuntoCartas, CartaConjunto
 from hisoka.forms import FormCrearFeralSpirit, FormCrearFireball, FormNuevaCarta, FormNuevoGrupo
 
 
@@ -91,6 +93,7 @@ class CrearFeralSpirit(CreateView):
         return success_url
 
 
+@login_required
 def multiple_images(request, slug_fireball):
     # Maneja un formulario con la opcion de subir varias imágenes a la ves
     template = "hisoka/multiple_images.html"
@@ -106,6 +109,7 @@ def multiple_images(request, slug_fireball):
     return render(request, template, context)
 
 
+@login_required
 def editar_feral(request):
 
     if request.is_ajax():
@@ -130,6 +134,7 @@ def editar_feral(request):
         return HttpResponse(status=400)
 
 
+@login_required
 def feral_data(request):
     """
     Recibe un feral_id y devuelve los datos de ese feral para llenarlo en el modal
@@ -153,6 +158,7 @@ def feral_data(request):
         return HttpResponse(status=400)
 
 
+@login_required
 def eliminar_feral(request):
     """
     recibe un feral_id y elimina el objeto FeralSpirit correspondiente
@@ -195,7 +201,41 @@ class CartaMPy(TemplateView):
         carta_id = self.kwargs['id_carta']
         carta_magicpy = CartaMagicPy.objects.get(id=carta_id)
         context['carta_magicpy'] = carta_magicpy
+        carta_magicpy.save()
+
+        # Actualiza Ultima Revisión
+        carta_magicpy.ultima_revision = datetime.today()
+
+        relaciones_obj = CartaConjunto.objects.filter(carta=carta_magicpy, eliminado=False).select_related('conjunto')
+        if relaciones_obj:
+            conjuntos_carta = [x.conjunto for x in relaciones_obj]
+            context['conjuntos'] = conjuntos_carta
+        else:
+            context['conjuntos'] = None
         return context
+
+
+@login_required
+def info_carta(request):
+    # API punto de entrada. Envía un JSON con la información de la carta
+    if request.is_ajax():
+        id_carta = request.GET.get("id_carta")
+        nombre_carta = request.GET.get("nombre_carta")
+
+        if not id_carta and not nombre_carta:
+            return HttpResponse(status=400)
+        else:
+            if id_carta:
+                id_carta = id_carta.strip()
+                carta = CartaMagicPy.objects.get(id=id_carta)
+            else:
+                carta = CartaMagicPy.objects.get(nombre=nombre_carta)
+
+            carta = {'nombre': carta.nombre, 'nombre_carta_magin': carta.nombre_carta_magic,
+                     'grupo': carta.grupo.nombre, 'descripcion': carta.descripcion, 'id_carta': carta.id,
+                     'imagen': carta.imagen.url, 'url_carta': reverse('carta_magicpy', kwargs={'id_carta': carta.id})}
+
+        return HttpResponse(json.dumps(carta))
 
 
 class GrupoMPy(TemplateView):
@@ -208,11 +248,15 @@ class GrupoMPy(TemplateView):
         grupo_magicpy = GrupoMagicPy.objects.get(id=grupo_id)
         context['grupo_magicpy'] = grupo_magicpy
 
+        grupo_magicpy.ultima_revision = datetime.today()
+        grupo_magicpy.save()
+
         cartas_magicpy = CartaMagicPy.objects.filter(grupo=grupo_magicpy, eliminada=False)
         context['cartas_magicpy'] = cartas_magicpy
         return context
 
 
+@login_required
 def nueva_carta(request):
     template = "hisoka/nueva_carta.html"
 
@@ -231,9 +275,11 @@ def nueva_carta(request):
             imagen.save(stringio_obj, format="JPEG")
             final_image = stringio_obj.getvalue()
 
-            carta.imagen = ContentFile(final_image, carta.nombre)
             carta.ultima_revision = datetime.today()
             carta.save()
+
+            archivo_imagen = ContentFile(final_image, "0_" + carta.nombre)  # Guarda la original con un 0 adelante
+            carta.imagen_base.save("0_" + carta.nombre, archivo_imagen, save=True)
 
             return redirect('recortar_carta', id_carta=carta.id)
 
@@ -244,19 +290,22 @@ def nueva_carta(request):
     return render(request, template, context)
 
 
+@login_required
 def relacionar_carta(request):
     template = "hisoka/relacionar_carta.html"
 
     if request.method == "POST":
-
-        form = (request.POST)
-        if form.is_valid():
-            pass
+        pass
 
     else:
-        form = ()
+        pass
 
-    context = {"form": form}
+    cartas_obj = CartaMagicPy.objects.filter(eliminada=False)
+    cartas_autocomplete = []
+    for c in cartas_obj:
+        cartas_autocomplete.append({'label': str(c.id) + " . " + c.nombre + " - " + c.grupo.nombre, 'value': c.nombre})
+
+    context = {'cartas_autocomplete': json.dumps(cartas_autocomplete)}
 
     return render(request, template, context)
 
@@ -282,6 +331,7 @@ class RecortarCarta(TemplateView):
         return context
 
 
+@login_required
 def recortar_carta_ajax(request):
 
     if request.is_ajax():
@@ -298,6 +348,48 @@ def recortar_carta_ajax(request):
 
         print url_redirect
         return HttpResponse(url_redirect)
+
+    else:
+        return HttpResponse(status=400)
+
+
+class ConjuntoMPy(TemplateView):
+    template_name = "hisoka/conjunto_magicpy.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ConjuntoMPy, self).get_context_data()
+        conjunto_magicpy = ConjuntoCartas.objects.get(id=self.kwargs['id_conjunto'])
+        context['conjunto_magicpy'] = conjunto_magicpy
+        cartas_conjunto_obj = conjunto_magicpy.cartaconjunto_set.all()
+        cartas_conjunto = []
+        for c in cartas_conjunto_obj:
+            print c.carta
+            cartas_conjunto.append(c.carta)
+        print cartas_conjunto
+        context['cartas_conjunto'] = cartas_conjunto
+        return context
+
+
+@login_required
+def guardar_conjunto(request):
+
+    """ Procesa con ajax las ids de las cartas relacionadas y crea un objeto conjunto """
+
+    if request.is_ajax():
+
+        descripcion = request.POST.get("descripcion")
+        id_cartas = json.loads(request.POST.get('id_cartas'))
+        nombre = request.POST.get("nombre")
+
+        # Crear objeto Conjunto Cartas
+        conjunto_magicpy = ConjuntoCartas.objects.create(nombre=bleach.clean(nombre), descripcion=bleach.clean(descripcion),
+                                      fecha_creacion=datetime.today(), ultima_revision=datetime.today())
+        for carta_id in id_cartas:
+            carta = CartaMagicPy.objects.get(id=int(carta_id))
+            CartaConjunto.objects.create(carta=carta, conjunto=conjunto_magicpy)
+
+        url_conjunto = reverse('conjunto_magicpy', kwargs={'id_conjunto': conjunto_magicpy.id})
+        return HttpResponse(url_conjunto)
 
     else:
         return HttpResponse(status=400)

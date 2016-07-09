@@ -3,8 +3,8 @@
 
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui-autocomplete.min.css' %}">
     <style>
-        .div_form {overflow: scroll; max-height: 800px; max-width: 100%}
     </style>
 {% endblock extra_css %}
 
@@ -13,6 +13,7 @@
     <li><a href="{% url 'hisokas_main' %} ">Hisoka's Main</a></li>
     <li><a href="{% url 'magic_py' %} ">Magicpy Main</a></li>
     <li><a href="{% url 'nuevo_grupo' %} ">Nuevo Grupo</a></li>
+    <li><a href="{% url 'nueva_carta' %} ">Nueva Carta</a></li>
 </ul><!--- End Menu -->
 {% endblock hisoka_menu %}
 
@@ -37,71 +38,52 @@
       </div> <!--- End Left Content -->
 
         <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
-            <div class = "div_form">
+
             <div id="content"><!--- Start Content Wrapper-->
-                <div class="text"> <!--- Start Text Wrapper -->
-					<hr class ="invisible">
-						<form class="form-horizontal" action="{% url 'nueva_carta' %}" method="post">
-						{% csrf_token %}
-							<fieldset>
-								{{ form.non_field.errors }}
 
-                                <div class="form-group">
-                                  <label class="col-md-2 control-label" for="grupo">Grupo</label>
-                                    {{ form.grupo.errors }}
-                                  <div class="col-md-10">
-                                    {{ form.grupo }}
-                                  <span class="help-block">A qué le pertenece?</span>
-                                  </div>
-                                </div>
+                <hr class ="half-margins invisible">
+                <div class = "row">
+                <div id = "inputs_cartas" data-input-count="1">
+                    <div class="form-group">
+                      <label class="col-md-2 control-label" for="textinput">Carta # <span>1</span></label>
+                      <div class="col-md-10">
+                        <input name="carta" placeholder="Nombre de la Carta" class="form-control input-md nombre_carta" type="text">
+                      </div>
+                    </div>
+                </div>
+                </div>
 
-                                <div class="form-group">
-                                  <label class="col-md-2 control-label" for="nombre">Nombre</label>
-                                    {{ form.nombre.errors }}
-                                  <div class="col-md-10">
-                                    {{ form.nombre }}
-                                    <span class="help-block">Como te vas a acordar de esto?</span>
-                                  </div>
-                                </div>
+                <button class="btn btn-success pull-right" id="sumar_carta"><i class="fa fa-plus"></i></button>
 
-                                <div class="form-group">
-                                  <label class="col-md-2 control-label" for="nombre_carta_magic">Nombre de la Carta</label>
-                                    {{ form.nombre_carta_magic.errors }}
-                                  <div class="col-md-10">
-                                    {{ form.nombre_carta_magic }}
-                                    <span class="help-block">Nombre de la carta de magic utilizada</span>
-                                  </div>
-                                </div>
+                <div class = "row div_descripcion_input">
+                    <div class = "col-md-offset-1 col-md-10">
+                        <hr>
+                        <input id="input_descripcion" name="descripcion" placeholder="Descripción del conjunto"
+                               class="form-control input-md" type="textarea">
+                    </div>
+                </div>
+                <hr class ="invisible">
+              <div class="space"></div>
+              <div class="clearfix"></div>
 
-                                <div class="form-group">
-                                    <label class="col-md-2 control-label" for="grupo">Imagen</label>
-                                    {{ form.imagen.errors }}
-                                    <div class="col-md-10">
-                                      {{ form.imagen_url }}
-                                      <span class="help-block">Pega la URL a una Imagen, luego podrás recortarla. Asegúrate que termine en "jpg" o "png".</span>
-                                      <br>
-                                    </div>
-                                </div>
+            <div class="panel panel-info">
+              <div id="titulo_panel" class="panel-heading"></div>
+              <div class="panel-body">
+                  <div class="row">
+                      <div id="imagenes_cartas" class="portfolio">
 
-                                <div class="form-group">
-                                  <label class="col-md-2 control-label" for="grupo">Descripción</label>
-                                    {{ form.descripcion.errors }}
-                                  <div class="col-md-10">
-                                    {{ form.descripcion }}
-                                    <span class="help-block">Descripción de lo que te recuerda</span>
-                                  </div>
-                                </div>
+                      </div>
+                  </div>
+                  <hr>
+                  <div class = "row">
+                      <div class = "col-md-offset-1">
+                        <p id="des_conjunto"></p>
+                      </div>
+                  </div>
+              </div>
+            </div>
 
-							</fieldset>
-							<br>
-							<input class = "btn btn-success pull-right" type="submit" value="Crear">
-						</form>
-						<hr class ="invisible">
-	              <div class="space"></div>
-    	          <div class="clearfix"></div>
-              </div> <!--- End Text Wrapper -->
-
-            <div id="imagen"></div>
+            <button id="guardar" class="btn btn-success">Guardar</button>
 
             </div><!--- End Content Wrapper-->
           </div> <!--- End Right Content -->
@@ -114,5 +96,127 @@
 {% endblock content %}
 
 {% block extra_javascript %}
+<script type="application/javascript" src="{% static 'js/jquery.loadTemplate-1.5.0.js' %}"></script>
+<script type="application/javascript" src="{% static 'js/jquery-ui-autocomplete.min.js' %}"></script>
+<script type="text/html" id="input_carta">
+    <div class="form-group">
+      <label class="col-md-2 control-label" for="">Carta # <span data-content="num_carta"></span></label>
+      <div class="col-md-10">
+        <input name="" placeholder="Nombre de la Carta" class="form-control input-md nombre_carta" type="text">
+      </div>
+    </div>
+</script>
+<script type="text/html" id="imagen_carta">
+    <div class="col-lg-4 col-md-4 item">
+      <div class="details">
+        <a target="_blank" data-href = "url_carta">
+          <p><small data-content="nombre_carta"></small></p>
+        </a>
+        <br>
+        <br>
+      </div>
+      <a target="_blank" data-href="url_carta"><img height="120" data-src='imagen_carta' alt='' class="thumbnail"/></a>
+    </div>
+</script>
+<script>
+$(document).ready(function(){
+
+    //Setea el título inicial de la carta en el panel
+    $("#titulo_panel").text($(".nombre_carta").text());
+
+    // Actualiza el título del panel dinámicamente
+    $("#inputs_cartas").on("keyup", ".nombre_carta", function(){
+        var nombres_actuales = [];
+        $(".nombre_carta").each(function(){
+            nombres_actuales.push($(this).val());
+        });
+
+        $("#titulo_panel").text(nombres_actuales.join("-"));
+    });
+
+    // Actualiza la descripcion automáticamente
+    $("#input_descripcion").on("keyup", function(){
+       $("#des_conjunto").text($(this).val());
+    });
+
+    // Funcionalidad para instertar un texto html
+    function insertarTemplate(template, element, options){
+          var html_listo = $("<div/>").loadTemplate(template, options).html();
+          element.append(html_listo);
+      };
+
+
+
+    window.cartasSeleccionadas = [];
+    // Autocomplete y seleccion de una carta
+    $(".nombre_carta").autocomplete({
+        source: JSON.parse('{{cartas_autocomplete|safe}}'),
+        minLength: 1,
+        select: function(event, ui){
+
+            var id_carta_elegida = ui.item.label.split(".")[0];
+            console.log(id_carta_elegida);
+            $.ajax({
+                method: "GET",
+                url: "{%  url 'info_carta' %}",
+                data: {'id_carta': id_carta_elegida},
+                success: function(r){
+                    var respuesta = JSON.parse(r);
+                    insertarTemplate($("#imagen_carta"), $("#imagenes_cartas"), {'url_carta': respuesta.url_carta,
+                        'nombre_carta': respuesta.nombre, 'imagen_carta': respuesta.imagen});
+                    window.cartasSeleccionadas.push(respuesta.id_carta);
+                }
+            });
+        }
+    });
+
+    //
+    $("#sumar_carta").on("click", function(){
+      var counter_cartas = $("#inputs_cartas").data("input-count");
+
+      insertarTemplate($("#input_carta"), $("#inputs_cartas"), {num_carta: counter_cartas+1});
+
+      $("#inputs_cartas").data("input-count", counter_cartas+1);
+
+        $(".nombre_carta").autocomplete({
+
+            source: JSON.parse('{{cartas_autocomplete|safe}}'),
+            minLength: 1,
+            select: function(event, ui){
+
+                var id_carta_elegida = ui.item.label.split(".")[0];
+                console.log(id_carta_elegida);
+                $.ajax({
+                    method: "GET",
+                    url: "{%  url 'info_carta' %}",
+                    data: {'id_carta': id_carta_elegida},
+                    success: function(r){
+                        var respuesta = JSON.parse(r);
+                        insertarTemplate($("#imagen_carta"), $("#imagenes_cartas"), {'url_carta': respuesta.url_carta,
+                            'nombre_carta': respuesta.nombre, 'imagen_carta': respuesta.imagen});
+                        window.cartasSeleccionadas.push(respuesta.id_carta);
+                    }
+                });
+            }
+      });
+    });
+
+    $("#guardar").on("click", function(){
+        console.log(window.cartasSeleccionadas);
+        $.ajax({
+            method: "POST",
+            url: "{% url 'guardar_conjunto' %}",
+            data: {'id_cartas': JSON.stringify(window.cartasSeleccionadas), 'csrfmiddlewaretoken': "{{ csrf_token }}",
+                'descripcion': $("#des_conjunto").text(), 'nombre': $("#titulo_panel").text()},
+            success: function(r){
+                location.href=r
+            },
+            error: function(){
+                alert("error")
+            }
+        });
+    });
+})
+</script>
 {% endblock extra_javascript %}
 

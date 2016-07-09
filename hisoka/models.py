@@ -40,7 +40,7 @@ class FeralSpirit(models.Model):
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral)
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket='criptolibertad'))
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
@@ -69,7 +69,7 @@ register_tag(FeralSpirit)
 
 
 def ubicar_imagen_magicpy(instance, filename):
-    path = "/".join(["grupos_magicpy", instance.nombre])
+    path = "/".join(["grupos_magicpy", filename])
     return path
 
 
@@ -110,14 +110,22 @@ def ubicar_magicpy(instance, filename):
     return path
 
 
+def ubicar_img_base(instance, filename):
+    # Ubica la imagen base, la que no ha sido recortada
+    nombre_archivo = "0_" + instance.nombre + ".jpeg"
+    path = "/".join([instance.grupo.nombre, nombre_archivo])
+    return path
+
+
 class CartaMagicPy(models.Model):
     """
     Una carta con idea guardada
     """
     # , storage=S3BotoStorage(bucket='criptolibertad')
     imagen_url = models.URLField(blank=True)
-    nombre_carta_magic = models.CharField(max_length=255, blank=True)
-    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy)
+    nombre_carta_magic = models.CharField(max_length=255, blank=True, unique=True)
+    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy, storage=S3BotoStorage(bucket='criptolibertad'))
+    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base, storage=S3BotoStorage(bucket='criptolibertad'))
     grupo = models.ForeignKey(GrupoMagicPy, null=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
@@ -150,7 +158,7 @@ class CartaMagicPy(models.Model):
 
 
 class ConjuntoCartas(models.Model):
-    nombre = models.CharField(blank=True)
+    nombre = models.CharField(max_length=600, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
     eliminado = models.BooleanField(default=False)
     fecha_creacion = models.DateTimeField(null=True)
