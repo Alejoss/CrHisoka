@@ -48,6 +48,7 @@
                 </div>
                 <button class = "btn btn-success" id="guardar_imagen">GUARDAR</button>
             </div>
+            <img src="" id = "img_prueba">
         </div>
 
     </div> <!-- End Row -->
@@ -60,6 +61,8 @@
 <script src = "{% static 'js/croppie.js' %}"></script>
 <script>
 $(document).ready(function(){
+
+    $("#img_prueba").attr("src", "{{ carta_magicpy.imagen_base.url }}");
 
     // Inicializa Croppie para recortar la imagen
     var croppie_div = $("#imagen").croppie({
