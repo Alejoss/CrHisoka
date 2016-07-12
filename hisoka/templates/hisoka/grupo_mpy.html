@@ -60,7 +60,7 @@
                         <br>
                         <br>
                       </div>
-                      <a href="{% url 'carta_magicpy' carta.id %}"><img height="80" src='{{ carta.imagen.url }}' alt='' class="thumbnail"/></a>
+                      <a href="{% url 'carta_magicpy' carta.id %}"><img height="80" src='{{ carta.imagen.image_url|default:"#" }}' alt='' class="thumbnail"/></a>
                     </div>
                     {% endfor %}
 

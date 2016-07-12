@@ -147,6 +147,16 @@ class CartaMagicPy(models.Model):
         else:
             return "%s dias" % dias
 
+
+    @property
+    def image_url(self):
+        # Devuelve la url de la imagen si existe, evita errores
+
+        if self.image and hasattr(self.image, 'url'):
+            return self.image.url
+        else:
+            return None
+
     class Meta:
         ordering = ["-ultima_revision"]
 
