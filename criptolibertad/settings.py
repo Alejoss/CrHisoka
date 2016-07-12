@@ -88,6 +88,7 @@ STATIC_ROOT = '/'
 
 # Media Files
 MEDIA_ROOT = BASE_DIR + "/media/"
+AWS_QUERYSTRING_AUTH = False
 
 if HEROKU:
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
