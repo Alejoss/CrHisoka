@@ -48,7 +48,7 @@
                 </div>
                 <button class = "btn btn-success" id="guardar_imagen">GUARDAR</button>
             </div>
-            <img src="" id = "img_prueba">
+            <img class="hidden" src="" id = "img_prueba">
         </div>
 
     </div> <!-- End Row -->
@@ -75,7 +75,7 @@ $(document).ready(function(){
 
     // Set imagen cuando se pega el url
     croppie_div.croppie('bind', {
-        url: "{{ carta_magicpy.imagen_base.url }}",
+        url: $("#img_prueba", attr("src")) ,
         points:  [10,10,300,600]
     });
 
