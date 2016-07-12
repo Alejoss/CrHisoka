@@ -205,3 +205,13 @@ class VCarreteras(TemplateView):
         context['active'] = 'v_carreteras'
         context['seccion'] = 'cripto_videos'
         return context
+
+
+class VMedicina(TemplateView):
+    template_name = "inicio/v_medicina.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(VMedicina, self).get_context_data(**kwargs)
+        context['active'] = 'v_medicina'
+        context['seccion'] = 'cripto_videos'
+        return context

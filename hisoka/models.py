@@ -3,7 +3,6 @@ from datetime import datetime
 
 from django.db import models
 from django.template.defaultfilters import slugify
-
 from tagging.registry import register as register_tag
 from storages.backends.s3boto import S3BotoStorage
 from django.conf import settings

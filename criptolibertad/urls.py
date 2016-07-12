@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^v_bomberos/$', views.VBomberos.as_view(), name="v_bomberos"),
     url(r'^v_energia/$', views.VEnergia.as_view(), name="v_energia"),
     url(r'^v_carreteras/$', views.VCarreteras.as_view(), name="v_carreteras"),
+    url(r'^v_medicina/$', views.VMedicina.as_view(), name="v_medicina"),
 
     # Admin
     url(r'^admin/', include(admin.site.urls)),

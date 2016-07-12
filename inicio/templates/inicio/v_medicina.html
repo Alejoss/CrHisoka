@@ -1,0 +1,65 @@
+{% extends 'base_videos.html' %}
+{% load staticfiles %}
+
+{% block imagen %}
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/videos/medicina_portada.jpg' %}" alt="..."></div>
+{% endblock imagen %}
+
+{% block titulo_tags %}
+   <h1>Medicina</h1>
+    <ul class="tags">
+      <li>Economía</li>
+      <li>Filosofía Política</li>
+    </ul>
+
+{% endblock titulo_tags %}
+
+{% block descripcion %}
+    <p>Sobre los monopolios en la industria de la medicina y la mafia que se genera.</p>
+{% endblock descripcion %}
+
+{% block iframe %}
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_JqWXSzb4XA?list=PLhgc-wWuMgISSGysVvNUjXfgzx0M4iDfq" frameborder="0" allowfullscreen></iframe>
+{% endblock iframe %}
+
+{% block quote %}
+<blockquote>
+</blockquote>
+{% endblock quote %}
+
+{% block fuentes %}
+    <div class="list-group">
+        <!--
+            Link Texto - warning
+            <a target="_blank" href ="link" class="list-group-item list-group-item-warning">
+               titulo
+            </a>
+
+            Link Video - info
+            <a target="_blank" href="link" class="list-group-item list-group-item-info">
+              titulo
+            </a>
+        -->
+        <a target="_blank" href="https://www.youtube.com/watch?v=ziCTNkV3FBI" class="list-group-item list-group-item-info">
+            WAR ON HEALTH - The FDAs Cult of Tyranny - Full Speech & Documentary
+        </a>
+        <a target="_blank" href="http://www.activistpost.com/2015/08/a-message-to-libertarians-about-the-fda.html" class="list-group-item list-group-item-warning">
+            A message to Libertarians about the FDA
+        </a>
+        <a target="_blank" href="http://www.activistpost.com/2015/08/a-message-to-libertarians-about-the-fda.html" class="list-group-item list-group-item-warning">
+            The Libertarian Three-Step Program
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=2hUltqHaGTA" class="list-group-item list-group-item-info">
+            Myths and Facts About Antidepressants | Robert Whitaker and Stefan Molyneux
+        </a>
+        <a target="_blank" href="https://mises.org/library/four-step-healthcare-solution" class="list-group-item list-group-item-warning">
+           A Four-Step Healthcare Solution
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=ojZn1P1CxJE" class="list-group-item list-group-item-info">
+            Big Pharma Big Money : Documentary on the Money and Corruption of Big Pharmaceutical Companies
+        </a>
+        <a target="_blank" href="https://www.youtube.com/watch?v=SvpkLvxsspg" class="list-group-item list-group-item-info">
+            Thomas Szasz on Psychiatry and Religion
+        </a>
+    </div>
+{% endblock fuentes %}
