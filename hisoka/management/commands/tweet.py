@@ -6,6 +6,7 @@ import tempfile
 import requests
 from StringIO import StringIO
 from PIL import Image
+from django.core.files.base import ContentFile
 
 from datetime import datetime
 
@@ -58,8 +59,9 @@ class Command(BaseCommand):
             imagen = Image.open(StringIO(respuesta.content))
             stringio_obj = StringIO()
             imagen.save(stringio_obj, format="JPEG")
-            final_image = stringio_obj.getvalue()
+            img_stringio = stringio_obj.getvalue()
 
+            final_image = ContentFile(img_stringio, "tweet_img")
             media_ids = api.update_with_media(filename=final_image, file=final_image)
             params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
             api.update_status(**params)
