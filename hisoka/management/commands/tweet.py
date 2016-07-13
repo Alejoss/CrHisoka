@@ -3,6 +3,9 @@ import os
 import random
 import tweepy
 import tempfile
+import requests
+from StringIO import StringIO
+from PIL import Image
 
 from datetime import datetime
 
@@ -51,13 +54,15 @@ class Command(BaseCommand):
         if feral_elegido.tipo == "imagen":
             # Envia tweets de Orilla Libertaria a twitter
 
-            with tempfile.NamedTemporaryFile(delete=True) as f:
-                filename = feral_elegido.imagen.file.name
-                print filename
-                f.write(feral_elegido.imagen.read())
-                media_ids = api.media_upload(filename=filename, f=f)
-                params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
-                api.update_status(**params)
+            respuesta = requests.get(feral_elegido.imagen.url)
+            imagen = Image.open(StringIO(respuesta.content))
+            stringio_obj = StringIO()
+            imagen.save(stringio_obj, format="JPEG")
+            final_image = stringio_obj.getvalue()
+
+            media_ids = api.update_with_media(filename=final_image, file=final_image)
+            params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
+            api.update_status(**params)
         else:
             api.update_status(texto_tweet)
 
