@@ -62,7 +62,7 @@ class Command(BaseCommand):
             img_stringio = stringio_obj.getvalue()
 
             final_image = ContentFile(img_stringio, "tweet_img")
-            media_ids = api.update_with_media(filename=final_image, file=final_image)
+            media_ids = api.update_with_media(filename=feral_elegido.imagen.url, file=final_image)
             params = {'status': texto_tweet, 'media_ids': [media_ids.media_id_string]}
             api.update_status(**params)
         else:
