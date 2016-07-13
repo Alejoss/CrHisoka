@@ -45,7 +45,7 @@ class Command(BaseCommand):
 
         # Obtener FeralSpirits
         # Toma los 3 feralspirits con fecha de publicación más lejana, luego elige uno random
-        feral_spirits = FeralSpirit.objects.filter(activo=True, eliminado=False, fireball=fireball_orilla)[:3]
+        feral_spirits = FeralSpirit.objects.filter(activo=True, eliminado=False, fireball=fireball_orilla).order_by('ultima_publicacion')[:3]
         lista_ferals = [f for f in feral_spirits]
         feral_elegido = random.choice(lista_ferals)
 
