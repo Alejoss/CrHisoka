@@ -102,14 +102,14 @@ class GrupoMagicPy(models.Model):
 
 def ubicar_magicpy(instance, filename):
     # Para ubicar las imágenes de magicpy
-    nombre_archivo = instance.nombre + ".jpeg"
+    nombre_archivo = slugify(instance.nombre) + ".jpeg"
     path = "/".join([instance.grupo.nombre, nombre_archivo])
     return path
 
 
 def ubicar_img_base(instance, filename):
     # Ubica la imagen base, la que no ha sido recortada
-    nombre_archivo = "0_" + instance.nombre + ".jpeg"
+    nombre_archivo = "0_" + slugify(instance.nombre) + ".jpeg"
     path = "/".join([instance.grupo.nombre, nombre_archivo])
     return path
 
