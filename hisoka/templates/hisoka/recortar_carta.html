@@ -43,7 +43,7 @@
                 <button class = "btn btn-info" id="recortar_imagen">RECORTAR</button>
                 <div class = "col-md-offset-3">
                     <br>
-                    <img id="resultado_crop" src="" alt="" class="img-responsive thumbnail">
+                    <img id="resultado_crop" src="" alt="" class="img-responsive">
                 </div>
                 <button class = "btn btn-success" id="guardar_imagen">GUARDAR</button>
             </div>
@@ -82,8 +82,15 @@ $(document).ready(function(){
             size: 'original',
             format: 'jpeg'
         }).then(function (resp) {
-            // window.ImageBase64 = resp;
             $("#resultado_crop").html(resp);
+
+            let div_html = $("#resultado_crop").find("img");
+            let left = div_html.css("left");
+            let top = div_html.css("top");
+            let right = div_html.css("right");
+            let bottom = div_html.css("bottom");
+            var puntos = [left, top, right, bottom];
+            console.log(puntos);
         });
     });
 
@@ -91,6 +98,7 @@ $(document).ready(function(){
     $("#guardar_imagen").on("click", function(e){
         e.preventDefault();
         $("#guardar_imagen").html("<i class='fa fa-spin fa-cog'></i>");
+
         $.ajax({
                 url: "{% url 'recortar_carta_ajax' %}",
                 method: "POST",
