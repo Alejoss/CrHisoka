@@ -44,4 +44,8 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name': 'hisoka/hisoka_login.html'}, name="login"),
     url(r'^logout/$', auth_views.logout, {'next_page': reverse_lazy('inicio')}, name="logout"),
     url(r'^hisoka/', include('hisoka.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

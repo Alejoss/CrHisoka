@@ -4,7 +4,6 @@
 {% block extra_css %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/criptolibertad/croppie.css' %}">
     <style>
-        .div_form {overflow: scroll; max-height: 800px; max-width: 100%}
         #panel {text-align: center;}
         #panel img {text-align: center;}
     </style>
@@ -76,15 +75,15 @@ $(document).ready(function(){
         points:  [10,10,300,600]
     });
 
-    // Guarda la imagen
+    // recorta la imagen
     $("#recortar_imagen").on("click", function() {
         croppie_div.croppie('result', {
-            type: 'canvas',
+            type: 'html',
             size: 'original',
             format: 'jpeg'
         }).then(function (resp) {
-            window.ImageBase64 = resp;
-            $("#resultado_crop").attr("src", resp);
+            // window.ImageBase64 = resp;
+            $("#resultado_crop").html(resp);
         });
     });
 

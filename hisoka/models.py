@@ -32,12 +32,12 @@ def ubicar_imagen_feral(instance, filename):
 
 
 class FeralSpirit(models.Model):
-    # , storage=S3BotoStorage(bucket='criptolibertad')
+    # , storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME)
     fireball = models.ForeignKey(Fireball)
     tipo = models.CharField(max_length=60)
     texto = models.CharField(max_length=150, blank=True)
     url = models.URLField(blank=True)
-    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
+    imagen = models.ImageField(null=True, blank=True, upload_to=ubicar_imagen_feral)
     tema = models.CharField(max_length=150, blank=True)
     contador = models.PositiveIntegerField(default=0)
     ultima_publicacion = models.DateTimeField(auto_now_add=True)
@@ -121,8 +121,8 @@ class CartaMagicPy(models.Model):
     # , storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME)
     imagen_url = models.URLField(blank=True)
     nombre_carta_magic = models.CharField(max_length=255, blank=True, unique=True)
-    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
-    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
+    imagen = models.ImageField(null=True, upload_to=ubicar_magicpy)
+    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base)
     grupo = models.ForeignKey(GrupoMagicPy, null=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
