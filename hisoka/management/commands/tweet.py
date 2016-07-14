@@ -23,29 +23,30 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
 
         if options['fireball'] == "orilla":
-            fireball_orilla = Fireball.objects.get(nombre="OrillaLibertaria")
+            fireball_seleccionado = Fireball.objects.get(nombre="OrillaLibertaria")
         elif options['fireball'] == "criptolibertad":
-            fireball_orilla = Fireball.objects.get(nombre="CriptoLibertad")
+            fireball_seleccionado = Fireball.objects.get(nombre="CriptoLibertad")
+        elif options['fireball'] == "letrasclub":
+            fireball_seleccionado = Fireball.objects.get(nombre="LetrasClub")
         else:
             raise CommandError("No se reconocio nombre del Fireball")
 
         # Envia tweets de Orilla Libertaria a twitter
-        access_token_twitter = "1884663464-cKUFhmqTVbEvxbkdOD0rBo1UyXwX20ZrbtseIQc"
-        access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET']
-        consumer_key = "XwIbq6Zwl5rUYzIMheFwx9MXO"
-        consumer_secret = os.environ['CONSUMER_SECRET_TWITTER']
-        auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-        auth.set_access_token(access_token_twitter, access_token_twitter_secret)
-        api = tweepy.API(auth)
+        if fireball_seleccionado.nombre == "OrillaLibertaria":
+            access_token_twitter = "1884663464-cKUFhmqTVbEvxbkdOD0rBo1UyXwX20ZrbtseIQc"
+            access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET']
+            consumer_key = "XwIbq6Zwl5rUYzIMheFwx9MXO"
+            consumer_secret = os.environ['CONSUMER_SECRET_TWITTER']
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token_twitter, access_token_twitter_secret)
+            api = tweepy.API(auth)
 
-        # api = twitter.Api(access_token_key=access_token_twitter,
-        #                   access_token_secret=access_token_twitter_secret,
-        #                   consumer_key=consumer_key,
-        #                   consumer_secret=consumer_secret)
+        elif fireball_seleccionado.nombre == "LetrasClub":
+            pass
 
         # Obtener FeralSpirits
         # Toma los 3 feralspirits con fecha de publicación más lejana, luego elige uno random
-        feral_spirits = FeralSpirit.objects.filter(activo=True, eliminado=False, fireball=fireball_orilla).order_by('ultima_publicacion')[:3]
+        feral_spirits = FeralSpirit.objects.filter(activo=True, eliminado=False, fireball=fireball_seleccionado).order_by('ultima_publicacion')[:3]
         lista_ferals = [f for f in feral_spirits]
         feral_elegido = random.choice(lista_ferals)
 
