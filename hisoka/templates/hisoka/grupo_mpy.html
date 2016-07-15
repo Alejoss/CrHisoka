@@ -53,14 +53,7 @@
 
                     {% for carta in cartas_magicpy %}
                     <div class="col-lg-2 col-md-2 item">
-                      <div class="details">
-                        <a href="{% url 'carta_magicpy' carta.id %}">
-                          <p><small>{{ carta.nombre }} </small></p>
-                        </a>
-                        <br>
-                        <br>
-                      </div>
-                      <a href="{% url 'carta_magicpy' carta.id %}"><img height="80" src='{{ carta.imagen.image_url|default:"#" }}' alt='' class="thumbnail"/></a>
+                      <a href="{% url 'carta_magicpy' carta.id %}"><img height="80" src='{{ carta.url_imagen_recortada|default:"#" }}' alt='' class="thumbnail"/></a>
                     </div>
                     {% endfor %}
 

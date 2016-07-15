@@ -252,6 +252,7 @@ class GrupoMPy(TemplateView):
         grupo_magicpy.save()
 
         cartas_magicpy = CartaMagicPy.objects.filter(grupo=grupo_magicpy, eliminada=False)
+
         context['cartas_magicpy'] = cartas_magicpy
         return context
 

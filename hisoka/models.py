@@ -122,7 +122,7 @@ class CartaMagicPy(models.Model):
     imagen_url = models.URLField(blank=True)
     nombre_carta_magic = models.CharField(max_length=255, blank=True, unique=True)
     imagen = models.ImageField(null=True, upload_to=ubicar_magicpy, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
-    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base)
+    imagen_base = models.ImageField(null=True, upload_to=ubicar_img_base, storage=S3BotoStorage(bucket=settings.AWS_STORAGE_BUCKET_NAME))
     grupo = models.ForeignKey(GrupoMagicPy, null=True)
     nombre = models.CharField(max_length=50, blank=True)
     descripcion = models.CharField(max_length=600, blank=True)
@@ -148,11 +148,11 @@ class CartaMagicPy(models.Model):
             return "%s dias" % dias
 
     @property
-    def image_url(self):
+    def url_imagen_recortada(self):
         # Devuelve la url de la imagen si existe, evita errores
 
-        if self.image and hasattr(self.image, 'url'):
-            return self.image.url
+        if self.imagen and hasattr(self.imagen, 'url'):
+            return self.imagen.url
         else:
             return None
 
