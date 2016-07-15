@@ -29,8 +29,8 @@ ADMINS = [('alejo', 'alejoveintimilla@gmail.com')]
 SECRET_KEY = os.environ['CRIPTOLIBERTAD_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-HEROKU = True
+DEBUG = True
+HEROKU = False
 
 ALLOWED_HOSTS = ["*"]
 
