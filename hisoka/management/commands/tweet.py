@@ -34,15 +34,21 @@ class Command(BaseCommand):
         # Envia tweets de Orilla Libertaria a twitter
         if fireball_seleccionado.nombre == "OrillaLibertaria":
             access_token_twitter = "1884663464-cKUFhmqTVbEvxbkdOD0rBo1UyXwX20ZrbtseIQc"
-            access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET']
+            access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET_ORILLA']
             consumer_key = "XwIbq6Zwl5rUYzIMheFwx9MXO"
-            consumer_secret = os.environ['CONSUMER_SECRET_TWITTER']
+            consumer_secret = os.environ['CONSUMER_SECRET_TWITTER_ORILLA']
             auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token_twitter, access_token_twitter_secret)
             api = tweepy.API(auth)
 
         elif fireball_seleccionado.nombre == "LetrasClub":
-            pass
+            access_token_twitter = "3385004379-wh8lWmLt0TRD9jcbBIrUxio7IVISwrfuKpkiy1m"
+            access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET_LETRAS']
+            consumer_key = "MAk0YJxjshcwb5pYtTB4L3ytH"
+            consumer_secret = os.environ['CONSUMER_SECRET_TWITTER_LETRAS']
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token_twitter, access_token_twitter_secret)
+            api = tweepy.API(auth)
 
         # Obtener FeralSpirits
         # Toma los 3 feralspirits con fecha de publicación más lejana, luego elige uno random
