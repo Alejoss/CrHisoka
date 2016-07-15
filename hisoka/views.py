@@ -336,21 +336,18 @@ def recortar_carta_ajax(request):
 
     if request.is_ajax():
 
-        print request.POST
         carta_id = request.POST.get("carta_id")
-        puntos_recortar = request.POST.get("imagen")
+        imagen_b64 = request.POST.get("imagen")
 
-        print puntos_recortar
+        imagen_decodificada = base64.b64decode(imagen_b64.replace('data:image/jpeg;base64,', ''))
+        carta_magicpy = CartaMagicPy.objects.get(id=carta_id)
+        nombre_archivo = carta_magicpy.nombre + ".jpeg"
+        imagen_django = ContentFile(imagen_decodificada, nombre_archivo)
+        carta_magicpy.imagen.save(nombre_archivo, imagen_django, save=True)
+        url_redirect = reverse('carta_magicpy', kwargs={'id_carta': carta_magicpy.id})
 
-        # carta_magicpy = CartaMagicPy.objects.get(id=carta_id)
-        # nombre_archivo = carta_magicpy.nombre + ".jpeg"
-        # imagen_django = ContentFile(imagen_decodificada, nombre_archivo)
-        # carta_magicpy.imagen.save(nombre_archivo, imagen_django, save=True)
-        # url_redirect = reverse('carta_magicpy', kwargs={'id_carta': carta_magicpy.id})
-
-        #print url_redirect
-        #return HttpResponse(url_redirect)
-        return HttpResponse("veamos")
+        print url_redirect
+        return HttpResponse(url_redirect)
 
     else:
         return HttpResponse(status=400)

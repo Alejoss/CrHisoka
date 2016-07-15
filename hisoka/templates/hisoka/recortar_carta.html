@@ -43,7 +43,7 @@
                 <button class = "btn btn-info" id="recortar_imagen">RECORTAR</button>
                 <div class = "col-md-offset-3">
                     <br>
-                    <img id="resultado_crop" src="" alt="" class="img-responsive">
+                    <img id="resultado_crop" src="" alt="" class="img-responsive thumbnail">
                 </div>
                 <button class = "btn btn-success" id="guardar_imagen">GUARDAR</button>
             </div>
@@ -75,22 +75,15 @@ $(document).ready(function(){
         points:  [10,10,300,600]
     });
 
-    // recorta la imagen
+    // Guarda la imagen
     $("#recortar_imagen").on("click", function() {
         croppie_div.croppie('result', {
-            type: 'html',
+            type: 'canvas',
             size: 'original',
             format: 'jpeg'
         }).then(function (resp) {
-            $("#resultado_crop").html(resp);
-
-            let div_html = $("#resultado_crop").find("img");
-            let left = div_html.css("left");
-            let top = div_html.css("top");
-            let right = div_html.css("right");
-            let bottom = div_html.css("bottom");
-            window.puntosCrop = [left, top, right, bottom];
-            console.log(puntos);
+            window.ImageBase64 = resp;
+            $("#resultado_crop").attr("src", resp);
         });
     });
 
@@ -98,11 +91,10 @@ $(document).ready(function(){
     $("#guardar_imagen").on("click", function(e){
         e.preventDefault();
         $("#guardar_imagen").html("<i class='fa fa-spin fa-cog'></i>");
-
         $.ajax({
                 url: "{% url 'recortar_carta_ajax' %}",
                 method: "POST",
-                data: {'csrfmiddlewaretoken': "{{ csrf_token }}", 'imagen': JSON.stringify(window.puntosCrop), 'carta_id': "{{ carta_magicpy.id }}"},
+                data: {'csrfmiddlewaretoken': "{{ csrf_token }}", 'imagen': window.ImageBase64, 'carta_id': "{{ carta_magicpy.id }}"},
                 success: function(r){
                     console.log(r);
                     $("#guardar_imagen").html("<i class='fa fa-check'></i>");
