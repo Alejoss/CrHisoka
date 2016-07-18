@@ -12,7 +12,13 @@
     más un entendimiento adecuado de la economía.">
     <meta name="keywords" content="libertarianismo, criptoanarquismo, capitalismo, libertad, bitcoin, filosofía, mutualismo, anarquismo">
     <meta name="author" content="Alejandro Veintimilla">
-    <meta property='og:image' content='https://s3-us-west-2.amazonaws.com/criptolibertad/img/criptolibertad/criptomediano.jpg'/>
+
+    {% if active == None %}
+        <meta property='og:image' content='https://s3-us-west-2.amazonaws.com/criptolibertad/img/criptolibertad/criptomediano.jpg'/>
+    {% endif %}
+
+    {% block meta %}
+    {% endblock meta %}
     
     <!-- Favicons
     ================================================== -->

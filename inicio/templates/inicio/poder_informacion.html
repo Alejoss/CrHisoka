@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block meta %}
+    <meta property="og:type"               content="article" />
+    <meta property="og:title"              content="El Poder y la Información" />
+    <meta property="og:description"        content="Se puede cuantificar en bits cómo con el tiempo se va tejiendo el Aleph, el “todo” de Borges. Y los servidores crecen al ritmo que lo hacen las cuentas en las redes sociales."/>
+    <meta property="og:image"              content="{% static 'img/criptolibertad/poder_informacion.jpg' %}" />
+{% endblock meta %}
+
 {% block content %}
 <!-- Fullscreen Page
 ================================================== -->
