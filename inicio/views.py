@@ -7,14 +7,6 @@ class Inicio(TemplateView):
     template_name = "inicio/inicio.html"
 
 
-class HistoriaConcienciaPoder(TemplateView):
-    template_name = "inicio/historia_poder_conciencia.html"
-
-    def get_context_data(self, **kwargs):
-        context = {'seccion': 'historia_conciencia_poder'}
-        return context
-
-
 class CriptoBlog(TemplateView):
     template_name = "inicio/criptoblog.html"
 
@@ -57,6 +49,7 @@ class CriptoUnicaSalida(TemplateView):
         context['seccion'] = 'cripto_blog'
         return context
 
+
 class JardinBonsais(TemplateView):
     template_name = "inicio/jardin_bonsais.html"
 
@@ -65,6 +58,7 @@ class JardinBonsais(TemplateView):
         context['active'] = 'jardin_bonsais'
         context['seccion'] = 'cripto_blog'
         return context
+
 
 class QueEsCripto(TemplateView):
     template_name = "inicio/que_es_cripto.html"
@@ -76,7 +70,33 @@ class QueEsCripto(TemplateView):
         return context
 
 
+class PoderInformacion(TemplateView):
+    template_name = "inicio/poder_informacion.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PoderInformacion, self).get_context_data(**kwargs)
+        context['active'] = 'poder_informacion'
+        context['seccion'] = 'cripto_blog'
+        return context
+
+
 # Videos
+class BlockBitLibertad(TemplateView):
+    template_name = "inicio/block_bit_libertad.html"
+
+    def get_context_data(self, **kwargs):
+        context = {'seccion': 'block_bit_libertad.html'}
+        return context
+
+
+class HistoriaConcienciaPoder(TemplateView):
+    template_name = "inicio/historia_poder_conciencia.html"
+
+    def get_context_data(self, **kwargs):
+        context = {'seccion': 'historia_conciencia_poder'}
+        return context
+
+
 class VPrologo(TemplateView):
     template_name = "inicio/v_prologo.html"
 

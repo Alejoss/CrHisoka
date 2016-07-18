@@ -12,16 +12,17 @@ urlpatterns = [
     url(r'^$', views.Inicio.as_view(), name="inicio"),
     url(r'^cripto_blog/$', views.CriptoBlog.as_view(), name="cripto_blog"),
     url(r'^cripto_videos/$', views.CriptoVideos.as_view(), name="cripto_videos"),
-    
-    url(r'^historia_conciencia_poder/$', views.HistoriaConcienciaPoder.as_view(), name="historia_conciencia_poder"),
 
     # Blog
     url(r'^criptoanarquismo_unica_salida/$', views.CriptoUnicaSalida.as_view(), name="cripto_unica_salida"),
     url(r'^jardin_bonsais/$', views.JardinBonsais.as_view(), name="jardin_bonsais"),
     url(r'^que_es_criptoanarquismo/$', views.QueEsCripto.as_view(), name="que_es_cripto"),
+    url(r'^poder_informacion/$', views.PoderInformacion.as_view(), name="poder_informacion"),
     url(r'^contenido_extra/$', views.ContenidoExtra.as_view(), name="contenido_extra"),
 
     # Videos
+    url(r'^historia_conciencia_poder/$', views.HistoriaConcienciaPoder.as_view(), name="historia_conciencia_poder"),
+    url(r'^block_bit_libertad/$', views.BlockBitLibertad.as_view(), name="block_bit_libertad"),
     url(r'^v_prologo/$', views.VPrologo.as_view(), name="v_prologo"),
     url(r'^v_conciencia/$', views.VConciencia.as_view(), name="v_conciencia"),
     url(r'^v_poder/$', views.VPoder.as_view(), name="v_poder"),

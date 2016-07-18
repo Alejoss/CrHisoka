@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+<!-- Fullscreen Page
+================================================== -->
+    <style>
+    .nota_tooltip{font-weight: bold; text-decoration: underline;}
+    </style>
+
+<div id="fullscreen">  <!--- Full Screen Single Blog Post Page -->
+  <div id="sidebar" class="blog">
+    <div class="featured-img"><img src="{% static 'img/criptolibertad/poder_informacion.jpg' %}" alt="..."></div> <!-- featured image-->
+  </div>
+
+  <div class="container"> <!-- Start Container -->
+    <div class="row"> <!-- Start Row -->
+      <div id="left" class="col-sm-6 col-md-6"> <!--- Left Content -->
+
+          <div id="menu" class="fa fa-bars fa-2x" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body"></div>
+          <div id="page-detail">
+
+            <h1>El poder y <br>la información</h1>
+
+            <ul class="tags">
+              <li>Economía</li>
+              <li>Política</li>
+              <li>Ciencia de Datos</li>
+            </ul>
+
+          </div>
+      </div> <!--- End Left Content -->
+
+                <div id="right" class="col-sm-6 col-md-6"> <!--- Right Content -->
+                <div id="content"><!--- Start Content Wrapper-->
+                <div class="text"> <!--- Start Text Wrapper -->
+                <span class="meta-date pull-right">Ensayo relacionado con <a target="_blank" href="{% url 'block_bit_libertad' %}">esta conferencia</a>.<br>
+                </span>
+                <br>
+                <br>
+                <p>
+              <br><br>
+                    La cultura popular está llena de conocimiento útil y verdadero mostrado de una manera simple, en pocas palabras, como moralejas, mitos urbanos o frases célebres. Como la historia de Sísifo, o la frase “El poder absoluto corrompe absolutamente”, o en imágenes, como en un uróboro o en la máscara de Anonymous, a la cual regresaré durante este ensayo. Uno de esos conocimientos está encapsulado en las palabras de Steve Jobs en la popular película “Los piratas de Silicon Valley”: “La información es poder” comenta en una escena importante, y hace eco con las palabras de Lord Baelish en Game of Thrones, “El conocimiento es poder”, que vuelven a anunciarse en las de Lex Luthor de Batman, “El conocimiento sin poder es una paradoja”.
+
+                    <br><br>
+
+        Steve Jobs, Lord Baelish y Lex Luthor reflejan en la pantalla grande algo que la sociedad entiende: La información es poder, y a mayor información, se deduce, más poder. Los economistas que estudian teoría de juegos lo saben muy bien, las posiciones que un actor puede tomar están determinadas por la cantidad de información que <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="El ejemplo más simple es quizás el conocido dilema del prisionero, donde cada actor está limitado por no saber qué decidirá el otro">tiene</span>. Los políticos lo viven todos los días, la compran, la venden y la cambian. Frank Underwood (House of Cards) y Christina Krishner la atesoran.
+
+                    <br><br>
+
+        El acto de espiar es justamente acaparar información. La STASI espiaba a sus ciudadanos, no para mantenerlos seguros, sino para tratar cualquier amenaza antes de que cobre fuerza. Una sociología del poder adecuada o una simple mirada a la historia debería ser suficiente para advertirnos que detrás de la democracia, se ocultan mafias similares. Y si “El poder absoluto corrompe absolutamente” como reza la frase de Lord Acton, ¿Es prudente dejar que la información del mundo se vaya sumando en los servidores de la NSA?
+
+                    <br><br>
+
+        En Minority Report tres “videntes” poseen un entendimiento tan intrínseco de la realidad que predicen el futuro, su trabajo es vigilar y anticipar el crimen. En Matrix, un mito moderno central para la sociedad del siglo XXI, los agentes pueden llegar a cualquier esquina de la realidad vigilada en cuestión de segundos. En el mundo real se construye, silenciosamente, algo similar al cuarto blanco donde habita el Arquitecto, el creador de la Matrix. La cultura popular lo sospecha y lo plantea en sus narraciones. La civilización inconscientemente entiende el problema, de ahí el valor semiótico de la máscara de Anonymous. <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="Michel Foucault analiza en Vigilar y Castigar como se establece la disciplina en la sociedad a través de un sistema en donde un centro vigila sin ser visto">Michel Foucault</span> señaló ya el panóptico que empezaba a cuadricular la sociedad hace tres siglos, ¡qué diría si hubiese conocido el Internet!.
+
+                    </p>
+                    <br><br>
+                    <img src="{% static 'img/criptolibertad/anonymous.jpg' %}" alt="..." class="img-responsive">
+
+                    <blockquote>
+                    Anonymous se enfrenta a la situación, no pierde el tiempo en consideraciones metafísicas (como cualquier movimiento valioso), parte de una disconformidad irracional, y actúa.
+                    </blockquote>
+
+                    <p>
+                    <br><br>
+        Consecuentemente, corresponde a la filosofía de la libertad del siglo XXI el generar un diálogo con los cambios que induce la tecnología. Quizás convenga dejar un espacio entre el debate constante con socialismos melancólicos y conservadurismos sordos para atender un reto de la época: Mientras se concentra la información, se concentra el poder. Debemos implementar en nuestro discurso político motivos relevantes al tiempo en que vivimos.
+
+                    <br><br>
+        La criptomoneda, la primera de las tecnologías que expondré, permite descentralizar una de las bases de datos más importantes en términos de poder: la del dinero. Satoshi Nakamoto, el desconocido creador del Bitcoin, comprendía la metástasis que su invención causaría en el sistema e inteligentemente optó por no develar su identidad.
+
+                    <br><br>
+        Conocemos la posición austríaca al respecto del dinero: No debe ser un monopolio. El control coercitivo y el manejo deliberado de la masa monetaria en la economía empuja a las tasas de interés hasta niveles tóxicos, sembrando burbujas en el mercado y causando crisis. Además, significa un impuesto sigiloso que merma los ahorros de la población. Regresar al patrón oro abandonado en 1971 es una solución, como bien señalan <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="En 'The Case for Gold'">Ron Paul</span> y <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="en 'The Case for a 100 Percent Gold Dollar'">Murray Rothbard</span>. Una moneda apoyada en oro no podría ser “impresa” a la merced del sentimiento del Tesoro. Los ahorristas podrían reclamar su oro y guardar el verdadero valor de sus ahorros donde deseen, no en unos papeles fraudulentos que se deprecian crónicamente.
+
+                    <br><br>
+        El Bitcoin comparte las ventajas del oro y suma algunas más, lo que le convierte en la mejor alternativa al actual dinero fiat. El oro, el depósito de valor que la humanidad ha utilizado por milenios, ya fue abandonado a partir de las acciones de los bancos centrales, para que vuelva a ser nuestra moneda, tendría que darse una suerte de milagro legislativo, una ridiculez política y un ajuste bancario inimaginable. Ésta es quizás su principal desventaja frente al Bitcoin, cuyo mecanismo de expansión actúa en un lugar sin pilares de mármol ni bóvedas. Nada está dicho sobre el ciberespacio, y de esto deviene que las criptomonedas tienen más posibilidades.
+
+                    <br><br>
+        El Bitcoin es una herramienta que mira al futuro, el oro es una nostalgia. Hubo un tiempo en que servía, guardaba con su brillo de sol el valor del trabajo por generaciones. Pero, incluso en esa época, no faltó el duque que redujo el tamaño de las monedas o el emperador que ordenó mezclar el metal con otro menos valioso. El Bitcoin no tiene esa debilidad. Luego, los gobiernos del mundo se tomaron los depósitos de oro y los nacionalizaron o entregaron tras concursos dudosos. El Bitcoin no ha sido, ni puede ser, objeto de una oferta mafiosa o de una nacionalización. Es descentralizado, cualquier computadora lo puede producir.
+
+                    <br><br>
+        El valor inicial del Bitcoin yace en poder computacional y en las desventajas del dinero fiat, una vez establecido, como una bola de nieve o una revolución, ya no hay marcha atrás. No hay tregua entre los billetes comunes y las criptomonedas. Recordemos que un dólar es un papel con información, al todos los papeles ser producidos por una sola institución (el Banco Central), lo que existe es un problema de centralización de información. Una criptomoneda es, al igual que un billete, una tupla de datos: nombre y cantidad  (quién y cuánto), con la diferencia de que no le debe su producción a ningún centro. Además, no puede ser confiscado como el gobierno de Estados Unidos hiso con las reservas de sus ciudadanos en <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="Frankin D Roosevelt a través de la 'Executive Order 6102'">1933</span>, ni se lo puede manosear y congelar como lo hiso el gobierno ecuatoriano en el noventa y nueve y el argentino en el 2001; y como lo hacen todos los bancos que prestan el dinero que no tienen.
+
+                    <br><br>
+        Mediante transacciones cifradas, nodos y cadenas de bloques cuyos detalles no le pertenecen a este texto, los usuarios guardan y acceden a la tabla de Bitcoins general y pueden conocer cuántos Bitcoins tiene cada billetera. Estas últimas son llaves públicas únicas, funcionan como claves que relacionan la cuenta con la cantidad de dinero. Así, la información es abierta mientras se mantiene la privacidad.
+
+                    <br><br>
+        El código del Bitcoin es totalmente abierto y está disponible en la red, cualquiera lo puede revisar, probar, copiar y mejorar. Ésta cualidad lo sitúa como indiscutiblemente superior al oro, o a cualquier moneda que el ser humano pueda extraer del mundo. Al ser código abierto, el Bitcoin no se limita a sí mismo, si no que abriga en él la opción de evolucionar.
+
+                    <br><br>
+        El Bitcoin no está guardado en un servidor específico sino que todos los servidores tienen acceso a la información completa del sistema, en palabras simples, todos saben cuanto tienen todos. El Blockchain es la tecnología que utiliza el Bitcoin para contar con esa cualidad tan especial: que todos los puntos tengan acceso a toda la información del sistema. Si la información es poder, y el Blockchain es capaz de descentralizar la información, entonces el Blockchain es la herramienta más valiosa que tiene la lucha por la libertad.
+
+                    <br><br>
+
+        </p>
+        <br><br>
+        <img src="{% static 'img/criptolibertad/adn.jpg' %}" alt="..." class="img-responsive">
+
+        <blockquote>
+        Conviene señalar un aspecto retórico de ésta tecnología: la naturaleza, tras millones de años de evolución, ha desembocado en un mecanismo similar para guardar la información y pasarla a las siguientes generaciones. El ADN contiene en sus cromosomas toda la información de la especie, y como todas las células guardan ADN, se entiende que se trata de algo similar al Blockchain: una red de información descentralizada.
+        </blockquote>
+
+        <p>
+
+                    <br><br>
+        Así el Blockchain, sin pensar demasiado, puede ser un reemplazo eficiente para muchas de las ramas gubernamentales, ¿Y si guardamos el Registro Civil en un Blockchain? ¿Y el Registro de la Propiedad? Vale la pena tomar un momento para contemplar el poder revolucionario de esta tecnología. Hay ejemplos actuales que llaman la atención de cualquier libertario: Suecia tiene un proyecto en el que se plantea pasar el Registro de la Propiedad a un Blockchain; o Bitnation, la plataforma de gobierno descentralizado que ofrece, entre otras cosas, documentos de identidad sobre la misma tecnología.
+
+                    <br><br>
+        Sin embargo, antes de seguir con el Blockchain creo que es importante hablar de dos conceptos relacionados, el “código abierto” y la criptografía.
+
+                    <br><br>
+        El opuesto al código abierto, porque pensar en opuestos siempre aclara un tema, es la patente: un único actor con la posesión de cierta <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="Conviene revisar el trabajo de Stephan Kinsella sobre las intricancias éticas y legales del sistema de patentes.">información</span>. Los centros creados artificialmente por las leyes de copyright y patentes son difuminados por el código abierto. La información bajo dicho paradigma no está censurada, sino que puede ser reutilizada, modificada, vendida y cualquiera puede tener acceso a ella.
+
+                    <br><br>
+        Los beneficios de la información abierta son visibles en el desarrollo de software más que en ninguna otra área. Como programador, no hay un solo proyecto en el que he trabajado que no haya tomado el código de otros desarrolladores. Y éste es el estándar de la industria, nos asemejamos como un todo al proceso evolutivo de la naturaleza: Un lobo al nacer hereda el código de millones de años de prueba y error, y construye sobre él. Tiene “instalado” el sistema límbico, el instinto de caza, las garras, el pelaje. Así, cuando un desarrollador trabaja sobre código abierto, utiliza un lenguaje de base de datos establecido, un framework de desarrollo listo para servir de cimiento y estilos preconstruidos pero customizables para darle una apariencia adecuada al programa. Si no fuera por el paradigma en cuestión, no habría ninguna aplicación en el Appstore y ni una sola página web en el Internet.
+
+                    <br><br>
+        Las matemáticas son otro sistema de información abierta, ¿Cómo sería el mundo si una institución tuviera la patente de la fórmula del área del triángulo? El lenguaje es similar: Es una tecnología que se adapta y construye protocolos, significados y abstracciones que les permiten a las mentes humanas conectarse. Las palabras son herramientas compartidas, y gracias a la red que tejen, la humanidad ha avanzado tanto. Con la música ocurre lo mismo, Elvis escribió “My Way” con el ritmo de la canción “Comme d'habitude”, Mercedes Sosa cantó el poema sobre Alfonsina Storni, Walt Disney utilizó a Tchaikovsky en Fantasía y un usuario de Youtube mezcló la voz de Lisa Gerald en Dead can Dance con un video de Mylene Farmer, creando una
+            <a class="nota_tooltip" target="_blank" href="https://www.youtube.com/watch?v=Ku1HJ2DI7Xk">inesperada armonía</a> de video y música.
+
+                    <br><br>
+        Los sistemas donde la información es abierta son eficientes y elásticos, y permiten evolucionar construyendo sobre lo ya realizado. Las redes donde existe una patente, un monopolio o cualquier tipo de centro, son justamente lo contrario: crean concentraciones de poder, ya sea alrededor de bancos centrales o de <a target="_blank" class="nota_tooltip" href="{% url 'v_medicina' %}">ministerios de salud</a>.
+
+                    <br><br>
+        Así, el código abierto favorece la descentralización del poder en cualquier ámbito. Más aún, si lo combinamos con un invento de éste siglo, la impresión 3D, podemos prever movimientos tectónicos en la sociedad y en sus industrias. Cody R. Wilson subió en el 2013 el código para imprimir un arma. Obviamente, el código ha sido prohibido pues al igual que durante muchas dictaduras, la posesión de armas está regulada. Pero gracias a Cody, la realidad impuesta por esa institución coercitiva (que con un arma impide que otros se armen), es amenazada por un archivo que flota en las redes P2P y por una <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="La descentralización en éste tema también reformaría el mercado: ¿Cómo se vería la industria automotriz si se facilita la impresión de carros?">impresora 3D</span>.
+
+                    <br><br>
+        Uber es otro excelente ejemplo de descentralización. ¿Qué significa un carro pintado de amarillo? al igual que los pilares de mármol para el banco, el color amarillo anuncia confianza. Uber hace con los taxis lo que el Bitcoin con los bancos: pasa de información centralizada en una institución a información distribuida en una plataforma.
+
+                    <br><br>
+        Sin embargo, la tecnología es un arma de doble filo. Los centros quizás pierdan su peso, uno a uno, hasta llegar a un equilibro sano. O, lamentablemente, puede que ganen más poder, y eleven la altura del castillo, el tamaño del Estado o la influencia de la mafia hasta un nivel inmanejable. Conviene traer ejemplos extremos cuando no se conoce el alcance de una tendencia:
+
+                    <br><br>
+        La tecnología continúa su mezclarse con el mundo y las esquinas adquieren información extra. Así como la hora está atada el Big Bell de Londres, cuatro estrellas le crecen al bar de la esquina. La Realidad Aumentada se ha convertido en el escenario donde transcurren nuestras vidas y la ciudad se cubre de un éter de información: nuestro teléfono celular sabe a qué hora pasa el tren, cuánto tráfico hay en la carretera y puede abrir con un click en “comprar” las máquinas de Coca-Cola del parque. Pronto conocerá el nombre de las plantas que nos rodean, todos los eventos de la ciudad y nos relacionará con cosas y personas; poco a poco el aparato mediará entre el exterior y el individuo, hasta que finalmente, como
+            <a class="nota_tooltip" target="_blank" href="https://www.youtube.com/watch?v=OTV_Vz-Ur2M">advierte Julian Assange</a>, dejará el bolsillo y pasará a las gafas, el proyecto Google Glass y la Realidad Virtual de Oculus son solamente un primer acercamiento.
+
+                    <br><br>
+
+        </p>
+        <br><br>
+        <img src="{% static 'img/criptolibertad/internet_ball.jpg' %}" alt="..." class="img-responsive">
+
+        <blockquote>
+        Así, la humanidad va guardando la información de su realidad. Se puede cuantificar en bits cómo con el tiempo se va tejiendo el Aleph, el “todo” de Borges. Y los servidores crecen al ritmo que lo hacen las cuentas en las redes sociales.
+        </blockquote>
+
+        <p>
+                    <br><br>
+        Como ya mencioné, actualmente la información del mundo se acumula en Utah, en los bancos de datos de la NSA. Y valga la redundancia: ¿Es prudente confiarle tal poder a esa, o a cualquier, institución? Es imposible hablar de este tema sin referirse a la Inteligencia Artificial. La NSA se limita a analizar tendencias debido a que sus ingenieros, humanos, no pueden procesar tanta información. Una I.A, sin embargo, podría tomar los datos y hacer deducciones y predicciones de certeza sorprendente. El avance tecnológico en campos de Inteligencia Artificial tampoco es soslayable; hace poco una computadora con capacidad de aprendizaje realizó lo que era prácticamente imposible para una común: ganó en un partido de Go a un campeón mundial de este deporte. Es conocida la historia entre Kasparov y Deep Blue, la computadora que terminó venciendo al campeón de Ajedrez. En el Go, sin embargo, esto no se había dado debido a la gran cantidad de posibilidades que se abren tras cada jugada, un programa normal es incapaz de procesarlas. La Inteligencia Artificial desarrollada por Google, sin embargo, aprendió a jugar Go revisando partidas de humanos y jugando contra sí misma, y venció al campeón mundial al primer intento. ¿Podrían predecir el precio del petróleo si se les alimentan suficientes datos? ¿Qué no más podrían predecir?
+
+                    <br><br>
+        Cabe señalar que los bancos ya procesan toda la información a su alcance, desde movimientos en tarjetas de crédito hasta proyecciones climáticas, para modelar sus algoritmos de Fast-Trading. Además, manifiestan abiertamente su interés en “Deep Learning”, ciencia de datos e Inteligencia Artificial. También los gobiernos luchan por obtener la mayor cantidad de información posible de sus ciudadanos, iniciativas como el SOPA o el PRISM son ejemplos clave que deberían fruncir el ceño de cualquier libertario.
+
+                    <br><br>
+        Si las tendencias como es posible, no cambian sino que aceleran su paso; se vuelve imperativo adoptar mecanismos que devuelvan a la acción humana su debida privacidad, so pena de entregar el Aleph a alguna institución (probablemente gubernamental) en la que se empozaría un poder inimaginable. Hay una sola forma de encarar este riesgo ante el cual nos enfrentan la vigilancia y la Inteligencia Artificial: utilizando criptografía. Mientras la sociedad no encripte su actuar en la red, será un libro abierto para quien tenga acceso a los servidores. Este dilema no es desconocido entre hackers y teóricos,<span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="Ben Goertzel es una eminencia en el campo de la Inteligencia Artificial, entre otras posiciones, es chairman de la Artificial General Intelligence Society">Ben Goertzel</span> y <span class="nota_tooltip" data-toggle="tooltip" data-placement="top" title="Hugo de Garis es un científico e investigador reconocido en el ámbito de algoritmos genéticos y hardware evolutivo">Hugo DeGaris</span> hablan sobre él en “Singularity or Burst” y <span class="nota_tooltip" data-toggle="title" data-placement="top" title="Joi Ito es director del MIT Media LAB">Joi Ito</span> en “The Human of Big Data”. Incluso Sir Tim Berners-Lee, el inventor del Internet, cree que es necesario reemplazarlo por uno que no signifique el “sistema de vigilancia más grande del mundo”. Espero haber dejado claro por qué su tono de urgencia no es gratuito.
+
+                    <br><br>
+        Afortunadamente, el Blockchain y algunas variaciones innovadoras, apuntan a crear una tecnología que hará posible, literalmente, distribuir el Internet: Arrancarlo de un lugar específico y partirlo en pequeños nodos que lleven una parte de la información total. “Bienvenido a un Internet libre” anuncia la página de inicio de MaidSafe. Es una plataforma que hace exactamente lo descrito, no pone todos los datos en un solo servidor, sino que ubica una parte del total de información en cada computador de la red. Así, por ejemplo, los miembros de MaidSafe aceptan guardar 10gb de información de alguien más en su computador y a cambio ellos también acceden a almacenamiento remoto envuelto por criptografía. Si el Internet entero se manejara de esa manera, no habría forma de que la NSA, o cualquier institución, se haga con los datos del mundo.
+
+                    <br><br>
+        Entonces, la tecnología nos presenta un riesgo y un reto. La solución que señalo es un equilibrio entre el código abierto y la privacidad, manteniendo un marco descentralizado: La información propia podría mantenerse privada y la pública haría bien en ser libre y compartida; todo sobre un sistema donde la información no se guarde en un lugar específico sino que se mantenga lo más distribuida posible.
+
+                    <br><br>
+        A pesar de la urgencia y el ánimo conspirativo que subyace al tema de la vigilancia, creo que lo correcto es tomarlo con calma, tranquilidad y un medido escepticismo. Anonymous ya está en la guerra. Lo que falta es un discurso adecuado que encuadre éstas facultades liberadoras de la tecnología, y el libertarianismo (en sus diversas ramas) es el único movimiento capaz de abordar dicha tarea. Debemos conversar al respecto del Blockchain, de la criptografía y del código abierto. La información y los caminos que toma, su centralización y en contraste, su conveniente descentralización, podrían abrir un nuevo campo de estudio para los teóricos de la libertad. Haríamos lo correcto si enseñamos las razones por las cuales debemos mantenernos atentos y optimistas a la mayor cantidad de mentes libres posible; incluimos estos temas en los simposios y conferencias, en los campamentos de verano y en el intercambio de conocimiento que se da en la red.
+
+                </p>
+
+              <div class="space"></div>
+                <span class="meta-date pull-right">
+                    Alejandro Veintimilla <br>
+                    Julio 2015 <br>
+                    @criptoanarquism
+                </span>
+
+              <div class="clearfix"></div>
+              </div> <!--- End Text Wrapper -->
+
+            </div><!--- End Content Wrapper-->
+
+          </div> <!--- End Right Content -->
+
+    </div> <!-- End Row -->
+  </div> <!-- End Container -->
+
+</div> <!--- End Full Screen Blog Post Page -->
+
+{% endblock content %}
