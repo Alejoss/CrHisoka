@@ -81,19 +81,32 @@ class PoderInformacion(TemplateView):
 
 
 # Videos
-class BlockBitLibertad(TemplateView):
-    template_name = "inicio/block_bit_libertad.html"
-
-    def get_context_data(self, **kwargs):
-        context = {'seccion': 'block_bit_libertad.html'}
-        return context
-
-
 class HistoriaConcienciaPoder(TemplateView):
     template_name = "inicio/historia_poder_conciencia.html"
 
     def get_context_data(self, **kwargs):
-        context = {'seccion': 'historia_conciencia_poder'}
+        context = super(HistoriaConcienciaPoder, self).get_context_data(**kwargs)
+        context['seccion'] = 'historia_conciencia_poder'
+        return context
+
+
+class MitoApocalipsis(TemplateView):
+    template_name = "inicio/mito_apocalipsis.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(MitoApocalipsis, self).get_context_data(**kwargs)
+        context['active'] = 'mito_apocalipsis'
+        context['seccion'] = 'cripto_videos'
+        return context
+
+
+class BlockBitLibertad(TemplateView):
+    template_name = "inicio/block_bit_libertad.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(BlockBitLibertad, self).get_context_data(**kwargs)
+        context['active'] = 'block_bit_libertad'
+        context['seccion'] = 'cripto_videos'
         return context
 
 

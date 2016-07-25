@@ -22,6 +22,7 @@ urlpatterns = [
 
     # Videos
     url(r'^historia_conciencia_poder/$', views.HistoriaConcienciaPoder.as_view(), name="historia_conciencia_poder"),
+    url(r'^mito_apocalipsis/$', views.MitoApocalipsis.as_view(), name="mito_apocalipsis"),
     url(r'^block_bit_libertad/$', views.BlockBitLibertad.as_view(), name="block_bit_libertad"),
     url(r'^v_prologo/$', views.VPrologo.as_view(), name="v_prologo"),
     url(r'^v_conciencia/$', views.VConciencia.as_view(), name="v_conciencia"),

@@ -2,7 +2,6 @@
 import os
 import random
 import tweepy
-import tempfile
 import requests
 from StringIO import StringIO
 from PIL import Image
@@ -45,6 +44,15 @@ class Command(BaseCommand):
             access_token_twitter = "3385004379-wh8lWmLt0TRD9jcbBIrUxio7IVISwrfuKpkiy1m"
             access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET_LETRAS']
             consumer_key = "MAk0YJxjshcwb5pYtTB4L3ytH"
+            consumer_secret = os.environ['CONSUMER_SECRET_TWITTER_LETRAS']
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token_twitter, access_token_twitter_secret)
+            api = tweepy.API(auth)
+
+        elif fireball_seleccionado.nombre == "CriptoLibertad":
+            access_token_twitter = "2816185062-3dRdYLGiTirjTvRAUmFR8MDKAWojjmds6ur2g24"
+            access_token_twitter_secret = os.environ['ACCESS_TOKEN_TWITTER_SECRET_LETRAS']
+            consumer_key = "ZUGpaYk2GIHWqXecYq6LngL23"
             consumer_secret = os.environ['CONSUMER_SECRET_TWITTER_LETRAS']
             auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
             auth.set_access_token(access_token_twitter, access_token_twitter_secret)
