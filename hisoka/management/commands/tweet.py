@@ -79,6 +79,7 @@ class Command(BaseCommand):
             final_image = ContentFile(img_stringio, "tweet_img")
             api.update_with_media(filename=feral_elegido.imagen.url, file=final_image)
         else:
+            # TODO FALTA PROBAR TWEETS DE TEXTO
             api.update_status(texto_tweet)
 
         # Aumentar contador
